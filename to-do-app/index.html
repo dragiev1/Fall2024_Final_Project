@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
@@ -37,10 +38,6 @@
                     Home
                 </a>
 
-                <a class="navbar-item">
-                    Documentation
-                </a>
-
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         More
@@ -49,9 +46,6 @@
                     <div class="navbar-dropdown">
                         <a class="navbar-item">
                             About
-                        </a>
-                        <a class="navbar-item is-selected">
-                            Jobs
                         </a>
                         <a class="navbar-item">
                             Contact
@@ -76,15 +70,129 @@
                     </div>
                 </div>
             </div>
-            <!-- App -->
-            <section class="hero">
-                <div class="hero-body">
-                  <p class="title">TO-DO</p>
-                  <p class="subtitle">Input what thou must do...</p>
-                </div>
-              </section>
         </div>
     </nav>
+
+    <!-- Explanation -->
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <p class="title">TO-DO</p>
+            <p class="subtitle is-italic is-6">What art thou must do...?</p>
+        </div>
+    </section>
+    <!-- App -->
+    <div id="app" class="columns px-5 py-2">
+        <div class="column is-3">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">Instructions</p>
+                    <button class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        Please press enter to make a new task! Once you are done with a task, you may checkmark it or delete it from the list!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-6 is-center">
+            <article class="panel">
+                <div class="tabs is-boxed">
+                    <ul>
+                        <li class="is-active">
+                            <a>
+                                <span class="icon is-small">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </span>
+                                <span>Current</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="icon is-small">
+                                    <i class="fas fa-calendar-times"></i>
+                                </span>
+                                <span>Completed</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="icon is-small">
+                                    <i class="fas fa-calendar-minus"></i>
+                                </span>
+                                <span>Upcoming</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="icon is-small">
+                                    <i class="fas fa-calendar"></i>
+                                </span>
+                                <span>All</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-block">
+                    <p class="control has-icons-left is-expanded">
+                        <input type="text" class="input is-primary" v-model="newTask" @keyup.enter="addTask"
+                            placeholder="New Task">
+                        <span class="icon is-left">
+                            <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="content">
+                        <ul>
+                            <li v-for="(task, index) in tasks" :key="index">
+                                <a class="button is-primary is-small" @click="deleteTask(index)"> - </a>
+                                <label class="checkbox">
+                                    <input type="checkbox" v-model="task.completed">
+                                    <span :class="{ 'has-text-grey-light': task.completed }">{{ task.name }}</span>
+                                </label>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                newTask: '',
+                tasks: [
+                    { name: 'learn feynnman integration', completed: false },
+                    { name: 'pet my cat', completed: true },
+                    { name: 'get a girlfriend', completed: true },
+                    { name: 'make to-do app for wsp', completed: true }
+                ]
+            },
+            methods: {
+                addTask() {
+                    if (this.newTask.trim() === '') {
+                        return;
+                    }
+                    this.tasks.push({
+                        name: this.newTask,
+                        completed: false
+                    });
+                    this.newTask = '';
+                },
+                deleteTask(index) {
+                    this.tasks.splice(index, 1);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
