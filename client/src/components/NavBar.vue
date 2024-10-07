@@ -1,36 +1,39 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
+
+const isOpen = ref(false)
 </script>
 
 <template>
   <nav
     class="navbar"
     role="navigation"
-    aria-label="main navigation"
-    style="background-color: #e6a4b4"
+    aria-label="navigation"
+    style="background-color: var(--highlights-background)"
   >
     <div class="navbar-brand">
       <RouterLink to="/" class="navbar-item px-4 mx-1 py-4">
-        <img alt="Nadia logo" class="logo" src="@/assets/logo.png"/>
+        <img alt="Nadia logo" class="logo" src="@/assets/logo.png" />
       </RouterLink>
 
-      <RouterLink 
-        to=""
+      <a
         role="button"
         class="navbar-burger"
         aria-label="menu"
         aria-expanded="false"
-        data-target="navbarBasicExample"
+        :class="{ 'is-active': isOpen }"
+        @click="isOpen = !isOpen"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-      </RouterLink>
+      </a>
     </div>
 
     <!-- NavBar -->
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-menu" :class="{ 'is-active': isOpen }">
       <div class="navbar-start">
         <RouterLink to="/" class="navbar-item has-text-light">
           <i class="fas fa-home"></i>
@@ -60,7 +63,7 @@ import { RouterLink } from 'vue-router'
             <RouterLink to="" class="button is-light">
               <strong>Sign up</strong>
             </RouterLink>
-            <RouterLink to="" class="button is-light mx-1"> 
+            <RouterLink to="" class="button is-light mx-1">
               <p>Login</p>
             </RouterLink>
           </div>
@@ -71,31 +74,40 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style>
-
 .navbar-dropdown {
-  background-color: #e6a4b4;
+  background-color: var(--highlights-background);
+  margin: 0;
 }
 
 .navbar-dropdown .navbar-item {
-  background-color: #e6a4b4 !important;
-  color: #F5EEE6 !important
+  background-color: var(--highlights-background) !important;
+  color: var(--primary-background) !important;
+  margin: 0;
 }
 
 .navbar a.navbar-item:hover {
-  background-color: #c48b99 !important
+  background-color: var(--highlights-background-hover) !important;
 }
 
 .button:hover {
-  background-color: #c48b99 !important;
-  color: #f5eee6;
+  background-color: var(--highlights-background-hover) !important;
+  color: var(--primary-background);
 }
 
 .navbar-link {
-  color: #F5EEE6
+  color: var(--primary-background);
 }
 
 .navbar-link:hover {
-  background-color: #c48b99
+  background-color: var(--highlights-background-hover);
+}
+
+.navbar-link:focus {
+  background-color: var(--highlights-background-hover)
+}
+
+.navbar-item:focus {
+  background-color: var(--highlights-background-hover)
 }
 
 .navbar-item img {
