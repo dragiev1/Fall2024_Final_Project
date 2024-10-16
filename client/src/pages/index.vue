@@ -4,8 +4,7 @@ import Parallax from '@/components/ParallaxComponent.vue'
 
 <template>
   <body>
-
-    <Parallax/>
+    <Parallax />
     <div class="container">Hello Pooper</div>
   </body>
 </template>
