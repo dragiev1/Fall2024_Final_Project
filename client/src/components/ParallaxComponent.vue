@@ -6,7 +6,7 @@ const parallaxStyle = ref({})
 const handleScroll = () => {
   const scrollPosition = window.scrollY
   parallaxStyle.value = {
-    backgroundPosition: `center ${scrollPosition * -0.8}px`
+    backgroundPosition: `center ${scrollPosition * -0.5}px`
   }
 }
 
@@ -34,10 +34,10 @@ onUnmounted(() => {
 .container {
   background-color: var(--highlights-background);
   position: absolute;
-  color: var(--primary-background);
+  color: rgba(49, 49, 49, 0.932);
   text-align: left;
   top: 100%;
-  max-width: 60% !important;
+  max-width: 19rem !important;
   padding: 5px 10px 5px 10px;
   font-family: italic;
   font-style: italic;
@@ -45,14 +45,12 @@ onUnmounted(() => {
 }
 
 .bgimg-1 {
-  display: flex;
   background-image: url('@/assets/parallaxImage.jpg') !important;
   background-attachment: fixed;
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 50px;
-  min-height: 650px;
+  min-height: 700px;
   filter: contrast(1.2) brightness(0.9);
 }
 .caption {
@@ -66,16 +64,16 @@ onUnmounted(() => {
   width: 100%;
   text-align: center;
   margin-left: 2rem;
+  padding: 2px 10px 2px 0px;
 }
 .caption span.border {
-  color: var(--highlights-background);
+  color: var(--secondary-background);
   padding: 18px;
   font-size: 40px;
   letter-spacing: 10px;
 }
 .caption span.text {
-  color: white !important;
-  opacity: 100%;
+  color: var(--secondary-background) !important;
   padding: 18px;
   font-size: 30px;
   letter-spacing: 15px;
