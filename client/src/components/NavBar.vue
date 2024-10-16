@@ -39,12 +39,12 @@ const isOpen = ref(false)
           <i class="fas fa-home"></i>
           Home
         </RouterLink>
-        <RouterLink to="" class="navbar-item has-text-light px-4"> Shop </RouterLink>
-        <RouterLink to="" class="navbar-item has-text-light px-4"> Gallery </RouterLink>
+        <RouterLink to="" class="navbar-item has-text-light px-6"> Shop </RouterLink>
+        <RouterLink to="" class="navbar-item has-text-light px-6"> Gallery </RouterLink>
 
         <!-- Dropdown Menu -->
         <div class="navbar-item has-dropdown is-hoverable">
-          <RouterLink to="" class="navbar-link is-arrowless px-4"> More </RouterLink>
+          <RouterLink to="" class="navbar-link is-arrowless px-6"> More </RouterLink>
 
           <div class="navbar-dropdown">
             <RouterLink to="/about" class="navbar-item"> About Me </RouterLink>
@@ -63,11 +63,20 @@ const isOpen = ref(false)
             <RouterLink to="" class="button is-light">
               <strong>Sign up</strong>
             </RouterLink>
-            <RouterLink to="" class="button is-light mx-1">
+            <RouterLink to="" class="button is-light">
               <p>Login</p>
             </RouterLink>
           </div>
         </div>
+        <RouterLink class="navbar-item" to="/">
+          <i class="fas fa-location-arrow"></i>
+          </RouterLink>
+          <RouterLink to="/" class="navbar-item">
+            <i class="fas fa-shopping-cart"></i>
+          </RouterLink>
+          <RouterLink to="/" class="navbar-item">
+            <i class="fas fa-phone"></i>
+          </RouterLink>
       </div>
     </div>
   </nav>
@@ -110,9 +119,18 @@ const isOpen = ref(false)
   background-color: var(--highlights-background-hover)
 }
 
-.navbar-item img {
-  max-height: 30px;
+.navbar-item {
+  padding-left: 30px;
+  padding-right: 30px;
+  color: var(--primary-background);
 }
+.navbar-end .navbar-item {
+  padding: 15px;
+}
+
+.navbar-item img {
+    max-height: 30px;
+  }
 
 .logo {
   object-fit: contain;
