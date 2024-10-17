@@ -25,7 +25,7 @@ onUnmounted(() => {
       <span class="border">Made with Love </span>
       <span class="text">By</span>
       <span class="text">Nadia</span>
-      <div class="container my-2">Exquisite Chocolates and Desserts</div>
+      <div class="container my-2">Exquisite Chocolates & Desserts</div>
     </div>
   </div>
 </template>

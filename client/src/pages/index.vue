@@ -5,12 +5,97 @@ import Parallax from '@/components/ParallaxComponent.vue'
 <template>
   <body>
     <Parallax />
-    <div class="container">Hello Pooper</div>
+    <section class="hero is-medium is-link" style="background-color: var(--primary-background)">
+      <div class="hero-head py-1">
+        <div
+          class="container has-text-centered"
+          style="color: var(--highlights-background-hover); font-size: 20px"
+        >
+          CHOOSE YOUR ADVENTURE
+        </div>
+        <div class="container has-text-centered">
+          <i class="fas fa-circle px-1"></i>
+          <i class="fas fa-circle px-1"></i>
+          <i class="fas fa-circle px-1"></i>
+        </div>
+      </div>
+      <div class="hero-body has-text-centered">
+        <div class="column is-three-fifths is-offset-one-fifth">
+          <div class="fixed-grid has-3-cols">
+            <div class="grid">
+              <div class="cell">
+                <img src="\src\assets\cake1.jpg" alt="Cake" />
+                <div class="overlay-text">CAKES</div>
+              </div>
+              <div class="cell is-row-from-end-1">
+                <img src="\src\assets\chocolates.jpg" alt="Chocolates" />
+                <div class="overlay-text">CHOCOLATES</div>
+              </div>
+              <div class="cell">
+                <img src="\src\assets\meringueCookies.jpg" alt="Meringue Cookies" />
+                <div class="overlay-text large-title">MERINGUE COOKIES</div>
+              </div>
+              <div class="cell">
+                <img src="\src\assets\macarons.jpg" alt="Macarons" />
+                <div class="overlay-text">MACARONS</div>
+              </div>
+              <div class="cell">
+                <img src="\src\assets\napCake.jpg" alt="Napoleon Cake" />
+                <div class="overlay-text large-title">NAPOLEON CAKE</div>
+              </div>
+              <div class="cell">
+                <img src="\src\assets\baklava.jpg" alt="Baklava" />
+                <div class="overlay-text">BAKLAVA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </template>
 <style scoped>
-.container {
-  background-color: var(--primary-background);
-  min-height: 100vh;
+.hero {
+  font-family: italic;
+  font-style: italic;
+}
+.hero-body {
+  padding: 19px !important;
+}
+.cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+img {
+  filter: brightness(0.8);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  height: auto;
+}
+img:hover {
+  filter: brightness(0.9);
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+.overlay-text {
+  position: absolute;
+  bottom: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 2rem;
+  font-style: normal;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 3px;
+  text-align: center;
+  width: 80%;
+  pointer-events: none;
+}
+.large-title {
+  top: 35%;
 }
 </style>
