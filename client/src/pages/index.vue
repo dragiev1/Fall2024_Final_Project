@@ -52,6 +52,16 @@ import Parallax from '@/components/ParallaxComponent.vue'
         </div>
       </div>
     </section>
+
+    <div>
+    <GMapMap
+      :center="{ lat: 42.25445688744328, lng:-73.89891615767105}"
+      :zoom="12"
+      style="width: 100%; height: 400px;"
+    >
+      <GMapMarker :position="{ lat: 40.7128, lng: -74.0060 }"></GMapMarker>
+    </GMapMap>
+  </div>
   </body>
 </template>
 <style scoped>

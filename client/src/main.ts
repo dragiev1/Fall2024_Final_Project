@@ -9,13 +9,14 @@ import router from './router'
 
 const app = createApp(App)
 
-app.use(router)
-
 app.use(VueGoogleMaps, {
     load: {
-        key: 'AIzaSyDXXVJnTg-Quy1Kwag5oKo40vwckQIGFhE',
+        key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
         libraries: 'places',
     },
 });
+
+app.use(router)
+
 
 app.mount('#app')
