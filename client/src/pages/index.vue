@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Parallax from '@/components/ParallaxComponent.vue'
+
+console.log(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
 </script>
 
 <template>
