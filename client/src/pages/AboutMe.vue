@@ -63,13 +63,14 @@
   font-size: 16px;
   padding-bottom: 3rem;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
   line-height: 33px;
   letter-spacing: -0.7px;
   background-color: var(--highlights-background);
 }
 .content-wrapper {
   padding-top: 7rem; /* Adjusting the body height to compensate for NavBar component */
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-family: italic;
   font-style: italic;
 }

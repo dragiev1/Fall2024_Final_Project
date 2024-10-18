@@ -3,10 +3,11 @@ body {
   background-color: var(--primary-background);
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100%;
+  padding-top: 2rem !important;
   margin: auto;
   --highlights-background: #e6a4b4;
   --primary-background: #f5eee6;
   --highlights-background-hover: #c48b99;
-  --accent-background: #F3D7CA;
-  --secondary-background: #FFF8E3;
+  --accent-background: #f3d7ca;
+  --secondary-background: #fff8e3;
 }
