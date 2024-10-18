@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
+import AboutMe from '@/pages/AboutMe.vue';
+import ContactMe from '@/pages/ContactMe.vue';
 
 const isOpen = ref(false)
 const hoveredMenu = ref<string | null>(null)
@@ -49,9 +51,7 @@ const hoveredMenu = ref<string | null>(null)
         >
           <RouterLink to="" class="navbar-link is-arrowless px-6">
             <p>Shop</p>
-            <i
-              :class="hoveredMenu === 'shop' ? 'fas fa-sort-down' : 'fas fa-caret-right'"
-            ></i
+            <i :class="hoveredMenu === 'shop' ? 'fas fa-sort-down' : 'fas fa-caret-right'"></i
           ></RouterLink>
 
           <div class="navbar-dropdown">
@@ -88,7 +88,7 @@ const hoveredMenu = ref<string | null>(null)
             >
               Directions
             </a>
-            <RouterLink to="/contact" class="navbar-item"> Contact </RouterLink>
+            <RouterLink to="/ContactMe" class="navbar-item"> Contact </RouterLink>
             <hr class="navbar-divider" />
             <RouterLink to="" class="navbar-item"> Report an issue </RouterLink>
           </div>
@@ -106,29 +106,33 @@ const hoveredMenu = ref<string | null>(null)
             </RouterLink>
           </div>
         </div>
-        
+
         <div class="navbar-item">
           <div class="field is-grouped" style="margin: -6px; margin-left: -20px">
-
             <div class="navbar-item px-3">
               <a
                 href="https://www.google.com/maps/place/1064+Main+St,+Catskill,+NY+12414/@42.2543338,-73.9014696,17z/data=!3m1!4b1!4m6!3m5!1s0x89ddbc2fdc0144d9:0xb5da01bb992aa3cc!8m2!3d42.2543338!4d-73.8988947!16s%2Fg%2F11gsbq8khm?entry=ttu&g_ep=EgoyMDI0MTAxNC4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
               >
-                <i class="fas fa-location-arrow" style="color: var(--primary-background) !important;"></i>
+                <i
+                  class="fas fa-location-arrow"
+                  style="color: var(--primary-background) !important"
+                ></i>
               </a>
             </div>
             <div class="navbar-item px-3">
               <RouterLink to="/">
-                <i class="fas fa-shopping-cart" style="color: var(--primary-background) !important;"></i>
+                <i
+                  class="fas fa-shopping-cart"
+                  style="color: var(--primary-background) !important"
+                ></i>
               </RouterLink>
             </div>
             <div class="navbar-item px-3">
               <RouterLink to="/">
-                <i class="fas fa-phone-alt" style="color: var(--primary-background) !important;"></i>
+                <i class="fas fa-phone-alt" style="color: var(--primary-background) !important"></i>
               </RouterLink>
             </div>
-            
           </div>
         </div>
       </div>

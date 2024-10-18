@@ -2,6 +2,7 @@ html,
 body {
   background-color: var(--primary-background);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
   margin: auto;
   --highlights-background: #e6a4b4;
   --primary-background: #f5eee6;

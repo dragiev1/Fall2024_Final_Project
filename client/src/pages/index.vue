@@ -8,10 +8,10 @@ import Parallax from '@/components/ParallaxComponent.vue'
     <section class="hero is-medium is-link" style="background-color: var(--primary-background)">
       <div class="hero-head py-1">
         <div
-          class="container has-text-centered"
-          style="color: var(--highlights-background-hover); font-size: 20px"
+          class="container has-text-centered my-1"
+          style="color: #75535c; font-size: 20px"
         >
-          CHOOSE YOUR ADVENTURE
+          BITE INTO BLISS
         </div>
         <div class="container has-text-centered">
           <i class="fas fa-circle px-1"></i>
@@ -23,27 +23,27 @@ import Parallax from '@/components/ParallaxComponent.vue'
         <div class="column is-three-fifths is-offset-one-fifth">
           <div class="fixed-grid has-3-cols">
             <div class="grid">
-              <div class="cell">
+              <div class="cell is-clickable">
                 <img src="\src\assets\cake1.jpg" alt="Cake" />
                 <div class="overlay-text">CAKES</div>
               </div>
-              <div class="cell is-row-from-end-1">
+              <div class="cell is-row-from-end-1 is-clickable">
                 <img src="\src\assets\chocolates.jpg" alt="Chocolates" />
                 <div class="overlay-text">CHOCOLATES</div>
               </div>
-              <div class="cell">
+              <div class="cell is-clickable">
                 <img src="\src\assets\meringueCookies.jpg" alt="Meringue Cookies" />
                 <div class="overlay-text large-title">MERINGUE COOKIES</div>
               </div>
-              <div class="cell">
+              <div class="cell is-clickable">
                 <img src="\src\assets\macarons.jpg" alt="Macarons" />
                 <div class="overlay-text">MACARONS</div>
               </div>
-              <div class="cell">
+              <div class="cell is-clickable">
                 <img src="\src\assets\napCake.jpg" alt="Napoleon Cake" />
                 <div class="overlay-text large-title">NAPOLEON CAKE</div>
               </div>
-              <div class="cell">
+              <div class="cell is-clickable">
                 <img src="\src\assets\baklava.jpg" alt="Baklava" />
                 <div class="overlay-text">BAKLAVA</div>
               </div>
