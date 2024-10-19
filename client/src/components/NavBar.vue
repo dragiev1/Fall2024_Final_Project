@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
-import AboutMe from '@/pages/AboutMe.vue';
-import ContactMe from '@/pages/ContactMe.vue';
+import AboutMe from '@/pages/AboutMe.vue'
+import ContactMe from '@/pages/ContactMe.vue'
+import ReportAnIssue from '@/pages/ReportAnIssue.vue'
 
 const isOpen = ref(false)
 const hoveredMenu = ref<string | null>(null)
@@ -90,7 +91,7 @@ const hoveredMenu = ref<string | null>(null)
             </a>
             <RouterLink to="/ContactMe" class="navbar-item"> Contact </RouterLink>
             <hr class="navbar-divider" />
-            <RouterLink to="" class="navbar-item"> Report an issue </RouterLink>
+            <RouterLink to="/ReportAnIssue" class="navbar-item"> Report an issue </RouterLink>
           </div>
         </div>
       </div>

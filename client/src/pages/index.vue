@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import Parallax from '@/components/ParallaxComponent.vue'
-
-console.log(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
+import Parallax from '@/components/ParallaxComponent1.vue'
+import Parallax2 from '@/components/ParallaxComponent2.vue'
 </script>
 
 <template>
@@ -9,10 +8,7 @@ console.log(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
     <Parallax />
     <section class="hero is-medium is-link" style="background-color: var(--primary-background)">
       <div class="hero-head py-1">
-        <div
-          class="container has-text-centered my-1"
-          style="color: #75535c; font-size: 20px"
-        >
+        <div class="container has-text-centered my-1" style="color: #75535c; font-size: 20px">
           BITE INTO BLISS
         </div>
         <div class="container has-text-centered">
@@ -56,17 +52,22 @@ console.log(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
     </section>
 
     <div>
-    <GMapMap
-      :center="{ lat: 42.25445688744328, lng:-73.89891615767105}"
-      :zoom="12"
-      style="width: 100%; height: 400px;"
-    >
-      <GMapMarker :position="{ lat: 40.7128, lng: -74.0060 }"></GMapMarker>
-    </GMapMap>
-  </div>
+      <GMapMap
+        :center="{ lat: 42.25445688744328, lng: -73.89891615767105 }"
+        :zoom="16"
+        style="width: 100%; height: 400px"
+      >
+        <GMapMarker :position="{ lat: 42.25445688744328, lng: -73.89891615767105 }"></GMapMarker>
+      </GMapMap>
+    </div>
+
+    <Parallax2 />
   </body>
 </template>
 <style scoped>
+body {
+  height: 100vh;
+}
 .hero {
   font-family: italic;
   font-style: italic;
