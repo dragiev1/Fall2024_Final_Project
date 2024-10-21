@@ -1,7 +1,10 @@
 <script setup lang="ts"></script>
 
 <template>
-  <body class="content-wrapper column is-two-thirds is-offset-one-fifth">
+  <body
+    class="content-wrapper column is-two-thirds is-offset-one-fifth"
+    style="padding-top: 5rem !important"
+  >
     <div class="container">
       <section class="hero is-medium">
         <div class="hero-head has-text-centered my-5">
@@ -53,6 +56,7 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .hero-body {
   padding-top: 0 !important;
@@ -66,6 +70,7 @@
   line-height: 33px;
   letter-spacing: -0.7px;
   background-color: var(--highlights-background);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .content-wrapper {
   padding-top: 7rem; /* Adjusting the body height to compensate for NavBar component */
@@ -76,6 +81,7 @@
 }
 .hero {
   background-color: var(--accent-background);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {

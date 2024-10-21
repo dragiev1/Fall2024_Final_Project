@@ -69,4 +69,20 @@
   background-color: var(--highlights-background);
   color: var(--secondary-background);
 }
+
+/* Styling for inputs */
+.input,
+.textarea {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.input:focus {
+  border-color: var(--accent-background);
+  box-shadow: 0 0 8px var(--primary-background);
+}
+.icon i {
+  transition: color 0.4s ease;
+}
+.input:focus ~ .icon i {
+  color: var(--accent-background);
+}
 </style>

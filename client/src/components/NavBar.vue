@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
-import AboutMe from '@/pages/AboutMe.vue'
-import ContactMe from '@/pages/ContactMe.vue'
-import ReportAnIssue from '@/pages/ReportAnIssue.vue'
 
 const isOpen = ref(false)
 const hoveredMenu = ref<string | null>(null)
@@ -21,8 +18,7 @@ const hoveredMenu = ref<string | null>(null)
         <img alt="Nadia logo" class="logo" src="@/assets/logo.png" />
       </RouterLink>
 
-      <a
-        role="button"
+      <button
         class="navbar-burger"
         aria-label="menu"
         aria-expanded="false"
@@ -33,7 +29,7 @@ const hoveredMenu = ref<string | null>(null)
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-      </a>
+      </button>
     </div>
 
     <!-- NavBar -->
@@ -52,7 +48,10 @@ const hoveredMenu = ref<string | null>(null)
         >
           <RouterLink to="" class="navbar-link is-arrowless px-6">
             <p>Shop</p>
-            <i :class="hoveredMenu === 'shop' ? 'fas fa-sort-down' : 'fas fa-caret-right'"></i
+            <i
+              class="is-mobile"
+              :class="hoveredMenu === 'shop' ? 'fas fa-sort-down' : 'fas fa-caret-right'"
+            ></i
           ></RouterLink>
 
           <div class="navbar-dropdown">
@@ -75,6 +74,7 @@ const hoveredMenu = ref<string | null>(null)
           <RouterLink to="" class="navbar-link is-arrowless px-6">
             More
             <i
+              class="is-mobile"
               :class="hoveredMenu === 'more' ? 'fas fa-sort-down' : 'fas fa-caret-right'"
               style="margin-right: 5px"
             ></i
@@ -99,10 +99,10 @@ const hoveredMenu = ref<string | null>(null)
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <RouterLink to="" class="button is-light">
+            <RouterLink to="/LogIn" class="button is-light">
               <strong><i class="fas fa-sign-in-alt" style="margin-right: 5px"></i>Login</strong>
             </RouterLink>
-            <RouterLink to="" class="button is-light">
+            <RouterLink to="/SignUp" class="button is-light">
               <strong><i class="fas fa-user" style="margin-right: 5px"></i>Sign up</strong>
             </RouterLink>
           </div>

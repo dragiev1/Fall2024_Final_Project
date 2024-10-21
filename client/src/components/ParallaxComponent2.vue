@@ -84,11 +84,26 @@ onUnmounted(() => {
 .icon {
   color: var(--highlights-background);
 }
+.icon:hover {
+  color: var(--highlights-background-hover);
+}
 .column {
   padding-top: 5rem;
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 }
 .column.is-3 {
   padding-top: 20rem;
+  @media (max-width: 768px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 1rem;
+  }
+}
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .card-content {
   padding-top: 0 !important;
@@ -115,5 +130,29 @@ onUnmounted(() => {
   min-height: 80vh;
   filter: contrast(1.3) brightness(0.75);
   overflow: hidden;
+  @media (max-width: 768px) {
+    background-image: url('@/assets/parallax2.png') !important;
+    background-attachment: local;
+  }
+}
+.input,
+.textarea {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for inputs */
+.textarea:focus {
+  box-shadow: 0 4px 8px var(--primary-background);
+  border-color: var(--primary-background);
+}
+.input:focus {
+  border-color: var(--accent-background);
+  box-shadow: 0 0 8px var(--primary-background);
+}
+.icon i {
+  transition: color 0.4s ease;
+}
+.input:focus ~ .icon i {
+  color: var(--highlights-background);
 }
 </style>

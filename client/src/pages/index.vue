@@ -107,6 +107,9 @@ img:hover {
   text-align: center;
   width: 80%;
   pointer-events: none;
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
 }
 .large-title {
   top: 35%;
