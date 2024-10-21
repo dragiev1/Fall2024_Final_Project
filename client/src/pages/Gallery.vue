@@ -49,6 +49,9 @@ body {
   font-style: italic;
   font-size: 40px;
 }
+.subtitle {
+  margin-bottom: 5rem;
+}
 .shelf {
   margin-top: -3rem;
   display: flex;

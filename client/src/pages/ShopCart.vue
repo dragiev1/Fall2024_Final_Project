@@ -49,7 +49,7 @@ const loadMoreChoco = () => {
           <i class="fas fa-circle px-1"></i>
           <i class="fas fa-circle px-1"></i>
         </div>
-        <p class="menu-label">Cakes</p>
+        <p class="menu-label">Cakes<i class="fas fa-birthday-cake px-2"></i></p>
         <div class="shelf">
           <MenuItem
             v-for="product in visibleCakeProducts"
@@ -66,7 +66,7 @@ const loadMoreChoco = () => {
             Show More
           </button>
         </div>
-        <p class="menu-label">Chocolates</p>
+        <p class="menu-label">Chocolates <i class="fas fa-cookie-bite px-1"></i></p>
         <div class="shelf">
           <MenuItem
             v-for="product in visibleChocoProducts"
@@ -83,7 +83,7 @@ const loadMoreChoco = () => {
             Show More
           </button>
         </div>
-        <p class="menu-label">Meringue Cookies <i class="fas fa-cookie-bite px-2"></i></p>
+        <p class="menu-label">Meringue Cookies</p>
         <div class="shelf">
           <MenuItem
             v-for="product in meringueProducts"
@@ -99,7 +99,7 @@ const loadMoreChoco = () => {
             :product="product"
           ></MenuItem>
         </div>
-        <p class="menu-label">Macarons</p>
+        <p class="menu-label">Macarons <i class="fas fa-stroopwafel"></i></p>
         <div class="shelf">
           <MenuItem
             v-for="product in macaronsProducts"
@@ -128,7 +128,7 @@ body {
   justify-content: center;
 }
 .shelf {
-  margin-top: -3rem;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -137,15 +137,11 @@ body {
 .column {
   margin-top: 3.5rem;
 }
-.cell {
-  overflow: hidden;
-  border-radius: 20px;
-}
 .title {
   font-style: italic;
   font-family: italic;
   font-size: 30px;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 .menu-label {
   font-size: 20px;

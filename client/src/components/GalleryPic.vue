@@ -35,7 +35,7 @@ const toggleModal = () => {
   height: 300px;
   overflow: hidden;
   border-radius: 15px;
-  margin-top: 5rem;
+  margin-top: 1rem;
   margin-bottom: 0;
   display: flex;
   align-items: center;
@@ -43,6 +43,7 @@ const toggleModal = () => {
   transition: transform 0.3s ease;
   @media (max-width: 768px) {
     transform: scale(1.3);
+    margin-top: 5rem;
   }
 }
 .cell:hover {
