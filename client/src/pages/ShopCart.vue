@@ -1,4 +1,43 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MenuItem from '@/components/MenuItem.vue'
+import { getAll, type Product } from '@/models/products'
+import { computed, ref } from 'vue'
+
+const products = ref<Product[]>([])
+const visibleCakeProducts = ref<Product[]>([])
+const visibleChocoProducts = ref<Product[]>([])
+const currentIndex = ref<number>(8)
+
+products.value = getAll().data
+
+const cakeProducts = computed(() => products.value.filter((product) => product.category === 'cake'))
+const meringueProducts = computed(() =>
+  products.value.filter((product) => product.category === 'meringue')
+)
+const chocolateProducts = computed(() =>
+  products.value.filter((product) => product.category === 'chocolate')
+)
+const baklavaProducts = computed(() =>
+  products.value.filter((product) => product.category === 'baklava')
+)
+const macaronsProducts = computed(() =>
+  products.value.filter((product) => product.category === 'macarons')
+)
+
+visibleCakeProducts.value = cakeProducts.value.slice(0, 8)
+visibleChocoProducts.value = chocolateProducts.value.slice(0, 8)
+
+const loadMoreCake = () => {
+  const nextIndex = currentIndex.value + 8
+  visibleCakeProducts.value = cakeProducts.value.slice(0, nextIndex)
+  currentIndex.value = nextIndex
+}
+const loadMoreChoco = () => {
+  const nextIndex = currentIndex.value + 8
+  visibleChocoProducts.value = chocolateProducts.value.slice(0, nextIndex)
+  currentIndex.value = nextIndex
+}
+</script>
 
 <template>
   <body>
@@ -11,70 +50,62 @@
           <i class="fas fa-circle px-1"></i>
         </div>
         <p class="menu-label">Cakes</p>
-        <div class="fixed-grid has-3-cols is-flex is-justify-content-center is-align-items-center">
-          <div class="grid">
-            <div class="cell"><img src="\src\assets\cake1.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-          </div>
+        <div class="shelf">
+          <MenuItem
+            v-for="product in visibleCakeProducts"
+            :key="product.id"
+            :product="product"
+          ></MenuItem>
         </div>
-        <p class="menu-label">Meringue Cookies</p>
-        <div class="fixed-grid has-3-cols is-flex is-justify-content-center is-align-items-center">
-          <div class="grid">
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-          </div>
+        <div class="button-container mt-5">
+          <button
+            v-if="currentIndex < cakeProducts.length"
+            @click="loadMoreCake"
+            class="button is-large"
+          >
+            Show More
+          </button>
         </div>
         <p class="menu-label">Chocolates</p>
-        <div class="fixed-grid has-3-cols is-flex is-justify-content-center is-align-items-center">
-          <div class="grid">
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-          </div>
+        <div class="shelf">
+          <MenuItem
+            v-for="product in visibleChocoProducts"
+            :key="product.id"
+            :product="product"
+          ></MenuItem>
+        </div>
+        <div class="button-container mt-5">
+          <button
+            v-if="currentIndex < chocolateProducts.length"
+            @click="loadMoreChoco"
+            class="button is-large"
+          >
+            Show More
+          </button>
+        </div>
+        <p class="menu-label">Meringue Cookies <i class="fas fa-cookie-bite px-2"></i></p>
+        <div class="shelf">
+          <MenuItem
+            v-for="product in meringueProducts"
+            :key="product.id"
+            :product="product"
+          ></MenuItem>
         </div>
         <p class="menu-label">Baklava</p>
-        <div class="fixed-grid has-3-cols is-flex is-justify-content-center is-align-items-center">
-          <div class="grid">
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-          </div>
-        </div>
-        <p class="menu-label">Napoleon Cake</p>
-        <div class="fixed-grid has-3-cols is-flex is-justify-content-center is-align-items-center">
-          <div class="grid">
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-          </div>
+        <div class="shelf">
+          <MenuItem
+            v-for="product in baklavaProducts"
+            :key="product.id"
+            :product="product"
+          ></MenuItem>
         </div>
         <p class="menu-label">Macarons</p>
-        <div class="fixed-grid has-3-cols is-flex is-justify-content-center is-align-items-center">
-          <div class="grid">
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-            <div class="cell"><img src="\src\assets\chocolates.jpg" alt="Chocolates" /></div>
-          </div>
+        <div class="shelf">
+          <MenuItem
+            v-for="product in macaronsProducts"
+            :key="product.id"
+            :product="product"
+          ></MenuItem>
         </div>
       </aside>
     </div>
@@ -83,7 +114,28 @@
 
 <style scoped>
 body {
-  height: fit-content;
+  height: 100%;
+}
+.button {
+  align-items: center;
+  justify-content: center;
+  font-family: italic;
+  font-style: italic;
+  background-color: var(--highlights-background);
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+.shelf {
+  margin-top: -3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.column {
+  margin-top: 3.5rem;
 }
 .cell {
   overflow: hidden;
@@ -95,10 +147,7 @@ body {
   font-size: 30px;
   padding-top: 2rem;
 }
-.column {
-  margin-top: 3.5rem;
-}
 .menu-label {
-  font-size: 15px;
+  font-size: 20px;
 }
 </style>

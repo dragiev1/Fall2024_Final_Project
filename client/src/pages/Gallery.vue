@@ -5,13 +5,13 @@ import GalleryPic from '@/components/GalleryPic.vue'
 
 const products = ref<Product[]>([])
 const visibleProducts = ref<Product[]>([])
-const currentIndex = ref<number>(30)
+const currentIndex = ref<number>(15)
 
 products.value = getAll().data
-visibleProducts.value = products.value.slice(0, 20)
+visibleProducts.value = products.value.slice(0, 15)
 
 const loadMore = () => {
-  const nextIndex = currentIndex.value + 20
+  const nextIndex = currentIndex.value + 15
   visibleProducts.value = products.value.slice(0, nextIndex)
   currentIndex.value = nextIndex
 }

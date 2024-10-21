@@ -55,13 +55,13 @@ const hoveredMenu = ref<string | null>(null)
           ></RouterLink>
 
           <div class="navbar-dropdown">
-            <RouterLink to="" class="navbar-item"> Cakes </RouterLink>
-            <RouterLink to="" class="navbar-item"> Chocolates </RouterLink>
-            <RouterLink to="" class="navbar-item"> Meringue Cookies </RouterLink>
-            <RouterLink to="" class="navbar-item"> Baklava </RouterLink>
-            <RouterLink to="" class="navbar-item"> Macarons </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item"> Cakes </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item"> Chocolates </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item"> Meringue Cookies </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item"> Baklava </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item"> Macarons </RouterLink>
             <hr class="navbar-divider" />
-            <RouterLink to="" class="navbar-item"> Gallery </RouterLink>
+            <RouterLink to="/Gallery" class="navbar-item"> Gallery </RouterLink>
           </div>
         </div>
 

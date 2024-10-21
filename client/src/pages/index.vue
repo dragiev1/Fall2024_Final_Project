@@ -22,28 +22,40 @@ import Parallax2 from '@/components/ParallaxComponent2.vue'
           <div class="fixed-grid has-3-cols">
             <div class="grid">
               <div class="cell is-clickable">
-                <img src="\src\assets\cake1.jpg" alt="Cake" />
-                <div class="overlay-text">CAKES</div>
+                <RouterLink to="/ShopCart">
+                  <img src="\src\assets\cake1.jpg" alt="Cake" />
+                  <div class="overlay-text">CAKES</div></RouterLink
+                >
               </div>
               <div class="cell is-row-from-end-1 is-clickable">
-                <img src="\src\assets\chocolates.jpg" alt="Chocolates" />
-                <div class="overlay-text">CHOCOLATES</div>
+                <RouterLink to="/ShopCart">
+                  <img src="\src\assets\chocolates.jpg" alt="Chocolates" />
+                  <div class="overlay-text">CHOCOLATES</div></RouterLink
+                >
               </div>
               <div class="cell is-clickable">
-                <img src="\src\assets\meringueCookies.jpg" alt="Meringue Cookies" />
-                <div class="overlay-text large-title">MERINGUE COOKIES</div>
+                <RouterLink to="/ShopCart">
+                  <img src="\src\assets\meringueCookies.jpg" alt="Meringue Cookies" />
+                  <div class="overlay-text large-title">MERINGUE COOKIES</div></RouterLink
+                >
               </div>
               <div class="cell is-clickable">
-                <img src="\src\assets\macarons.jpg" alt="Macarons" />
-                <div class="overlay-text">MACARONS</div>
+                <RouterLink to="/ShopCart">
+                  <img src="\src\assets\macarons.jpg" alt="Macarons" />
+                  <div class="overlay-text">MACARONS</div></RouterLink
+                >
               </div>
               <div class="cell is-clickable">
-                <img src="\src\assets\napCake.jpg" alt="Napoleon Cake" />
-                <div class="overlay-text large-title">NAPOLEON CAKE</div>
+                <RouterLink to="/ShopCart">
+                  <img src="\src\assets\napCake.jpg" alt="Napoleon Cake" />
+                  <div class="overlay-text large-title">NAPOLEON CAKE</div></RouterLink
+                >
               </div>
               <div class="cell is-clickable">
-                <img src="\src\assets\baklava.jpg" alt="Baklava" />
-                <div class="overlay-text">BAKLAVA</div>
+                <RouterLink to="/ShopCart">
+                  <img src="\src\assets\baklava.jpg" alt="Baklava" />
+                  <div class="overlay-text">BAKLAVA</div></RouterLink
+                >
               </div>
             </div>
           </div>
