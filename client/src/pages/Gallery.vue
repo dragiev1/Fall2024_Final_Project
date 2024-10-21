@@ -1,0 +1,70 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { getAll, type Product } from '@/models/products'
+import GalleryPic from '@/components/GalleryPic.vue'
+
+const products = ref<Product[]>([])
+const visibleProducts = ref<Product[]>([])
+const currentIndex = ref<number>(30)
+
+products.value = getAll().data
+visibleProducts.value = products.value.slice(0, 20)
+
+const loadMore = () => {
+  const nextIndex = currentIndex.value + 20
+  visibleProducts.value = products.value.slice(0, nextIndex)
+  currentIndex.value = nextIndex
+}
+</script>
+
+<template>
+  <body>
+    <div class="title has-text-centered">
+      <i class="fas fa-birthday-cake px-2"></i>Gallery<i class="fas fa-birthday-cake px-2"></i>
+    </div>
+    <div class="subtitle has-text-centered is-6 py-2">
+      <i class="fas fa-circle px-1 has-text-white"></i>
+      <i class="fas fa-circle px-1 has-text-white"></i>
+      <i class="fas fa-circle px-1 has-text-white"></i>
+    </div>
+    <div class="shelf">
+      <GalleryPic v-for="product in visibleProducts" :key="product.id" :product="product" />
+    </div>
+    <div class="button-container mt-5">
+      <button v-if="currentIndex < products.length" @click="loadMore" class="button is-large my-5">
+        Show More
+      </button>
+    </div>
+  </body>
+</template>
+
+<style scoped>
+body {
+  margin-top: 3.5rem;
+  height: 100%;
+}
+.title {
+  padding-top: 3.5rem;
+  font-family: italic;
+  font-style: italic;
+  font-size: 40px;
+}
+.shelf {
+  margin-top: -3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.button {
+  align-items: center;
+  justify-content: center;
+  font-family: italic;
+  font-style: italic;
+  background-color: var(--highlights-background);
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+</style>

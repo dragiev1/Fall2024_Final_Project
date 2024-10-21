@@ -40,13 +40,13 @@ const hoveredMenu = ref<string | null>(null)
           Home
         </RouterLink>
 
-        <RouterLink to="" class="navbar-item has-text-light px-6"> Gallery </RouterLink>
+        <RouterLink to="/Gallery" class="navbar-item has-text-light px-6"> Gallery </RouterLink>
         <div
           class="navbar-item has-dropdown is-hoverable"
           @mouseenter="hoveredMenu = 'shop'"
           @mouseleave="hoveredMenu = null"
         >
-          <RouterLink to="" class="navbar-link is-arrowless px-6">
+          <RouterLink to="/ShopCart" class="navbar-link is-arrowless px-6">
             <p>Shop</p>
             <i
               class="is-mobile"
@@ -122,7 +122,7 @@ const hoveredMenu = ref<string | null>(null)
               </a>
             </div>
             <div class="navbar-item px-3">
-              <RouterLink to="/">
+              <RouterLink to="/ShopCart">
                 <i
                   class="fas fa-shopping-cart"
                   style="color: var(--primary-background) !important"
