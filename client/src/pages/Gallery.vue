@@ -8,10 +8,10 @@ const visibleProducts = ref<Product[]>([])
 const currentIndex = ref<number>(15)
 
 products.value = getAll().data
-visibleProducts.value = products.value.slice(0, 15)
+visibleProducts.value = products.value.slice(0, 12)
 
 const loadMore = () => {
-  const nextIndex = currentIndex.value + 15
+  const nextIndex = currentIndex.value + 12
   visibleProducts.value = products.value.slice(0, nextIndex)
   currentIndex.value = nextIndex
 }

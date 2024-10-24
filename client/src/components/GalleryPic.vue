@@ -15,7 +15,7 @@ const toggleModal = () => {
 
 <template>
   <div class="cell is-clickable" @click="toggleModal">
-    <img :src="product.images" alt="product.name" />
+    <img :src="product.images" loading="lazy" alt="product.name" />
   </div>
   <!-- Modal to display image in higher resolution -->
   <div class="modal" :class="{ 'is-active': isModalActive }">
@@ -47,7 +47,7 @@ const toggleModal = () => {
   }
 }
 .cell:hover {
-  transform: scale(1.1);
+  opacity: 0.8;
 }
 img {
   background-color: var(--accent-background);

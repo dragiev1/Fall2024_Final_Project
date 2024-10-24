@@ -40,8 +40,6 @@ const hoveredMenu = ref<string | null>(null)
           Home
         </RouterLink>
 
-        <RouterLink to="/ReviewPage" class="navbar-item has-text-light px-6"> Reviews </RouterLink>
-
         <RouterLink to="/Gallery" class="navbar-item has-text-light px-6"> Gallery </RouterLink>
         <div
           class="navbar-item has-dropdown is-hoverable"
@@ -63,9 +61,9 @@ const hoveredMenu = ref<string | null>(null)
             <RouterLink to="/ShopCart" class="navbar-item"> Baklava </RouterLink>
             <RouterLink to="/ShopCart" class="navbar-item"> Macarons </RouterLink>
           </div>
-
-          <!-- Dropdown Menu -->
-          <div
+        </div>
+        <!-- Dropdown Menu -->
+        <div
             class="navbar-item has-dropdown is-hoverable"
             @mouseenter="hoveredMenu = 'more'"
             @mouseleave="hoveredMenu = null"
@@ -93,7 +91,7 @@ const hoveredMenu = ref<string | null>(null)
               <RouterLink to="/ReportAnIssue" class="navbar-item"> Report an issue </RouterLink>
             </div>
           </div>
-        </div>
+        <RouterLink to="/ReviewPage" class="navbar-item has-text-light px-6">Reviews</RouterLink>
       </div>
       <div class="navbar-end">
         <div class="navbar-item">

@@ -1,9 +1,25 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 import Comments from '@/components/Comments.vue'
 
+// Define the types for comments and replies
+interface Reply {
+  id: number
+  text: string
+  author: string
+  time: string
+}
+
+interface Comment {
+  id: number
+  text: string
+  author: string
+  time: string
+  replies: Reply[]
+}
+
 // Sample data for initial comments
-const comments = ref([
+const comments = ref<Comment[]>([
   {
     id: 1,
     text: 'This is the first comment!',
@@ -20,10 +36,10 @@ const comments = ref([
   }
 ])
 
-const newCommentText = ref('')
+const newCommentText = ref<string>('')
 
 // Add a new comment
-const addComment = () => {
+const addComment = (): void => {
   if (newCommentText.value.trim() !== '') {
     comments.value.push({
       id: comments.value.length + 1,
@@ -37,7 +53,11 @@ const addComment = () => {
 }
 
 // Handle adding replies to a specific comment
-const handleAddReply = (commentId) => (reply) => {
+const handleAddReply = (commentId: number, reply: Reply): void => {
+  console.log({
+    commentId,
+    reply
+  })
   const comment = comments.value.find((c) => c.id === commentId)
   if (comment) {
     comment.replies.push({
@@ -48,12 +68,16 @@ const handleAddReply = (commentId) => (reply) => {
     })
   }
 }
+
+const reversedComments = computed(() => {
+  return [...comments.value].reverse();
+})
 </script>
 
 <template>
   <section class="section py-6">
     <div class="container">
-      <h1 class="title">Comments</h1>
+      <h1 class="title has-text-centered">Reviews</h1>
 
       <!-- New Comment Input -->
       <div class="box">
@@ -62,21 +86,18 @@ const handleAddReply = (commentId) => (reply) => {
           class="textarea"
           placeholder="Add a comment..."
         ></textarea>
-        <button class="button is-info mt-2" @click="addComment">Submit Comment</button>
+        <button class="button is-info mt-2" @click="addComment">Submit Review</button>
       </div>
 
       <!-- Comment List -->
-      <div v-for="comment in comments" :key="comment.id" class="comment-section">
-        <Comment :comment="comment" @add-reply="handleAddReply(comment.id)" />
+      <div v-for="comment in reversedComments" :key="comment.id" class="comment-section">
+        <Comments :comment="comment" @add-reply="(reply) => handleAddReply(comment.id, reply)" />
       </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-body {
-  height: 100vh;
-}
 .button {
   background-color: var(--highlights-background);
 }
@@ -96,5 +117,13 @@ p {
 }
 section {
   margin-top: 3.5rem;
+}
+.comment-section {
+  margin-bottom: 20px;
+}
+.title {
+  font-style: italic;
+  font-family: italic;
+  font-size: 50px;
 }
 </style>
