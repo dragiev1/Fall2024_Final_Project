@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
+import { useAuth } from '@/models/useAuth'
+
+const { isLoggedIn, logout } = useAuth()
 
 const isOpen = ref(false)
 const hoveredMenu = ref<string | null>(null)
+
+const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || 'null')
+
+if (loggedInUser) {
+  console.log(isLoggedIn.value)
+}
 </script>
 
 <template>
@@ -64,38 +73,38 @@ const hoveredMenu = ref<string | null>(null)
         </div>
         <!-- Dropdown Menu -->
         <div
-            class="navbar-item has-dropdown is-hoverable"
-            @mouseenter="hoveredMenu = 'more'"
-            @mouseleave="hoveredMenu = null"
-          >
-            <RouterLink to="" class="navbar-link is-arrowless px-6">
-              More
-              <i
-                class="is-mobile"
-                :class="hoveredMenu === 'more' ? 'fas fa-sort-down' : 'fas fa-caret-right'"
-                style="margin-right: 5px"
-              ></i
-            ></RouterLink>
+          class="navbar-item has-dropdown is-hoverable"
+          @mouseenter="hoveredMenu = 'more'"
+          @mouseleave="hoveredMenu = null"
+        >
+          <RouterLink to="" class="navbar-link is-arrowless px-6">
+            More
+            <i
+              class="is-mobile"
+              :class="hoveredMenu === 'more' ? 'fas fa-sort-down' : 'fas fa-caret-right'"
+              style="margin-right: 5px"
+            ></i
+          ></RouterLink>
 
-            <div class="navbar-dropdown">
-              <RouterLink to="/AboutMe" class="navbar-item"> About Me </RouterLink>
-              <a
-                href="https://www.google.com/maps/place/1064+Main+St,+Catskill,+NY+12414/@42.2543338,-73.9014696,17z/data=!3m1!4b1!4m6!3m5!1s0x89ddbc2fdc0144d9:0xb5da01bb992aa3cc!8m2!3d42.2543338!4d-73.8988947!16s%2Fg%2F11gsbq8khm?entry=ttu&g_ep=EgoyMDI0MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                class="navbar-item"
-              >
-                Directions
-              </a>
-              <RouterLink to="/ContactMe" class="navbar-item"> Contact </RouterLink>
-              <hr class="navbar-divider" />
-              <RouterLink to="/ReportAnIssue" class="navbar-item"> Report an issue </RouterLink>
-            </div>
+          <div class="navbar-dropdown">
+            <RouterLink to="/AboutMe" class="navbar-item"> About Me </RouterLink>
+            <a
+              href="https://www.google.com/maps/place/1064+Main+St,+Catskill,+NY+12414/@42.2543338,-73.9014696,17z/data=!3m1!4b1!4m6!3m5!1s0x89ddbc2fdc0144d9:0xb5da01bb992aa3cc!8m2!3d42.2543338!4d-73.8988947!16s%2Fg%2F11gsbq8khm?entry=ttu&g_ep=EgoyMDI0MTAxNC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              class="navbar-item"
+            >
+              Directions
+            </a>
+            <RouterLink to="/ContactMe" class="navbar-item"> Contact </RouterLink>
+            <hr class="navbar-divider" />
+            <RouterLink to="/ReportAnIssue" class="navbar-item"> Report an issue </RouterLink>
           </div>
+        </div>
         <RouterLink to="/ReviewPage" class="navbar-item has-text-light px-6">Reviews</RouterLink>
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
+          <div v-if="!isLoggedIn" class="buttons">
             <RouterLink to="/LogIn" class="button is-light">
               <strong><i class="fas fa-sign-in-alt" style="margin-right: 5px"></i>Login</strong>
             </RouterLink>
@@ -127,7 +136,7 @@ const hoveredMenu = ref<string | null>(null)
               </RouterLink>
             </div>
             <div class="navbar-item px-3">
-              <RouterLink to="/Contact">
+              <RouterLink to="/ContactMe">
                 <i class="fas fa-phone-alt" style="color: var(--primary-background) !important"></i>
               </RouterLink>
             </div>

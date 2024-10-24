@@ -1,4 +1,64 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import router from '../router'
+import { ref } from 'vue'
+import { useAuth } from '../models/useAuth'
+
+interface User {
+  id: string
+  email: string
+  password: string
+  telephone: string
+  name: string
+}
+
+const users: User[] = [
+  {
+    id: 'alice123',
+    email: 'alicejohnson@gmail.com',
+    password: 'password1',
+    name: 'Alice Johnson',
+    telephone: '855-1983'
+  },
+  {
+    id: 'poopie245',
+    email: 'cj@gmail.com',
+    password: 'password2',
+    name: 'Chris Jamieson',
+    telephone: '928-2698'
+  }
+]
+
+const { isLoggedIn, login } = useAuth()
+
+const email = ref<string>('')
+const password = ref<string>('')
+const loginError = ref<string>('')
+
+const handleLogin = (): void => {
+  const user = users.find((u) => u.email === email.value)
+
+  if (!user) {
+    loginError.value = 'User not found!'
+  } else if (user.password !== password.value && user.email === email.value) {
+    loginError.value = 'Invalid Password.'
+  } else {
+    localStorage.setItem('userToken', user.id)
+    console.log(isLoggedIn.value)
+    login()
+    console.log(isLoggedIn.value)
+    localStorage.setItem(
+      'loggedInUser',
+      JSON.stringify({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        telephone: user.telephone
+      })
+    )
+    router.push({ path: '/' })
+  }
+}
+</script>
 
 <template>
   <body>
@@ -19,7 +79,14 @@
           <div class="hero-body">
             <div class="field">
               <p class="control has-icons-left has-icons-right">
-                <input class="input" type="email" placeholder="Email" />
+                <input
+                  class="input"
+                  v-model="email"
+                  type="email"
+                  placeholder="Email"
+                  @keyup.enter="handleLogin"
+                  required
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
@@ -30,7 +97,14 @@
             </div>
             <div class="field">
               <p class="control has-icons-left">
-                <input class="input" type="password" placeholder="Password" />
+                <input
+                  class="input"
+                  v-model="password"
+                  type="password"
+                  placeholder="Password"
+                  @keyup.enter="handleLogin"
+                  required
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
@@ -41,9 +115,12 @@
             >
             <div class="field">
               <p class="control">
-                <button class="button">Login</button>
+                <button class="button" @click="handleLogin">Login</button>
               </p>
             </div>
+
+            <!-- Login Error Message -->>
+            <p v-if="loginError" class="has-text-danger px-3">{{ loginError }}</p>
           </div>
         </div>
       </div>
