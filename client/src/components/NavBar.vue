@@ -10,9 +10,6 @@ const hoveredMenu = ref<string | null>(null)
 
 const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || 'null')
 
-if (loggedInUser) {
-  console.log(isLoggedIn.value)
-}
 </script>
 
 <template>
@@ -111,6 +108,9 @@ if (loggedInUser) {
             <RouterLink to="/SignUp" class="button is-light">
               <strong><i class="fas fa-user" style="margin-right: 5px"></i>Sign up</strong>
             </RouterLink>
+          </div>
+          <div v-if="isLoggedIn" class="button" @click="logout()">
+            <strong>Log Out</strong>
           </div>
         </div>
 
