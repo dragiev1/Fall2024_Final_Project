@@ -1,0 +1,257 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "cj@gmail.com",
+      "password": "password2",
+      "name": "Chris Jamieson",
+      "telephone": "123-456-7890",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [
+        {
+          "id": 1,
+          "title": "Delicious",
+          "text": "Moshe Plotkin would have loved this!",
+          "date": "2024-06-11",
+          "rating": 5
+        },
+        {
+          "id": 2,
+          "title": "boo",
+          "text": "taste gros! neber agin. Bad !",
+          "date": "2024-13-20",
+          "rating": 2
+        },
+        {
+          "id": 3,
+          "title": "Great Experience",
+          "text": "Had a wonderful time!",
+          "date": "2024-11-01",
+          "rating": 4
+        },
+        {
+          "id": 4,
+          "title": "Woah!",
+          "text": "This was delicious!",
+          "date": "2024-10-01",
+          "rating": 5
+        },
+        {
+          "id": 5,
+          "title": "Woooooooooooooooo!",
+          "text": "This was amazing-balls!",
+          "date": "2024-10-01",
+          "rating": 5
+        }
+      ],
+      "numOfReviews": 5
+    },
+    {
+      "id": "2",
+      "email": "admin@admin.com",
+      "password": "password",
+      "name": "Nadia",
+      "telephone": "845-699-3312",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "3",
+      "email": "user3@example.com",
+      "password": "password123",
+      "name": "Charlie Brown",
+      "telephone": "345-678-9012",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [
+        {
+          "id": 2,
+          "title": "Delicious Treats",
+          "text": "The desserts were amazing!",
+          "date": "2024-09-15",
+          "rating": 4
+        }
+      ],
+      "numOfReviews": 1
+    },
+    {
+      "id": "4",
+      "email": "user4@example.com",
+      "password": "password123",
+      "name": "Diana Prince",
+      "telephone": "456-789-0123",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "5",
+      "email": "user5@example.com",
+      "password": "password123",
+      "name": "Ethan Hunt",
+      "telephone": "567-890-1234",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "6",
+      "email": "user6@example.com",
+      "password": "password123",
+      "name": "Fiona Gallagher",
+      "telephone": "678-901-2345",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [
+        {
+          "id": 3,
+          "title": "Fantastic!",
+          "text": "Absolutely loved the pastries.",
+          "date": "2024-10-10",
+          "rating": 5
+        }
+      ],
+      "numOfReviews": 1
+    },
+    {
+      "id": "7",
+      "email": "user7@example.com",
+      "password": "password123",
+      "name": "George Bailey",
+      "telephone": "789-012-3456",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "8",
+      "email": "user8@example.com",
+      "password": "password123",
+      "name": "Helen Mirren",
+      "telephone": "890-123-4567",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "9",
+      "email": "user9@example.com",
+      "password": "password123",
+      "name": "Isaac Newton",
+      "telephone": "901-234-5678",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "10",
+      "email": "user10@example.com",
+      "password": "password123",
+      "name": "Jane Austen",
+      "telephone": "012-345-6789",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "11",
+      "email": "user11@example.com",
+      "password": "password123",
+      "name": "Karl Urban",
+      "telephone": "123-456-7890",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "12",
+      "email": "user12@example.com",
+      "password": "password123",
+      "name": "Lily Collins",
+      "telephone": "234-567-8901",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "13",
+      "email": "user13@example.com",
+      "password": "password123",
+      "name": "Mark Twain",
+      "telephone": "345-678-9012",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "14",
+      "email": "user14@example.com",
+      "password": "password123",
+      "name": "Nancy Drew",
+      "telephone": "456-789-0123",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "15",
+      "email": "user15@example.com",
+      "password": "password123",
+      "name": "Oscar Wilde",
+      "telephone": "567-890-1234",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "16",
+      "email": "user16@example.com",
+      "password": "password123",
+      "name": "Pam Beesly",
+      "telephone": "678-901-2345",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "17",
+      "email": "user17@example.com",
+      "password": "password123",
+      "name": "Quincy Adams",
+      "telephone": "789-012-3456",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "18",
+      "email": "user18@example.com",
+      "password": "password123",
+      "name": "Rachel Green",
+      "telephone": "890-123-4567",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "19",
+      "email": "user19@example.com",
+      "password": "password123",
+      "name": "Steve Rogers",
+      "telephone": "901-234-5678",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    },
+    {
+      "id": "20",
+      "email": "user20@example.com",
+      "password": "password123",
+      "name": "Tony Stark",
+      "telephone": "012-345-6789",
+      "profilePicture": "https://via.placeholder.com/150",
+      "reviews": [],
+      "numOfReviews": 0
+    }
+  ],
+  "total": 20
+}

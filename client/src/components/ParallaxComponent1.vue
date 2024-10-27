@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useAuth } from '@/models/useAuth'
 
+const { isLoggedIn } = useAuth()
 const parallaxStyle = ref({})
+const userName = ref<string | null>(null)
 
 const handleScroll = () => {
   const scrollPosition = window.scrollY
@@ -12,6 +15,8 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
+  userName.value = loggedInUser.name || null
 })
 
 onUnmounted(() => {
@@ -21,7 +26,10 @@ onUnmounted(() => {
 
 <template>
   <div class="bgimg-1" :style="parallaxStyle">
-    <div class="caption">
+    <div v-if="isLoggedIn" class="caption">
+      <span class="border">Welcome Back,<br />{{ userName }} !</span>
+    </div>
+    <div v-else class="caption">
       <span class="border">Made with Love </span>
       <span class="text">By Nadia</span>
       <div class="container my-2">Exquisite Chocolates & Desserts</div>

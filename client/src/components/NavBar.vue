@@ -7,9 +7,6 @@ const { isLoggedIn, logout } = useAuth()
 
 const isOpen = ref(false)
 const hoveredMenu = ref<string | null>(null)
-
-const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || 'null')
-
 </script>
 
 <template>
@@ -109,8 +106,10 @@ const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || 'null')
               <strong><i class="fas fa-user" style="margin-right: 5px"></i>Sign up</strong>
             </RouterLink>
           </div>
-          <div v-if="isLoggedIn" class="button" @click="logout()">
-            <strong>Log Out</strong>
+          <div v-if="isLoggedIn" class="button is-light" @click="logout()">
+            <RouterLink to="/" style="color: black !important">
+              <strong>Log Out</strong>
+            </RouterLink>
           </div>
         </div>
 
@@ -138,6 +137,14 @@ const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || 'null')
             <div class="navbar-item px-3">
               <RouterLink to="/ContactMe">
                 <i class="fas fa-phone-alt" style="color: var(--primary-background) !important"></i>
+              </RouterLink>
+            </div>
+            <div v-if="isLoggedIn" class="navbar-item px-3">
+              <RouterLink to="/ProfilePage">
+                <i
+                  class="fas fa-user-circle"
+                  style="color: var(--primary-background) !important"
+                ></i>
               </RouterLink>
             </div>
           </div>

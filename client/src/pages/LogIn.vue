@@ -2,40 +2,19 @@
 import router from '../router'
 import { ref } from 'vue'
 import { useAuth } from '../models/useAuth'
+import { getAll, type User } from '@/models/user'
 
-interface User {
-  id: string
-  email: string
-  password: string
-  telephone: string
-  name: string
-}
-
-const users: User[] = [
-  {
-    id: 'alice123',
-    email: 'alicejohnson@gmail.com',
-    password: 'password1',
-    name: 'Alice Johnson',
-    telephone: '855-1983'
-  },
-  {
-    id: 'poopie245',
-    email: 'cj@gmail.com',
-    password: 'password2',
-    name: 'Chris Jamieson',
-    telephone: '928-2698'
-  }
-]
-
+const users = ref<User[]>([])
 const { isLoggedIn, login } = useAuth()
+
+users.value = getAll().data
 
 const email = ref<string>('')
 const password = ref<string>('')
 const loginError = ref<string>('')
 
 const handleLogin = (): void => {
-  const user = users.find((u) => u.email === email.value)
+  const user = users.value.find((u) => u.email === email.value)
 
   if (!user) {
     loginError.value = 'User not found!'
@@ -52,7 +31,10 @@ const handleLogin = (): void => {
         id: user.id,
         email: user.email,
         name: user.name,
-        telephone: user.telephone
+        telephone: user.telephone,
+        profilePicture: user.profilePicture,
+        reviews: user.reviews,
+        numOfReviews: user.numOfReviews
       })
     )
     router.push({ path: '/' })
