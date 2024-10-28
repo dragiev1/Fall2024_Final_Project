@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { getAll, type User, type Review } from '@/models/user'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+
+const allUsers = ref<User[]>([])
+allUsers.value = getAll().data
 
 const userName = ref<string | null>(null)
 const userUsername = ref<string | null>(null)
@@ -10,8 +13,28 @@ const userProfilePic = ref<string | null>(null)
 const userReviews = ref<Review[] | null>(null)
 const isAdmin = ref(false) // For admin purposes.
 
-const allUsers = ref<User[]>([])
-allUsers.value = getAll().data
+const ratings = allUsers.value.flatMap((user) => user.reviews.map((review) => review.rating))
+const totalRatings = ratings.length
+//  Average Ratings
+const avgReviews = computed(() => {
+  if (totalRatings === 0) return 0
+
+  const sumOfRatings = ratings.reduce((sum, rating) => sum + rating, 0)
+  const average = sumOfRatings / totalRatings
+
+  return Math.floor(average * 1000) / 1000
+})
+
+function deleteUser(userId: string) {
+  allUsers.value = allUsers.value.filter((user) => user.id !== userId)
+}
+
+function deleteReview(userId: string, reviewId: string) {
+  const user = allUsers.value.find((user) => user.id === userId)
+  if (user) {
+    user.reviews = user.reviews.filter((review) => String(review.id) !== reviewId)
+  }
+}
 
 onMounted(() => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
@@ -57,6 +80,7 @@ onMounted(() => {
               Rating:
               <span class="has-text-warning" v-for="n in review.rating" :key="n">★</span>
             </p>
+            <button class="button is-light">Delete Review</button>
           </div>
         </div>
         <p v-else>No reviews yet.</p>
@@ -66,14 +90,19 @@ onMounted(() => {
     <!-- Admin Section for Viewing All Users -->
     <div v-else class="admin-section">
       <div class="box all-users-box">
-        <h3 class="title is-5 px-4">All Users:</h3>
+        <h3 class="title is-3 px-4">All Users: ({{ allUsers.length }})</h3>
+        <h4 class="subtitle px-4">
+          Average Stars: {{ avgReviews }} <br />Total Reviews: {{ totalRatings }}
+        </h4>
         <div class="grid">
           <div v-for="user in allUsers" :key="user.id" class="cell user-item">
             <div class="box review-history-box">
               <h3 class="title is-5">{{ user.name }}: ({{ user.reviews?.length }})</h3>
-              <h2 class="subtitle is-6 my-2"><i class="fas fa-envelope"></i> {{ user.email }}
-            <br><i class="fas fa-phone"></i> {{ user.telephone }}</h2>
-              
+              <h2 class="subtitle is-6 my-2">
+                <i class="fas fa-envelope"></i> {{ user.email }} <br /><i class="fas fa-phone"></i>
+                {{ user.telephone }}
+              </h2>
+
               <div v-if="user.reviews?.length" class="reviews">
                 <div v-for="review in user.reviews" :key="review.id" class="review-item">
                   <h4 class="title is-6">{{ review.title }}</h4>
@@ -83,11 +112,13 @@ onMounted(() => {
                     Rating:
                     <span class="has-text-warning" v-for="n in review.rating" :key="n">★</span>
                   </p>
-                  <button class="button">Delete Review</button>
+                  <button class="button" @click="deleteReview(user.id, String(review.id))">
+                    Delete Review
+                  </button>
                 </div>
               </div>
               <p v-else>No reviews yet.</p>
-              <button class="button is-bottom">Delete User</button>
+              <button class="button is-bottom" @click="deleteUser(user.id)">Delete User</button>
             </div>
           </div>
         </div>
@@ -102,19 +133,19 @@ body {
 }
 
 .button {
-    margin-top: 1rem;
-    width: 100%;
-    height: 35px;
-    display: inline-flex; /* Allows you to center items vertically */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+  margin-top: 1rem;
+  width: 100%;
+  height: 35px;
+  display: inline-flex; /* Allows you to center items vertically */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 0;
 }
 
 .profile-box {
@@ -155,7 +186,7 @@ body {
   min-width: 100%;
   margin: 0 auto;
   flex-grow: 1;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .reviews {
@@ -163,7 +194,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 0.5rem; /* space between grid items */
   width: 100%;
-  margin: 0; 
+  margin: 0;
   overflow-y: auto;
   max-height: 300px;
 }
@@ -193,9 +224,9 @@ body {
 }
 
 .user-item {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0.5rem;
 }
 </style>

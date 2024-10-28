@@ -6,7 +6,6 @@ import { getAll, type User } from '@/models/user'
 
 const users = ref<User[]>([])
 const { isLoggedIn, login } = useAuth()
-
 users.value = getAll().data
 
 const email = ref<string>('')

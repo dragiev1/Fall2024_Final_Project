@@ -106,7 +106,7 @@ const hoveredMenu = ref<string | null>(null)
               <strong><i class="fas fa-user" style="margin-right: 5px"></i>Sign up</strong>
             </RouterLink>
           </div>
-          <div v-if="isLoggedIn" class="button is-light" @click="logout()">
+          <div v-else class="button is-light" @click="logout()">
             <RouterLink to="/" style="color: black !important">
               <strong>Log Out</strong>
             </RouterLink>
