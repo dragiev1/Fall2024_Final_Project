@@ -2,7 +2,7 @@
 import router from '../router'
 import { ref } from 'vue'
 import { useAuth } from '../models/useAuth'
-import { getAll, type User } from '@/models/user'
+import { getAll, type User} from '@/models/user'
 
 const users = ref<User[]>([])
 const { isLoggedIn, login } = useAuth()

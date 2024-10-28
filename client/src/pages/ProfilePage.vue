@@ -5,11 +5,12 @@ import { computed, onMounted, ref } from 'vue'
 const allUsers = ref<User[]>([])
 allUsers.value = getAll().data
 
+const userId = ref<string | null>(null)
 const userName = ref<string | null>(null)
 const userUsername = ref<string | null>(null)
 const userEmail = ref<string | null>(null)
 const userPhone = ref<string | null>(null)
-const userProfilePic = ref<string | null>(null)
+const userProfilePic = ref<string | undefined>(undefined)
 const userReviews = ref<Review[] | null>(null)
 const isAdmin = ref(false) // For admin purposes.
 
@@ -29,6 +30,8 @@ function deleteUser(userId: string) {
   allUsers.value = allUsers.value.filter((user) => user.id !== userId)
 }
 
+
+
 function deleteReview(userId: string, reviewId: string) {
   const user = allUsers.value.find((user) => user.id === userId)
   if (user) {
@@ -38,6 +41,7 @@ function deleteReview(userId: string, reviewId: string) {
 
 onMounted(() => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
+  userId.value = loggedInUser.id || null
   userName.value = loggedInUser.name || null
   userUsername.value = loggedInUser.username || null
   userEmail.value = loggedInUser.email || null
@@ -47,6 +51,11 @@ onMounted(() => {
 
   isAdmin.value = loggedInUser.email === 'admin@admin.com'
 })
+
+function deleteSingleReview(reviewId: string) {
+  userReviews.value = userReviews.value?.filter((review) => String(review.id) !== reviewId) || [];
+}
+
 </script>
 
 <template>
@@ -80,7 +89,9 @@ onMounted(() => {
               Rating:
               <span class="has-text-warning" v-for="n in review.rating" :key="n">★</span>
             </p>
-            <button class="button is-light">Delete Review</button>
+            <button class="button is-light" @click="deleteSingleReview(String(review.id))">
+              Delete Review
+            </button>
           </div>
         </div>
         <p v-else>No reviews yet.</p>
