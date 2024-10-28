@@ -8,31 +8,22 @@ export function getAll(): DataListEnvelope<Product> {
   }
 }
 
-interface Review {
-  Rating: number
-  comment: string
-  date: string
-  reviewerName: string
-  reviewerEmail: string
-}
-
 export interface Product {
   id: number
   title: string
   description: string
   category: string
   price: number
-  tags: string[]
+  tags?: string[]
   brand?: string
-  weight: number
-  dimensions: {
+  weight?: number
+  dimensions?: {
     width: number
     height: number
     length: number
   }
-  reviews: Review[]
-  returnPolicy: string
+  returnPolicy?: string
   minimumOrderQuantity: number
   images: string[]
-  thumbnail: string
+  thumbnail?: string
 }
