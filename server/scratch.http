@@ -1,0 +1,14 @@
+###
+https://google.com
+
+
+###
+POST https://dummyjson.com/products/
+MyHeader: MyValue
+
+{
+    "title": "Green Lipstick"
+    "price": 12.99
+    "description": "A green lipstick for the bold and daring."
+    "image": "https://dummyjson.com/300x300.png/00ff00/ffffff"
+}
