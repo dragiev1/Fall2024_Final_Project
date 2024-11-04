@@ -12,3 +12,6 @@ MyHeader: MyValue
     "description": "A green lipstick for the bold and daring."
     "image": "https://dummyjson.com/300x300.png/00ff00/ffffff"
 }
+
+###
+DELETE http://localhost:3000/users/1
