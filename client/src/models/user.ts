@@ -31,7 +31,7 @@ export interface Review {
 }
 
 export interface User {
-  id: string
+  id: number
   email: string 
   password: string
   name: string 

@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "email": "cj@gmail.com",
       "password": "password2",
       "name": "Chris Jamieson",
@@ -47,7 +47,7 @@
       "numOfReviews": 5
     },
     {
-      "id": "2",
+      "id": 2,
       "email": "admin@admin.com",
       "password": "password",
       "name": "Nadia",
@@ -57,7 +57,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "3",
+      "id": 3,
       "email": "user3@example.com",
       "password": "password123",
       "name": "Charlie Brown",
@@ -75,7 +75,7 @@
       "numOfReviews": 1
     },
     {
-      "id": "4",
+      "id": 4,
       "email": "user4@example.com",
       "password": "password123",
       "name": "Skibbidy Prince",
@@ -85,7 +85,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "5",
+      "id": 5,
       "email": "user5@example.com",
       "password": "password123",
       "name": "Mister McPoopy",
@@ -95,7 +95,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "6",
+      "id": 6,
       "email": "user6@example.com",
       "password": "password123",
       "name": "Fiona Gallagher",
@@ -113,7 +113,7 @@
       "numOfReviews": 1
     },
     {
-      "id": "7",
+      "id": 7,
       "email": "user7@example.com",
       "password": "password123",
       "name": "George Bailey",
@@ -123,7 +123,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "8",
+      "id": 8,
       "email": "user8@example.com",
       "password": "password123",
       "name": "Helen Mirren",
@@ -133,7 +133,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "9",
+      "id": 9,
       "email": "user9@example.com",
       "password": "password123",
       "name": "Isaac Newton",
@@ -143,7 +143,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "10",
+      "id": 10,
       "email": "user10@example.com",
       "password": "password123",
       "name": "Jane Austen",
@@ -153,7 +153,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "11",
+      "id": 11,
       "email": "user11@example.com",
       "password": "password123",
       "name": "Karl Urban",
@@ -163,7 +163,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "12",
+      "id": 12,
       "email": "user12@example.com",
       "password": "password123",
       "name": "Lily Collins",
@@ -173,7 +173,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "13",
+      "id": 13,
       "email": "user13@example.com",
       "password": "password123",
       "name": "Mark Twain",
@@ -183,7 +183,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "14",
+      "id": 14,
       "email": "user14@example.com",
       "password": "password123",
       "name": "Nancy Drew",
@@ -193,7 +193,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "15",
+      "id": 15,
       "email": "user15@example.com",
       "password": "password123",
       "name": "Oscar Wilde",
@@ -203,7 +203,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "16",
+      "id": 16,
       "email": "user16@example.com",
       "password": "password123",
       "name": "Pam Beesly",
@@ -213,7 +213,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "17",
+      "id": 17,
       "email": "user17@example.com",
       "password": "password123",
       "name": "Quincy Adams",
@@ -223,7 +223,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "18",
+      "id": 18,
       "email": "user18@example.com",
       "password": "password123",
       "name": "Rachel Green",
@@ -233,7 +233,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "19",
+      "id": 19,
       "email": "user19@example.com",
       "password": "password123",
       "name": "Steve Rogers",
@@ -243,7 +243,7 @@
       "numOfReviews": 0
     },
     {
-      "id": "20",
+      "id": 20,
       "email": "user20@example.com",
       "password": "password123",
       "name": "Tony Stark",

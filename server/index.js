@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const userController = require("./controllers/users")
+// const productContoller = require("./contollers/products")
 
 const PORT = 3000
 
