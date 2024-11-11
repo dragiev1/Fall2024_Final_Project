@@ -24,5 +24,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['fast-deep-equal'],
   },
+  base: './',
+  build: {
+    outDir: '../server/dist'
+  }
 })
 

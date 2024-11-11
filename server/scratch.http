@@ -14,9 +14,4 @@ MyHeader: MyValue
 }
 
 ###
-PATCH  http://localhost:3000/users/1
-Content-Type: application/json
-
-{
-    "password": "password"
-}
+GET  http://localhost:3000/api/v1/users/1
