@@ -3,6 +3,7 @@ import data from '../data/users.json'
 
 export function getAll(): DataListEnvelope<User> {
   return {
+    isSuccess: true,
     data: data.users,
     total: data.total
   }

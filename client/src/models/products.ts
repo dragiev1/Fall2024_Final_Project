@@ -3,6 +3,7 @@ import type { DataListEnvelope } from './dataEnvelope'
 
 export function getAll(): DataListEnvelope<Product> {
   return {
+    isSuccess: true,
     data: data.items,
     total: data.total
   }
