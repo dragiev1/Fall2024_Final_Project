@@ -1,32 +1,35 @@
-/** @type {{ users: User[] }} */
-const data = require("../data/users.json");
+/** @type {{ items: Product[] }} */
+const data = require("../data/products.json");
 
 /**
  * @template T
  * @typedef {import("../../client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
  * @typedef {import("../../client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
  */
+
 /**
- * @typedef {import("../../client/src/models/user").User} User
+ * @typedef {import("../../client/src/models/products").Product} Product
  */
+
 /**
  * Get all users
- * @returns {Promise<DataEnvelope<User>>}
+ * @returns {Promise<DataListEnvelope<Product>>}
  */
 async function getAll() {
   return {
     isSuccess: true,
-    data: data.users,
+    data: data.items,
+    total: data.items.length,
   };
 }
 
 /**
  * Get a user by id
  * @param {number} id
- * @returns {Promise<DataEnvelope<User>>}
+ * @returns {Promise<DataEnvelope<Product>>}
  */
 async function get(id) {
-  const item = data.users.find((user) => user.id == id);
+  const item = data.items.find((user) => user.id == id);
   return {
     isSuccess: !!item,
     data: item,
@@ -35,12 +38,12 @@ async function get(id) {
 
 /**
  * Add a new user
- * @param {User} user
- * @returns {Promise<DataEnvelope<User>>}
+ * @param {Product} user
+ * @returns {Promise<DataEnvelope<Product>>}
  */
 async function add(user) {
-  user.id = data.users.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1;
-  data.users.push(user);
+  user.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1;
+  data.items.push(user);
   return {
     isSuccess: true,
     data: user,
@@ -50,8 +53,8 @@ async function add(user) {
 /**
  * Update a user
  * @param {number} id
- * @param {User} user
- * @returns {Promise<DataEnvelope<User>>}
+ * @param {Product} user
+ * @returns {Promise<DataEnvelope<Product>>}
  */
 async function update(id, user) {
   const userToUpdate = get(id);
@@ -68,15 +71,10 @@ async function update(id, user) {
  * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-  const itemIndex = data.users.findIndex((user) => user.id == id);
+  const itemIndex = data.items.findIndex((user) => user.id == id);
   if (itemIndex === -1)
-    throw {
-      isSuccess: false,
-      message: "Item not found",
-      data: id,
-      status: 404,
-    };
-  data.users.splice(itemIndex, 1);
+    throw { isSuccess: false, message: "Item not found", data: id };
+  data.items.splice(itemIndex, 1);
   return { isSuccess: true, message: "Item deleted", data: id };
 }
 

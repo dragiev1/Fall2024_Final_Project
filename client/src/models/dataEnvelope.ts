@@ -1,6 +1,7 @@
 export interface DataEnvelope<T> {
   data: T
-  error?: string
+  message?: string
+  isSuccess: boolean
 }
 
 export interface DataListEnvelope<T> extends DataEnvelope<T[]> {

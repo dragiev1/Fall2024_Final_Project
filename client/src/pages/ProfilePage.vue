@@ -27,13 +27,13 @@ const avgReviews = computed(() => {
 })
 
 function deleteUser(userId: string) {
-  allUsers.value = allUsers.value.filter((user) => user.id !== userId)
+  allUsers.value = allUsers.value.filter((user) => user.id !== Number(userId))
 }
 
 
 
 function deleteReview(userId: string, reviewId: string) {
-  const user = allUsers.value.find((user) => user.id === userId)
+  const user = allUsers.value.find((user) => user.id === Number(userId))
   if (user) {
     user.reviews = user.reviews.filter((review) => String(review.id) !== reviewId)
   }
@@ -123,13 +123,13 @@ function deleteSingleReview(reviewId: string) {
                     Rating:
                     <span class="has-text-warning" v-for="n in review.rating" :key="n">★</span>
                   </p>
-                  <button class="button" @click="deleteReview(user.id, String(review.id))">
+                  <button class="button" @click="deleteReview(String(user.id), String(review.id))">
                     Delete Review
                   </button>
                 </div>
               </div>
               <p v-else>No reviews yet.</p>
-              <button class="button is-bottom" @click="deleteUser(user.id)">Delete User</button>
+              <button class="button is-bottom" @click="deleteUser(String(user.id))">Delete User</button>
             </div>
           </div>
         </div>
