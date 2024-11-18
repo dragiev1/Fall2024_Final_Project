@@ -1,19 +1,19 @@
-/*  B"H
- */
-
 /** @type {{ items: Product[] }} */
 const data = require("../data/products.json");
 
 /**
+ * @template T
  * @typedef {import("../../client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
  * @typedef {import("../../client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
  */
+
 /**
  * @typedef {import("../../client/src/models/products").Product} Product
  */
+
 /**
  * Get all users
- * @returns {Promise<DataEnvelope<Product>>}
+ * @returns {Promise<DataListEnvelope<Product>>}
  */
 async function getAll() {
   return {

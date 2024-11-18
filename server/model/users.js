@@ -1,10 +1,8 @@
-/*  B"H
- */
-
 /** @type {{ users: User[] }} */
 const data = require("../data/users.json");
 
 /**
+ * @template T
  * @typedef {import("../../client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
  * @typedef {import("../../client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
  */
@@ -19,7 +17,6 @@ async function getAll() {
   return {
     isSuccess: true,
     data: data.users,
-    total: data.users.length,
   };
 }
 

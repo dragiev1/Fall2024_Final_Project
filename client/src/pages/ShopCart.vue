@@ -8,7 +8,7 @@ const visibleCakeProducts = ref<Product[]>([])
 const visibleChocoProducts = ref<Product[]>([])
 const currentIndex = ref<number>(8)
 
-products.value = getAll().data
+getAll().then((data) => products.value = data.data)
 
 const cakeProducts = computed(() => products.value.filter((product) => product.category === 'cake'))
 const meringueProducts = computed(() =>

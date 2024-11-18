@@ -33,10 +33,10 @@ export interface Review {
 
 export interface User {
   id: number
-  email: string 
+  email: string
   password: string
-  name: string 
-  telephone: string 
+  name: string
+  telephone: string
   profilePicture: string
   reviews: Review[]
   numOfReviews: number

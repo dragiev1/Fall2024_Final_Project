@@ -7,7 +7,7 @@ const products = ref<Product[]>([])
 const visibleProducts = ref<Product[]>([])
 const currentIndex = ref<number>(15)
 
-products.value = getAll().data
+getAll().then((data) => (products.value = data.data))
 visibleProducts.value = products.value.slice(0, 12)
 
 const loadMore = () => {

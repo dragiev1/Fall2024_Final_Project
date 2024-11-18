@@ -25,7 +25,7 @@ const userReviews = computed<ReviewWithReplies[]>(() => {
   return allUsers.value.flatMap((user) =>
     user.reviews.map((review) => ({
       ...(review as ReviewWithReplies), // Cast each review as ReviewWithReplies
-      userId: user.id,
+      userId: user.name,
       replies: review.replies || [] // Provide default empty array
     }))
   )
@@ -36,7 +36,7 @@ const reversedReviews = computed(() => {
 })
 
 function deleteReview(userId: string, reviewId: string) {
-  const user = allUsers.value.find((user) => user.id === userId)
+  const user = allUsers.value.find((user) => user.id === Number(userId))
   if (user) {
     user.reviews = user.reviews.filter((review) => String(review.id) !== reviewId)
   }
@@ -86,7 +86,7 @@ function submitReview() {
       image: newReviewImage.value ? URL.createObjectURL(newReviewImage.value) : null
     }
 
-    const user = allUsers.value.find((user) => user.id === userId.value)
+    const user = allUsers.value.find((user) => user.id === Number(userId.value))
     if (user) {
       user.reviews.push(newReview)
       newReviewTitle.value = ''
@@ -97,7 +97,7 @@ function submitReview() {
   }
 }
 function getUserName(userId: string) {
-  const user = allUsers.value.find((user) => user.id == userId)
+  const user = allUsers.value.find((user) => user.id == Number(userId))
   return user ? user.name : 'Unknown User'
 }
 

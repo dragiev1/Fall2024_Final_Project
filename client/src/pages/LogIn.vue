@@ -20,7 +20,7 @@ const handleLogin = (): void => {
   } else if (user.password !== password.value && user.email === email.value) {
     loginError.value = 'Invalid Password.'
   } else {
-    localStorage.setItem('userToken', user.id)
+    localStorage.setItem('userToken', String(user.id))
     console.log(isLoggedIn.value)
     login()
     console.log(isLoggedIn.value)

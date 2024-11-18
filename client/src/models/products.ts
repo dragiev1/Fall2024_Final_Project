@@ -1,12 +1,8 @@
-import data from '../data/products.json'
 import type { DataListEnvelope } from './dataEnvelope'
+import { rest } from './myFetch'
 
-export function getAll(): DataListEnvelope<Product> {
-  return {
-    isSuccess: true,
-    data: data.items,
-    total: data.total
-  }
+export async function getAll() {
+  return await rest<DataListEnvelope<Product>>('http://localhost:3000/api/v1/products')
 }
 
 export interface Product {
