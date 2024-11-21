@@ -38,30 +38,31 @@ async function get(id) {
 
 /**
  * Add a new user
- * @param {Product} user
+ * @param {Product} product
  * @returns {Promise<DataEnvelope<Product>>}
  */
-async function add(user) {
-  user.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1;
-  data.items.push(user);
+async function add(product) {
+  product.id =
+    data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1;
+  data.items.push(product);
   return {
     isSuccess: true,
-    data: user,
+    data: product,
   };
 }
 
 /**
  * Update a user
  * @param {number} id
- * @param {Product} user
+ * @param {Product} product
  * @returns {Promise<DataEnvelope<Product>>}
  */
-async function update(id, user) {
-  const userToUpdate = get(id);
-  Object.assign(userToUpdate, user);
+async function update(id, product) {
+  const userToUpdate = await get(id);
+  Object.assign(userToUpdate.data, product);
   return {
     isSuccess: true,
-    data: userToUpdate,
+    data: userToUpdate.data,
   };
 }
 
@@ -71,7 +72,7 @@ async function update(id, user) {
  * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-  const itemIndex = data.items.findIndex((user) => user.id == id);
+  const itemIndex = data.items.findIndex((product) => product.id == id);
   if (itemIndex === -1)
     throw { isSuccess: false, message: "Item not found", data: id };
   data.items.splice(itemIndex, 1);

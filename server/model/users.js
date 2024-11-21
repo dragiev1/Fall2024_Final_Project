@@ -54,7 +54,7 @@ async function add(user) {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function update(id, user) {
-  const userToUpdate = get(id);
+  const userToUpdate = await get(id);
   Object.assign(userToUpdate, user);
   return {
     isSuccess: true,
