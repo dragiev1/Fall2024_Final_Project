@@ -14,7 +14,7 @@ const conn = getConnection();
  */
 
 /**
- * Get all users
+ * Get all products
  * @returns {Promise<DataListEnvelope<Product>>}
  */
 async function getAll() {
@@ -22,42 +22,71 @@ async function getAll() {
     .from("products")
     .select("*", { count: "estimated" });
   return {
-    isSuccess: true,
+    isSuccess: !error,
+    message: error?.message,
     data: data,
     total: count,
   };
 }
 
 /**
- * Get a user by id
+ * Get a product by id
  * @param {number} id
  * @returns {Promise<DataEnvelope<Product>>}
  */
 async function get(id) {
-  const item = data.items.find((user) => user.id == id);
+  const { data, error } = await conn
+    .from("products")
+    .select("*")
+    .eq("id", id)
+    .single();
   return {
-    isSuccess: !!item,
-    data: item,
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
   };
 }
 
 /**
- * Add a new user
+ * Add a new product
  * @param {Product} product
  * @returns {Promise<DataEnvelope<Product>>}
  */
 async function add(product) {
-  product.id =
-    data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1;
-  data.items.push(product);
+  const { data, error } = await conn
+    .from("products")
+    .insert([
+      {
+        images: product.images,
+        id: product.id,
+        description: product.description,
+        category: product.category,
+        price: product.price,
+        tags: product.tags,
+        brand: product.brand,
+        weight: product.weight,
+        dimensions: product.dimensions,
+        returnPolicy: product.returnPolicy,
+        minimumOrderQuantity: product.minimumOrderQuantity,
+        thumbnail: product.thumbnail,
+      },
+    ])
+    .single();
   return {
-    isSuccess: true,
-    data: product,
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
   };
 }
 
+async function seed() {
+  for (const product of data.items) {
+    await add(product);
+  }
+}
+
 /**
- * Update a user
+ * Update a product
  * @param {number} id
  * @param {Product} product
  * @returns {Promise<DataEnvelope<Product>>}
@@ -72,7 +101,7 @@ async function update(id, product) {
 }
 
 /**
- * Remove a user
+ * Remove a product
  * @param {number} id
  * @returns {Promise<DataEnvelope<number>>}
  */
@@ -89,5 +118,6 @@ module.exports = {
   get,
   add,
   update,
+  seed,
   remove,
 };
