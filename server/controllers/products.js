@@ -11,7 +11,10 @@ const app = express.Router();
 
 app
   .get("/", (req, res, next) => {
-    res.send(model.getAll());
+    model
+      .getAll()
+      .then((x) => res.send(x))
+      .catch(next);
   })
   .get("/:id", (req, res, next) => {
     const id = req.params.id;
@@ -28,6 +31,7 @@ app
   })
   .patch("/:id", (req, res, next) => {
     const id = req.params.id;
+    console.log("Request body:", req.body); // Debugging line
     model
       .update(+id, req.body)
       .then((x) => res.send(x))
@@ -37,6 +41,12 @@ app
     const id = req.params.id;
     model
       .remove(+id)
+      .then((x) => res.send(x))
+      .catch(next);
+  })
+  .post("/seed", (req, res, next) => {
+    model
+      .seed()
       .then((x) => res.send(x))
       .catch(next);
   });
