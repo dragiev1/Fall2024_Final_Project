@@ -1,8 +1,24 @@
-import type { DataListEnvelope } from './dataEnvelope'
-import { rest } from './myFetch'
+import type { DataListEnvelope, DataEnvelope } from './dataEnvelope'
+import { api } from './myFetch'
 
 export async function getAll() {
-  return await rest<DataListEnvelope<Product>>('http://localhost:3000/api/v1/products')
+  return await api<DataListEnvelope<Product>>('products')
+}
+
+export async function getByID(id: number) {
+  return api<DataEnvelope<Product>>(`product/${id}`)
+}
+
+export function create(product: Product) {
+  return api<DataEnvelope<Product>>('products', String(product))
+}
+
+export function update(product: Product) {
+  return api<DataEnvelope<Product>>(`product/${product.id}`, String(product), 'PATCH')
+}
+
+export function remove(id: number) {
+  return api<DataEnvelope<Product>>(`products/${id}`, undefined, 'DELETE')
 }
 
 export interface Product {
@@ -11,16 +27,6 @@ export interface Product {
   description: string
   category: string
   price: number
-  tags?: string[]
-  brand?: string
-  weight?: number
-  dimensions?: {
-    width: number
-    height: number
-    length: number
-  }
-  returnPolicy?: string
   minimumOrderQuantity: number
   images: string[]
-  thumbnail?: string
 }

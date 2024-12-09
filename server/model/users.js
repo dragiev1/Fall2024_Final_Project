@@ -72,12 +72,12 @@ async function remove(id) {
   if (itemIndex === -1)
     throw {
       isSuccess: false,
-      message: "Item not found",
+      message: "User not found",
       data: id,
       status: 404,
     };
   data.users.splice(itemIndex, 1);
-  return { isSuccess: true, message: "Item deleted", data: id };
+  return { isSuccess: true, message: "User deleted", data: id };
 }
 
 module.exports = {
