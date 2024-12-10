@@ -1,2 +1,6 @@
 ###
-GET http://localhost:3000/api/v1/products/
+GET http://localhost:3000/api/v1/products/176
+
+###
+POST http://localhost:3000/api/v1/products/seed
+Content-Type: application/json

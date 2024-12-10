@@ -1,12 +1,13 @@
-/*  B"H
- */
-const model = require("../model/users");
+const model = require("../model/replies.js");
 const express = require("express");
 const app = express.Router();
 
 app
-  .get("/", async (req, res, next) => {
-    res.send(await model.getAll());
+  .get("/", (req, res, next) => {
+    model
+      .getAll()
+      .then((x) => res.send(x))
+      .catch(next);
   })
   .get("/:id", (req, res, next) => {
     const id = req.params.id;
@@ -16,7 +17,6 @@ app
       .catch(next);
   })
   .post("/", (req, res, next) => {
-    console.log(req.body);
     model
       .add(req.body)
       .then((x) => res.send(x))
@@ -24,6 +24,7 @@ app
   })
   .patch("/:id", (req, res, next) => {
     const id = req.params.id;
+    console.log("Request body:", req.body); // Debugging line for replies
     model
       .update(+id, req.body)
       .then((x) => res.send(x))

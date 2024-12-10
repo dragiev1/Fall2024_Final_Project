@@ -7,43 +7,6 @@
       "name": "Chris Jamieson",
       "telephone": "123-456-7890",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [
-        {
-          "id": 1,
-          "title": "Delicious",
-          "text": "Moshe Plotkin would have loved this!",
-          "date": "2024-06-11",
-          "rating": 5
-        },
-        {
-          "id": 2,
-          "title": "boo",
-          "text": "taste gros! neber agin. Bad !",
-          "date": "2024-13-20",
-          "rating": 2
-        },
-        {
-          "id": 3,
-          "title": "Great Experience",
-          "text": "Had a wonderful time!",
-          "date": "2024-11-01",
-          "rating": 4
-        },
-        {
-          "id": 4,
-          "title": "Woah!",
-          "text": "This was delicious!",
-          "date": "2024-10-01",
-          "rating": 5
-        },
-        {
-          "id": 5,
-          "title": "Woooooooooooooooo!",
-          "text": "This was amazing-balls!",
-          "date": "2024-10-01",
-          "rating": 5
-        }
-      ],
       "numOfReviews": 5
     },
     {
@@ -53,7 +16,6 @@
       "name": "Nadia",
       "telephone": "845-699-3312",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -63,15 +25,6 @@
       "name": "Charlie Brown",
       "telephone": "345-678-9012",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [
-        {
-          "id": 2,
-          "title": "Delicious Treats",
-          "text": "The desserts were amazing!",
-          "date": "2024-09-15",
-          "rating": 4
-        }
-      ],
       "numOfReviews": 1
     },
     {
@@ -81,7 +34,6 @@
       "name": "Skibbidy Prince",
       "telephone": "456-789-0123",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -91,7 +43,6 @@
       "name": "Mister McPoopy",
       "telephone": "567-890-1234",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -101,15 +52,6 @@
       "name": "Fiona Gallagher",
       "telephone": "678-901-2345",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [
-        {
-          "id": 3,
-          "title": "Fantastic!",
-          "text": "Absolutely loved the pastries.",
-          "date": "2024-10-10",
-          "rating": 5
-        }
-      ],
       "numOfReviews": 1
     },
     {
@@ -119,7 +61,6 @@
       "name": "George Bailey",
       "telephone": "789-012-3456",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -129,7 +70,6 @@
       "name": "Helen Mirren",
       "telephone": "890-123-4567",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -139,7 +79,6 @@
       "name": "Isaac Newton",
       "telephone": "901-234-5678",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -149,7 +88,6 @@
       "name": "Jane Austen",
       "telephone": "012-345-6789",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -159,7 +97,6 @@
       "name": "Karl Urban",
       "telephone": "123-456-7890",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -169,7 +106,6 @@
       "name": "Lily Collins",
       "telephone": "234-567-8901",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -179,7 +115,6 @@
       "name": "Mark Twain",
       "telephone": "345-678-9012",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -189,7 +124,6 @@
       "name": "Nancy Drew",
       "telephone": "456-789-0123",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -199,7 +133,6 @@
       "name": "Oscar Wilde",
       "telephone": "567-890-1234",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -209,7 +142,6 @@
       "name": "Pam Beesly",
       "telephone": "678-901-2345",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -219,7 +151,6 @@
       "name": "Quincy Adams",
       "telephone": "789-012-3456",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -229,7 +160,6 @@
       "name": "Rachel Green",
       "telephone": "890-123-4567",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -239,7 +169,6 @@
       "name": "Steve Rogers",
       "telephone": "901-234-5678",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
     },
     {
@@ -249,8 +178,92 @@
       "name": "Tony Stark",
       "telephone": "012-345-6789",
       "profilePicture": "https://via.placeholder.com/150",
-      "reviews": [],
       "numOfReviews": 0
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Delicious",
+      "text": "Moshe Plotkin would have loved this!",
+      "date": "2024-06-11",
+      "rating": 5,
+      "image": null
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "boo",
+      "text": "taste gros! neber agin. Bad !",
+      "date": "2024-13-20",
+      "rating": 2,
+      "image": null
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "title": "Great Experience",
+      "text": "Had a wonderful time!",
+      "date": "2024-11-01",
+      "rating": 4,
+      "image": null
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "title": "Woah!",
+      "text": "This was delicious!",
+      "date": "2024-10-01",
+      "rating": 5,
+      "image": null
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "title": "Woooooooooooooooo!",
+      "text": "This was amazing-balls!",
+      "date": "2024-10-01",
+      "rating": 5,
+      "image": null
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "title": "Delicious Treats",
+      "text": "The desserts were amazing!",
+      "date": "2024-09-15",
+      "rating": 4,
+      "image": null
+    },
+    {
+      "id": 3,
+      "userId": 6,
+      "title": "Fantastic!",
+      "text": "Absolutely loved the pastries.",
+      "date": "2024-10-10",
+      "rating": 5,
+      "image": null
+    }
+  ],
+  "replies": [
+    {
+      "id": 1,
+      "reviewId": 1,
+      "text": "I agree, this was amazing!",
+      "author": "George Bailey"
+    },
+    {
+      "id": 2,
+      "reviewId": 1,
+      "text": "Totally! The flavor was out of this world.",
+      "author": "Fiona Gallagher"
+    },
+    {
+      "id": 3,
+      "reviewId": 2,
+      "text": "Oh no, I'm sorry to hear that!",
+      "author": "Charlie Brown"
     }
   ],
   "total": 20

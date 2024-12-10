@@ -1,22 +1,39 @@
 /** @type {{ users: User[] }} */
 const data = require("../data/users.json");
+const { getConnection } = require("./supabase"); // Database
+const conn = getConnection();
 
 /**
  * @template T
  * @typedef {import("../../client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
  * @typedef {import("../../client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
  */
+
 /**
  * @typedef {import("../../client/src/models/user").User} User
  */
+
 /**
  * Get all users
- * @returns {Promise<DataEnvelope<User>>}
+ * @returns {Promise<DataListEnvelope<User>>}
  */
 async function getAll() {
+  const { data, error, count } = await conn
+    .from("users")
+    .select("*", { count: "estimated" });
+  console.log("Data:", data);
+  console.log("Error:", error);
+
+  if (error) {
+    console.error("Database error:", error);
+    throw new Error("Failed to interact with the database.");
+  }
+
   return {
-    isSuccess: true,
-    data: data.users,
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+    total: count,
   };
 }
 
@@ -26,10 +43,21 @@ async function getAll() {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function get(id) {
-  const item = data.users.find((user) => user.id == id);
+  const { data, error } = await conn
+    .from("users")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error("Database error:", error);
+    throw new Error("Failed to interact with the database.");
+  }
+
   return {
-    isSuccess: !!item,
-    data: item,
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
   };
 }
 
@@ -39,12 +67,39 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function add(user) {
-  user.id = data.users.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1;
-  data.users.push(user);
+  console.log("User to be added:", user);
+  const { data, error } = await conn
+    .from("users")
+    .insert([
+      {
+        email: user.email,
+        password: user.password,
+        name: user.name,
+        telephone: user.telephone,
+        profilePicture: user.profilePicture,
+        numOfReviews: user.numOfReviews,
+      },
+    ])
+    .select("*")
+    .single();
+
+  if (error) {
+    console.error("Database error:", error);
+    throw new Error("Failed to interact with the database.");
+  }
+
   return {
-    isSuccess: true,
-    data: user,
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
   };
+}
+
+async function seed() {
+  console.log(data.users)
+  for (const user of data.users) {
+    await add(user);
+  }
 }
 
 /**
@@ -54,11 +109,28 @@ async function add(user) {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function update(id, user) {
-  const userToUpdate = await get(id);
-  Object.assign(userToUpdate, user);
+  const { data, error } = await conn
+    .from("users")
+    .update({
+      email: user.email,
+      password: user.password,
+      name: user.name,
+      telephone: user.telephone,
+      profilePicture: user.profilePicture,
+      numOfReviews: user.numOfReviews,
+    })
+    .eq("id", id)
+    .select("*");
+
+  if (error) {
+    console.error("Database error:", error);
+    throw new Error("Failed to interact with the database.");
+  }
+
   return {
-    isSuccess: true,
-    data: userToUpdate,
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
   };
 }
 
@@ -68,16 +140,23 @@ async function update(id, user) {
  * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-  const itemIndex = data.users.findIndex((user) => user.id == id);
-  if (itemIndex === -1)
-    throw {
-      isSuccess: false,
-      message: "User not found",
-      data: id,
-      status: 404,
-    };
-  data.users.splice(itemIndex, 1);
-  return { isSuccess: true, message: "User deleted", data: id };
+  const { data, error } = await conn
+    .from("users")
+    .delete()
+    .eq("id", id)
+    .select("*")
+    .single();
+
+  if (error) {
+    console.error("Database error:", error);
+    throw new Error("Failed to interact with the database.");
+  }
+
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  };
 }
 
 module.exports = {
@@ -85,5 +164,6 @@ module.exports = {
   get,
   add,
   update,
+  seed,
   remove,
 };
