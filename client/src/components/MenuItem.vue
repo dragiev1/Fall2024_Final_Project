@@ -15,16 +15,14 @@ const toggleModal = () => {
 
 <template>
   <div class="cell is-clickable" @click="toggleModal">
-    <img :src="product.images[0]" alt="product.name" />
-    <div class="overlay-text">{{ product.title }}</div>
-    <div class="overlay-text price">${{ product.price }}</div>
+    <img :src="product.images" alt="product.name" />
   </div>
   <!-- Modal to display image in higher resolution -->
   <div class="modal" :class="{ 'is-active': isModalActive }">
     <div class="modal-background" @click="toggleModal"></div>
     <div class="modal-content">
       <p class="image">
-        <img :src="product.images[0]" alt="product.name" />
+        <img :src="product.images" alt="product.name" />
       </p>
     </div>
     <button class="modal-close is-large" aria-label="close" @click="toggleModal"></button>

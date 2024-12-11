@@ -1,41 +1,46 @@
 <script setup lang="ts">
 import MenuItem from '@/components/MenuItem.vue'
 import { getAll, type Product } from '@/models/products'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const products = ref<Product[]>([])
+const visibleProducts = ref<Product[]>([])
 const visibleCakeProducts = ref<Product[]>([])
 const visibleChocoProducts = ref<Product[]>([])
 const currentIndex = ref<number>(8)
 
-getAll().then((data) => products.value = data.data)
+onMounted(async () => {
+  const fetchedProducts = await getAll() // Get all products using the function from products.ts
+  products.value = fetchedProducts.data // Assign the fetched data to the products list
+  visibleProducts.value = products.value.slice(0, currentIndex.value) // Display the first set of products
+})
 
-const cakeProducts = computed(() => products.value.filter((product) => product.category === 'cake'))
+const cakeProducts = computed(() =>
+  visibleProducts.value.filter((product) => product.category === 'cake' || 'ginger')
+)
 const meringueProducts = computed(() =>
-  products.value.filter((product) => product.category === 'meringue')
+  visibleProducts.value.filter((product) => product.category === 'cookies')
 )
 const chocolateProducts = computed(() =>
-  products.value.filter((product) => product.category === 'chocolate')
+  visibleProducts.value.filter((product) => product.category === 'chocolate')
 )
 const baklavaProducts = computed(() =>
-  products.value.filter((product) => product.category === 'baklava')
+  visibleProducts.value.filter((product) => product.category === 'baklava')
 )
 const macaronsProducts = computed(() =>
-  products.value.filter((product) => product.category === 'macarons')
+  visibleProducts.value.filter((product) => product.category === 'macarons')
 )
 
 visibleCakeProducts.value = cakeProducts.value.slice(0, 8)
 visibleChocoProducts.value = chocolateProducts.value.slice(0, 8)
 
 const loadMoreCake = () => {
-  const nextIndex = currentIndex.value + 8
-  visibleCakeProducts.value = cakeProducts.value.slice(0, nextIndex)
-  currentIndex.value = nextIndex
+  currentIndex.value += 12
+  visibleCakeProducts.value = products.value.slice(0, currentIndex.value)
 }
 const loadMoreChoco = () => {
-  const nextIndex = currentIndex.value + 8
-  visibleChocoProducts.value = chocolateProducts.value.slice(0, nextIndex)
-  currentIndex.value = nextIndex
+  currentIndex.value += 12
+  visibleChocoProducts.value = products.value.slice(0, currentIndex.value)
 }
 </script>
 
@@ -43,7 +48,7 @@ const loadMoreChoco = () => {
   <body>
     <div class="column is-8 is-offset-2">
       <aside class="menu">
-        <p class="title has-text-centered">MENU</p>
+        <p class="title has-text-centered">DESSERTS</p>
         <div class="subtitle has-text-centered is-6 py-2">
           <i class="fas fa-circle px-1"></i>
           <i class="fas fa-circle px-1"></i>

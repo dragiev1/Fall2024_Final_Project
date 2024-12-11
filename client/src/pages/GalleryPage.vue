@@ -26,9 +26,9 @@ const loadMore = () => {
       <i class="fas fa-birthday-cake px-2"></i>Gallery<i class="fas fa-birthday-cake px-2"></i>
     </div>
     <div class="subtitle has-text-centered is-6 py-2">
-      <i class="fas fa-circle px-1 has-text-white"></i>
-      <i class="fas fa-circle px-1 has-text-white"></i>
-      <i class="fas fa-circle px-1 has-text-white"></i>
+      <i class="fas fa-circle px-1"></i>
+      <i class="fas fa-circle px-1"></i>
+      <i class="fas fa-circle px-1"></i>
     </div>
     <div class="shelf">
       <GalleryModal v-for="product in visibleProducts" :key="product.id" :product="product" />
@@ -42,6 +42,9 @@ const loadMore = () => {
 </template>
 
 <style scoped>
+.fa-circle {
+  background-color: var(--primary-background) !important;
+}
 body {
   margin-top: 3.5rem;
   height: 100%;
