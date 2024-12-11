@@ -21,8 +21,8 @@ async function getAll() {
   const { data, error, count } = await conn
     .from("products")
     .select("*", { count: "estimated" });
-    console.log("Data:", data);
-    console.log("Error:", error);
+  console.log("Data:", data);
+  console.log("Error:", error);
   return {
     isSuccess: !error,
     message: error?.message,
@@ -59,12 +59,8 @@ async function add(product) {
     .from("products")
     .insert([
       {
-        title: product.title,
         images: product.images,
-        description: product.description,
         category: product.category,
-        price: product.price,
-        minimumOrderQuantity: product.minimumOrderQuantity,
       },
     ])
     .select("*")
@@ -93,12 +89,8 @@ async function update(id, product) {
   const { data, error } = await conn
     .from("products")
     .update({
-      title: product.title,
       images: product.images,
-      description: product.description,
       category: product.category,
-      price: product.price,
-      minimumOrderQuantity: product.minimumOrderQuantity,
     })
     .eq("id", id)
     .select("*");

@@ -1,942 +1,487 @@
 {
   "items": [
     {
-      "id": 1,
-      "title": "REEE",
-      "description": "",
-      "category": "chocolate",
-      "price": 10,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/FullSizeRender 2.jpg"]
-    },
-    {
       "id": 2,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/FullSizeRender 3.jpg"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869223/IMG_3333_plymum.png"
     },
     {
       "id": 3,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/FullSizeRender 4.jpg"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870975/cake1.jpg"
     },
     {
       "id": 4,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/FullSizeRender 5.jpg"]
+      "category": "baklava",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870975/baklava_mwevmx.jpg"
     },
     {
       "id": 5,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/FullSizeRender 6.jpg"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870975/parallax2_qjtyk4.png"
     },
     {
       "id": 6,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/FullSizeRender.jpg"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870973/parallaxImage_ksvrke.jpg"
     },
     {
       "id": 7,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0133.jpg"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870973/napCake_ger5gc.jpg"
     },
     {
       "id": 8,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0262.jpg"]
+      "category": "cookies",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870971/meringueCookies_n1rusj.jpg"
     },
     {
       "id": 9,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0275 2.jpg"]
+      "category": "macarons",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870970/macarons_ag4irz.jpg"
     },
     {
       "id": 10,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0282.jpg"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870970/chocolates_ujqxcb.jpg"
     },
     {
       "id": 11,
-      "title": "",
-      "description": "",
-      "category": "meringue",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0316.jpg"]
+      "category": "Desserts",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869277/IMG_9221.png"
     },
     {
       "id": 12,
-      "title": "",
-      "description": "",
-      "category": "meringue",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0645.jpg"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869272/IMG_1387_y6i37e.png"
     },
     {
       "id": 13,
-      "title": "",
-      "description": "",
-      "category": "chocolate, strawberry",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0648.jpg"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869275/IMG_9250_u0frfa.png"
     },
     {
       "id": 14,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0744.jpg"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869275/IMG_9873_w7licl.png"
     },
     {
       "id": 15,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0932.jpg"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869275/IMG_9862_kdbjgt.png"
     },
     {
       "id": 16,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0937.jpg"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869275/IMG_3883_xe22uo.png"
     },
     {
       "id": 17,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_0993.jpg"]
+      "category": "ginger",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869274/IMG_1088_aqiwje.png"
     },
     {
       "id": 18,
-      "title": "",
-      "description": "",
-      "category": "cake, ginger",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1071.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869269/IMG_9191_mbk6ki.jpg"
     },
     {
       "id": 19,
-      "title": "",
-      "description": "",
-      "category": "cake, ginger",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1074.png"]
+      "category": "bakalava",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869269/IMG_9192_plx7lm.jpg"
     },
     {
       "id": 20,
-      "title": "",
-      "description": "",
-      "category": "cake, ginger",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1075.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869268/IMG_0648_zwmxvr.jpg"
     },
     {
       "id": 21,
-      "title": "",
-      "description": "",
-      "category": "cake, ginger",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1088.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869267/IMG_9770_ylf7xc.png"
     },
     {
       "id": 22,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1180.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869267/IMG_9226_kg79tu.jpg"
     },
     {
       "id": 23,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1181.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869267/IMG_3859_psgvvy.png"
     },
     {
       "id": 24,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1183.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869265/IMG_0744_uakhtw.jpg"
     },
     {
       "id": 25,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1384.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869265/IMG_9200_mvpzux.png"
     },
     {
       "id": 26,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1387.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869264/IMG_9733_ltrv3w.png"
     },
     {
       "id": 27,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1708.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869265/IMG_1181_zw2lbz.png"
     },
     {
       "id": 28,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_1709.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869263/IMG_1183_qwua9t.png"
     },
     {
       "id": 29,
-      "title": "",
-      "description": "",
-      "category": "baklava",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_3377.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869263/IMG_9218_aoyht7.jpg"
     },
     {
       "id": 30,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_3469.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869262/IMG_9144_awgk2y.png"
     },
     {
       "id": 31,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_3859.PNG"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869262/IMG_6694_oakv1b.png"
     },
     {
       "id": 32,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9954.PNG"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869261/IMG_4170_rryoir.png"
     },
     {
       "id": 33,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_3882.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869260/FullSizeRender_oheljh.jpg"
     },
     {
       "id": 34,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_3883.png"]
+      "category": "cookies",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869260/IMG_0645_nphnk1.jpg"
     },
     {
       "id": 35,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_3899.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869259/IMG_0262_jr6kcd.jpg"
     },
     {
       "id": 36,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_4047.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869259/IMG_1180_cxdi2u.png"
     },
     {
       "id": 37,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_4072.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869258/IMG_1708_cbuh1n.png"
     },
     {
       "id": 38,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_4081.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869257/IMG_9874_m3jk8p.jpg"
     },
     {
       "id": 39,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_4170.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869256/IMG_7169_qu1gbd.png"
     },
     {
       "id": 40,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_6694.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869257/FullSizeRender_4_e05odo.jpg"
     },
     {
       "id": 41,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_6967.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869256/IMG_0275_jrypmy.jpg"
     },
     {
       "id": 42,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_6972.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869255/IMG_9845_ccvq5d.png"
     },
     {
       "id": 43,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_6980.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869254/IMG_0282_e1ajb0.jpg"
     },
     {
       "id": 44,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_6982.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869254/IMG_9228_apyxto.png"
     },
     {
       "id": 45,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_7167.png"]
+      "category": "cookies",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869253/IMG_0316_hnuzgy.jpg"
     },
     {
       "id": 46,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_7168.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869252/IMG_0993_pm9g1h.jpg"
     },
     {
       "id": 47,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_7169.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869252/IMG_0932_iria6i.jpg"
     },
     {
       "id": 48,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_8594.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869251/FullSizeRender_2_alcwbv.jpg"
     },
     {
       "id": 49,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9143.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869251/IMG_0133_qey8oy.jpg"
     },
     {
       "id": 50,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9144.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869250/IMG_7168_txr8qf.png"
     },
     {
       "id": 51,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9162.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869250/IMG_9772_lta1mp.png"
     },
     {
       "id": 52,
-      "title": "",
-      "description": "",
-      "category": "baklava",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9169.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869249/IMG_0937_uahfcu.jpg"
     },
     {
       "id": 53,
-      "title": "",
-      "description": "",
-      "category": "baklava",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9170.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869248/IMG_9728_mv6m1u.png"
     },
     {
       "id": 54,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9176.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869247/FullSizeRender_6_x7wrpc.jpg"
     },
     {
       "id": 55,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9184.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869247/IMG_3469_jq0oj6.png"
     },
     {
       "id": 56,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9191.JPEG"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869246/IMG_1709_oofprr.png"
     },
     {
       "id": 57,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9874.jpg"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869246/FullSizeRender_5_lx18ks.jpg"
     },
     {
       "id": 58,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9200.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869245/IMG_9143_itm6xg.png"
     },
     {
       "id": 59,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9212.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869245/IMG_9212_ofsygr.png"
     },
     {
       "id": 60,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9217.png"]
+      "category": "ginger",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869244/IMG_1074_r2j4we.png"
     },
     {
       "id": 61,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9218.JPEG"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869243/FullSizeRender_3_spnwbz.jpg"
     },
     {
       "id": 62,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9219.png"]
+      "category": "baklava",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869243/IMG_9169_xvlto8.png"
     },
     {
       "id": 63,
-      "title": "",
-      "description": "",
-      "category": "cake, cupcake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9221.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869242/IMG_8594_m9jvup.png"
     },
     {
       "id": 64,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9226.JPEG"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869242/IMG_4072_qybw5v.png"
     },
     {
       "id": 65,
-      "title": "",
-      "description": "",
-      "category": "cake, cupcake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9228.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869241/IMG_9439_llbstr.png"
     },
     {
       "id": 66,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9238.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869241/IMG_9826_zn1f6f.png"
     },
     {
       "id": 67,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9245.png"]
+      "category": "ginger",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869239/IMG_1075_p30wxf.png"
     },
     {
       "id": 68,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9250.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869239/IMG_1384_uoqgyr.png"
     },
     {
       "id": 69,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9256.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869238/IMG_6982_jsbu7f.png"
     },
     {
       "id": 70,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9393.png"]
+      "category": "ginger",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869237/IMG_1078_ggjixe.png"
     },
     {
       "id": 71,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9439.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869237/IMG_6967_kefvrf.png"
     },
     {
       "id": 72,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9728.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869236/IMG_9954_tz86hi.png"
     },
     {
       "id": 73,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9733.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869236/IMG_9162_a1mb7l.png"
     },
     {
       "id": 74,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9763.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869236/IMG_9217_geeajr.png"
     },
     {
       "id": 75,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9770.PNG"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869236/IMG_9847_ciri1i.png"
     },
     {
       "id": 76,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9772.PNG"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869235/IMG_6972_sd7sft.png"
     },
     {
       "id": 77,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9814.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869235/IMG_9176_aplhig.png"
     },
     {
       "id": 78,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9816.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869234/IMG_4081_ntwl7p.png"
     },
     {
       "id": 79,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9821.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869233/IMG_9245_sch0dd.png"
     },
     {
       "id": 80,
-      "title": "",
-      "description": "",
-      "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9826.png"]
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869233/IMG_4047_mlelww.png"
     },
     {
       "id": 81,
-      "title": "",
-      "description": "",
       "category": "chocolate",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9827.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869233/IMG_9393_lgderg.png"
     },
     {
       "id": 82,
-      "title": "",
-      "description": "",
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9845.png"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869232/IMG_3899_tasyfb.png"
     },
     {
       "id": 83,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9847.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869232/IMG_9814_ifyush.png"
     },
     {
       "id": 84,
-      "title": "",
-      "description": "",
-      "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/pics/IMG_9862.png"]
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869231/IMG_6980_hra75e.png"
     },
     {
       "id": 85,
-      "title": "",
-      "description": "",
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869231/IMG_3882_jjmq3r.png"
+    },
+    {
+      "id": 86,
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869230/IMG_9763_heq2ai.png"
+    },
+    {
+      "id": 87,
       "category": "cake",
-      "price": 0,
-      "rating": 5,
-      "reviews": [],
-      "minimumOrderQuantity": 1,
-      "images": ["../src/assets/cake1.jpg"]
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869230/IMG_9184_ipotfm.png"
+    },
+    {
+      "id": 88,
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869229/IMG_9219_vhlwgu.png"
+    },
+    {
+      "id": 89,
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869229/IMG_9827_gxyvms.png"
+    },
+    {
+      "id": 90,
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869229/IMG_9816_fwv625.png"
+    },
+    {
+      "id": 91,
+      "category": "ginger",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869229/IMG_1071_ry1hef.png"
+    },
+    {
+      "id": 92,
+      "category": "bakalava",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869228/IMG_3377_rj5q8p.png"
+    },
+    {
+      "id": 93,
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869227/IMG_9821_gxa0qh.png"
+    },
+    {
+      "id": 95,
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869226/IMG_9238.png"
+    },
+    {
+      "id": 96,
+      "category": "chocolate",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869225/IMG_7167_ajnevg.png"
+    },
+    {
+      "id": 97,
+      "category": "cake",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869225/IMG_9256_jusmd9.png"
+    },
+    {
+      "id": 98,
+      "category": "bakalava",
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869224/IMG_9170_ncshh0.png"
     }
   ],
-  "total": 86,
+  "total": 96,
   "skip": 0,
-  "limit": 86
+  "limit": 96
 }

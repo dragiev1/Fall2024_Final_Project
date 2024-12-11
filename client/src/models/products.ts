@@ -23,10 +23,6 @@ export function remove(id: number) {
 
 export interface Product {
   id: number
-  title: string
-  description: string
   category: string
-  price: number
-  minimumOrderQuantity: number
-  images: string[]
+  images: string
 }
