@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import { ref, watchEffect } from 'vue'
 

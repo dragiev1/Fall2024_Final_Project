@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { type User, getAll, type Reply, type Review, type ReviewWithReplies } from '@/models/user'
+import { type User, getAllUsers } from '@/models/user'
+import { type Reply, getAllReplies } from '@/models/replies'
+import { getAllReviews, type Review, type ReviewWithReplies } from '@/models/reviews'
 
-const allUsers = ref<User[]>([])
-allUsers.value = getAll().data
+const allUsers = ref<User[]>([]) // All Users
+allUsers.value = getAllUsers().data
+const allReplies = ref<Reply[]>([]) // All Replies
+allReplies.value = getAllReplies().data
+const allReviews = ref<Review[]>([]) // All reviews
+allReviews.value = getAllReviews().data
 
 const userId = ref<string | null>(null)
 const userEmail = ref<string | null>(null)

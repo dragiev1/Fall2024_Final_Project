@@ -49,7 +49,7 @@ onUnmounted(() => {
         <div class="field">
           <label class="label">Message</label>
           <div class="control">
-            <textarea class="textarea" placeholder="Lorem ipsum..."></textarea>
+            <textarea class="textarea" placeholder="Share a thought..."></textarea>
           </div>
         </div>
 
@@ -119,7 +119,7 @@ onUnmounted(() => {
 }
 .button {
   background-color: var(--highlights-background);
-  color: var(--secondary-background);
+  color: white;
 }
 .bgimg-1 {
   background-image: url('@/assets/parallax2.png') !important;
@@ -128,7 +128,7 @@ onUnmounted(() => {
   background-size: cover;
   padding-bottom: 0 !important;
   min-height: 80vh;
-  filter: contrast(1.3) brightness(0.75);
+  filter: contrast(1.3) brightness(0.9);
   overflow: hidden;
   @media (max-width: 768px) {
     background-image: url('@/assets/parallax2.png') !important;
@@ -146,7 +146,7 @@ onUnmounted(() => {
   border-color: var(--primary-background);
 }
 .input:focus {
-  border-color: var(--accent-background);
+  border-color: var(--primary-background);
   box-shadow: 0 0 8px var(--primary-background);
 }
 .icon i {

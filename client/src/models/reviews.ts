@@ -2,7 +2,7 @@ import type { DataListEnvelope } from './dataEnvelope'
 import type { Reply } from './replies'
 import data from '../data/users.json'
 
-export function getAll(): DataListEnvelope<Review> {
+export function getAllReviews(): DataListEnvelope<Review> {
   return {
     isSuccess: true,
     data: data.reviews,

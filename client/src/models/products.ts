@@ -10,11 +10,19 @@ export async function getByID(id: number) {
 }
 
 export function create(product: Product) {
-  return api<DataEnvelope<Product>>('products', String(product))
+  const dataEnvelope: DataEnvelope<Product> = {
+    data: product,
+    isSuccess: false
+  }
+  return api<DataEnvelope<Product>>('products', dataEnvelope)
 }
 
 export function update(product: Product) {
-  return api<DataEnvelope<Product>>(`product/${product.id}`, String(product), 'PATCH')
+  const dataEnvelope: DataEnvelope<Product> = {
+    data: product,
+    isSuccess: false
+  }
+  return api<DataEnvelope<Product>>(`product/${product.id}`, dataEnvelope, 'PATCH')
 }
 
 export function remove(id: number) {

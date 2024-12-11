@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import Parallax from '@/components/ParallaxComponent1.vue'
 import Parallax2 from '@/components/ParallaxComponent2.vue'
@@ -86,6 +87,10 @@ body {
 }
 .hero-body {
   padding: 19px !important;
+}
+.hero-head {
+  justify-content: center;
+  align-items: center;
 }
 .cell {
   position: relative;

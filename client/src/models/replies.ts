@@ -1,7 +1,7 @@
 import type { DataListEnvelope } from './dataEnvelope'
 import data from '../data/users.json'
 
-export function getAll(): DataListEnvelope<Reply> {
+export function getAllReplies(): DataListEnvelope<Reply> {
   return {
     isSuccess: true,
     data: data.replies,

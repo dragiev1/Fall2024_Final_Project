@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { getAll, type Product } from '@/models/products'
-import GalleryPic from '@/components/GalleryPic.vue'
+import GalleryModal from '@/components/GalleryModal.vue'
 
 const products = ref<Product[]>([])
 const visibleProducts = ref<Product[]>([])
-const currentIndex = ref<number>(15)
+const currentIndex = ref<number>(12)
 
-getAll().then((data) => (products.value = data.data))
+onMounted(async () => {
+  const fetchedProducts = await getAll() // Get all products using the function from products.ts
+  products.value = fetchedProducts.data // Assign the fetched data to the products list
+  visibleProducts.value = products.value.slice(0, currentIndex.value) // Display the first set of products
+})
 visibleProducts.value = products.value.slice(0, 12)
 
 const loadMore = () => {
-  const nextIndex = currentIndex.value + 12
-  visibleProducts.value = products.value.slice(0, nextIndex)
-  currentIndex.value = nextIndex
+  currentIndex.value += 12
+  visibleProducts.value = products.value.slice(0, currentIndex.value)
 }
 </script>
 
@@ -28,7 +31,7 @@ const loadMore = () => {
       <i class="fas fa-circle px-1 has-text-white"></i>
     </div>
     <div class="shelf">
-      <GalleryPic v-for="product in visibleProducts" :key="product.id" :product="product" />
+      <GalleryModal v-for="product in visibleProducts" :key="product.id" :product="product" />
     </div>
     <div class="button-container mt-5">
       <button v-if="currentIndex < products.length" @click="loadMore" class="button is-large my-5">

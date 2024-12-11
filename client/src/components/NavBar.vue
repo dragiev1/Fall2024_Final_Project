@@ -43,7 +43,7 @@ const hoveredMenu = ref<string | null>(null)
           Home
         </RouterLink>
 
-        <RouterLink to="/Gallery" class="navbar-item has-text-light px-6"> Gallery </RouterLink>
+        <RouterLink to="/GalleryPage" class="navbar-item has-text-light px-6"> Gallery </RouterLink>
         <div
           class="navbar-item has-dropdown is-hoverable"
           @mouseenter="hoveredMenu = 'shop'"

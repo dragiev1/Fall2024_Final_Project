@@ -75,9 +75,9 @@
 .textarea {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.input:focus {
+.input:focus, .textarea:focus {
   border-color: var(--accent-background);
-  box-shadow: 0 0 8px var(--primary-background);
+  box-shadow: 0 0 8px var(--highlights-background);
 }
 .icon i {
   transition: color 0.4s ease;

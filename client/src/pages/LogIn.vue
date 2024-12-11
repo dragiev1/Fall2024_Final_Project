@@ -2,11 +2,19 @@
 import router from '../router'
 import { ref } from 'vue'
 import { useAuth } from '../models/useAuth'
-import { getAll, type User} from '@/models/user'
+import { getAllUsers, type User } from '@/models/user'
+import { refSession, useLogin } from '@/models/user'
+
+const logins = useLogin()
+function googleLogin() {
+  logins.googleLogin()
+}
+
+const session = refSession()
 
 const users = ref<User[]>([])
 const { isLoggedIn, login } = useAuth()
-users.value = getAll().data
+users.value = getAllUsers().data
 
 const email = ref<string>('')
 const password = ref<string>('')
@@ -91,15 +99,23 @@ const handleLogin = (): void => {
                 </span>
               </p>
             </div>
-            <RouterLink to="/SignUp" class="subtitle is-6 is-underlined"
-              >No Account? Sign up!</RouterLink
-            >
+
             <div class="field">
               <p class="control">
                 <button class="button" @click="handleLogin">Login</button>
               </p>
             </div>
 
+            <RouterLink to="/SignUp" class="subtitle is-6 is-underlined">
+              No Account? Sign up!
+            </RouterLink>
+
+            <div class="box is-light"></div>
+            <!-- Google Icon -->
+            <div class="container google has-text-centered is-clickable" @click.prevent="googleLogin" v-if="!session.user"> 
+              <i class="fab fa-google"> Sign in with Google
+              </i>
+            </div>
             <!-- Login Error Message -->>
             <p v-if="loginError" class="has-text-danger px-3">{{ loginError }}</p>
           </div>
@@ -141,10 +157,37 @@ section {
 }
 .hero-body {
   padding-top: 4rem !important;
-  padding-bottom: 6rem !important;
+  padding-bottom: 4rem !important;
 }
 .button:hover {
   border-color: var(--highlights-background-hover);
+}
+.google {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+}
+.google:hover {
+  color: var(--highlights-background-hover);
+  border-color: white;
+  border-radius: 1px;
+  transition: color 0.5s ease;
+}
+.google-text:hover {
+  color: var(--highlights-background-hover) !important;
+  border-color: white;
+  border-radius: 1px;
+  transition: 0.5s;
+}
+.box {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.container {
+  margin: auto;
+  padding-top: 1rem;
 }
 
 /* Styling for inputs */
