@@ -21,8 +21,7 @@ async function getAll() {
   const { data, error, count } = await conn
     .from("users")
     .select("*", { count: "estimated" });
-  console.log("Data:", data);
-  console.log("Error:", error);
+  // console.log("Data:", data);
 
   if (error) {
     console.error("Database error:", error);
@@ -67,7 +66,7 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function add(user) {
-  console.log("User to be added:", user);
+  // console.log("User to be added:", user);
   const { data, error } = await conn
     .from("users")
     .insert([
@@ -96,7 +95,7 @@ async function add(user) {
 }
 
 async function seed() {
-  console.log(data.users)
+  // console.log(data.users); // Debugging
   for (const user of data.users) {
     await add(user);
   }

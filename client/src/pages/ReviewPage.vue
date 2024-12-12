@@ -192,7 +192,7 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
 
         <!-- Display Replies -->
         <div v-if="allReplies && allReplies.length" class="replies mt-3">
-          <h4>Replies:</h4>
+          <h4 v-if="allReplies.length > 0">Replies:</h4>
           <div
             v-for="reply in allReplies.filter((reply) => reply.reviewId === review.id)"
             :key="reply.id"
@@ -205,7 +205,7 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
         </div>
 
         <!-- Toggle Reply Textarea -->
-        <button class="button my-1" @click="toggleReply(review.userId)">Reply</button>
+        <button class="button my-1" @click="toggleReply(review.id!)">Reply</button>
 
         <!-- Conditional Reply Form -->
         <div v-if="replyingTo === review.id">

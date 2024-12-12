@@ -55,7 +55,7 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<Reply>>}
  */
 async function add(reply) {
-  // console.log("Reply to be added:", reply);
+  console.log("Reply to be added:", reply);
   const { data, error } = await conn
     .from("replies")
     .insert([
