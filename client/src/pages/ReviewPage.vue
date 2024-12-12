@@ -1,77 +1,131 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { type User, getAllUsers } from '@/models/user'
-import { type Reply, getAllReplies } from '@/models/replies'
-import { getAllReviews, type Review, type ReviewWithReplies } from '@/models/reviews'
+import { type Reply, getAllReplies, createReply } from '@/models/replies'
+import { type Review, getAllReviews, createReview, removeReview } from '@/models/reviews'
 
-const allUsers = ref<User[]>([]) // All Users
-allUsers.value = getAllUsers().data
-const allReplies = ref<Reply[]>([]) // All Replies
-allReplies.value = getAllReplies().data
-const allReviews = ref<Review[]>([]) // All reviews
-allReviews.value = getAllReviews().data
+// defining empty arrays of type User, Reply, and Review.
+const allUsers = ref<User[]>([])
+const allReplies = ref<Reply[]>([])
+const allReviews = ref<Review[]>([])
 
-const userId = ref<string | null>(null)
+// defining variables that are needed.
+const userId = ref<number | null>(null)
 const userEmail = ref<string | null>(null)
-const isAdmin = ref(false) // For admin purposes.
+const isAdmin = ref(false)
 const newReviewTitle = ref<string>('')
 const newReviewText = ref<string>('')
 const newReviewImage = ref<File | null>(null)
 const newReplyText = ref<string>('')
 const replyingTo = ref<number | null>(null)
+const rating = ref<number | null>(null)
+const hoverRatingValue = ref<number | null>(null)
 
-onMounted(() => {
+// Fetching the data from the database.
+async function fetchData() {
+  try {
+    const users = await getAllUsers()
+    const replies = await getAllReplies()
+    const reviews = await getAllReviews()
+    allUsers.value = users.data
+    allReplies.value = replies.data
+    allReviews.value = reviews.data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
+
+onMounted(async () => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
   userId.value = loggedInUser.id || null
   userEmail.value = loggedInUser.email || null
   isAdmin.value = loggedInUser.email === 'admin@admin.com'
+
+  await fetchData()
 })
 
-const userReviews = computed<ReviewWithReplies[]>(() => {
-  return allUsers.value.flatMap((user) =>
-    user.reviews.map((review) => ({
-      ...(review as ReviewWithReplies), // Cast each review as ReviewWithReplies
-      userId: user.name,
-      replies: review.replies || [] // Provide default empty array
-    }))
-  )
-})
+const loggedInUser = computed(() => allUsers.value.find((user) => user.email === userEmail.value))
+const reversedReviews = computed(() => [...allReviews.value].reverse())
 
-const reversedReviews = computed(() => {
-  return [...userReviews.value].reverse()
-})
+async function submitReview() {
+  if (newReviewTitle.value && newReviewText.value) {
+    try {
+      const newReview: Review = {
+        userId: userId.value!,
+        title: newReviewTitle.value!,
+        text: newReviewText.value!,
+        rating: rating.value!,
+        image: newReviewImage.value ? URL.createObjectURL(newReviewImage.value) : null
+      }
 
-function deleteReview(userId: string, reviewId: string) {
-  const user = allUsers.value.find((user) => user.id === Number(userId))
-  if (user) {
-    user.reviews = user.reviews.filter((review) => String(review.id) !== reviewId)
+      await createReview(newReview) // Add new review
+
+      newReviewTitle.value = ''
+      newReviewText.value = ''
+      newReviewImage.value = null
+      rating.value = null
+
+      await fetchData()
+    } catch (error) {
+      console.error('Error submitting review:', error)
+    }
   }
 }
 
-const rating = ref<number | null>(null) // Holds the current rating
-const hoverRatingValue = ref<number | null>(null) // Holds the hovered rating
+async function submitReply(reviewId: number) {
+  if (newReplyText.value) {
+    try {
+      const newReply: Reply = {
+        id: Date.now(),
+        userId: loggedInUser.value?.id!,
+        reviewId,
+        text: newReplyText.value,
+        author: loggedInUser.value?.name || 'Unknown User'
+      }
 
-// Function to set the rating when a star is clicked
+      await createReply(newReply) // Add new reply
+
+      newReplyText.value = ''
+      replyingTo.value = null
+
+      await fetchData()
+    } catch (error) {
+      console.error('Error submitting reply:', error)
+    }
+  }
+}
+
+async function deleteReview(reviewId: number) {
+  try {
+    await removeReview(reviewId) // Delete review
+    await fetchData()
+  } catch (error) {
+    console.error('Error deleting review:', error)
+  }
+}
+
+function getUserName(userId: number) {
+  const user = allUsers.value.find((user) => user.id === userId)
+  return user ? user.name : 'Unknown User'
+}
+
 function setRating(star: number) {
   rating.value = star
 }
 
-// Function to handle mouseover to show the hovered rating
 function hoverRating(star: number) {
   hoverRatingValue.value = star
 }
 
-// Function to reset the hovered rating when mouse leaves
 function resetHover() {
   hoverRatingValue.value = null
 }
 
-// Function to determine the class of the star based on the rating
 function getStarClass(star: number) {
   if (hoverRatingValue.value !== null && star <= hoverRatingValue.value) {
-    return 'fas fa-star' // Filled star on hover
+    return 'fas fa-star'
   }
-  return star <= (rating.value || 0) ? 'fas fa-star' : 'far fa-star' // Filled or empty star
+  return star <= (rating.value || 0) ? 'fas fa-star' : 'far fa-star'
 }
 
 function handleFileUpload(event: Event) {
@@ -81,53 +135,12 @@ function handleFileUpload(event: Event) {
   }
 }
 
-function submitReview() {
-  if (newReviewTitle.value && newReviewText.value && rating.value) {
-    const newReview: Review = {
-      id: Date.now(),
-      title: newReviewTitle.value,
-      text: newReviewText.value,
-      rating: rating.value,
-      date: new Date().toLocaleDateString(),
-      image: newReviewImage.value ? URL.createObjectURL(newReviewImage.value) : null
-    }
-
-    const user = allUsers.value.find((user) => user.id === Number(userId.value))
-    if (user) {
-      user.reviews.push(newReview)
-      newReviewTitle.value = ''
-      newReviewText.value = ''
-      newReviewImage.value = null
-      rating.value = null
-    }
-  }
-}
-function getUserName(userId: string) {
-  const user = allUsers.value.find((user) => user.id == Number(userId))
-  return user ? user.name : 'Unknown User'
-}
-
-function submitReply(reviewId: number) {
-  const review = userReviews.value.find((review) => review.id === reviewId)
-  if (review) {
-    const newReply: Reply = {
-      id: Date.now(),
-      text: newReplyText.value,
-      author: getUserName(userId.value || ''),
-      time: new Date().toLocaleString()
-    }
-    review.replies.push(newReply)
-    newReplyText.value = ''
-    replyingTo.value = null
-  }
-}
-
 function toggleReply(reviewId: number) {
-  if (replyingTo.value === reviewId) {
-    replyingTo.value = null // Hide the textarea if it's already open for this review
-  } else {
-    replyingTo.value = reviewId // Show the textarea for this specific review
-  }
+  replyingTo.value = replyingTo.value === reviewId ? null : reviewId
+}
+
+if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
+  console.error('Please fill in all required fields!')
 }
 </script>
 
@@ -164,7 +177,7 @@ function toggleReply(reviewId: number) {
       </div>
 
       <!-- Comment List -->
-      <div v-for="review in reversedReviews" :key="review.id" class="review-item">
+      <div v-for="review in reversedReviews" :key="review.userId" class="review-item">
         <h4 class="subtitle is-5" style="margin-bottom: 0.25rem">
           {{ review.title }}
         </h4>
@@ -174,23 +187,25 @@ function toggleReply(reviewId: number) {
         <p class="review-text my-2">{{ review.text }}</p>
 
         <div v-if="review.image">
-          <img :src="review.image" alt="Review Image" class="review-image" />
+          <img :src="review.image" alt="Review img" class="review-image" />
         </div>
 
         <!-- Display Replies -->
-        <div v-if="review.replies && review.replies.length" class="replies mt-3">
+        <div v-if="allReplies && allReplies.length" class="replies mt-3">
           <h4>Replies:</h4>
-          <div v-for="reply in review.replies" :key="reply.id" class="reply">
-            <p class="reply-title">
-              {{ reply.author }} <br />
-              ({{ reply.time }}):
-            </p>
+          <div
+            v-for="reply in allReplies.filter((reply) => reply.reviewId === review.id)"
+            :key="reply.id"
+            class="reply"
+          >
+            <p class="reply-title">{{ reply.author }} <br /></p>
             <p class="px-5">{{ reply.text }}</p>
+            <button v-if="reply.userId === userId" class="button my-1">Delete Reply</button>
           </div>
         </div>
 
         <!-- Toggle Reply Textarea -->
-        <button class="button my-1" @click="toggleReply(review.id)">Reply</button>
+        <button class="button my-1" @click="toggleReply(review.userId)">Reply</button>
 
         <!-- Conditional Reply Form -->
         <div v-if="replyingTo === review.id">
@@ -205,7 +220,7 @@ function toggleReply(reviewId: number) {
         <button
           v-if="review.userId === userId"
           class="button my-1"
-          @click="deleteReview(review.userId, String(review.id))"
+          @click="deleteReview(Number(review.id))"
         >
           Delete Review
         </button>
@@ -257,7 +272,7 @@ function toggleReply(reviewId: number) {
 }
 
 p {
-  background-color: var(--accent-background);
+  background-color: var(--secondary-background);
   padding: 7px;
   color: black;
 }

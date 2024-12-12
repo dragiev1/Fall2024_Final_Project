@@ -249,18 +249,21 @@
   "replies": [
     {
       "id": 1,
+      "userId": 1,
       "reviewId": 1,
       "text": "I agree, this was amazing!",
       "author": "George Bailey"
     },
     {
       "id": 2,
+      "userId": 2,
       "reviewId": 1,
       "text": "Totally! The flavor was out of this world.",
       "author": "Fiona Gallagher"
     },
     {
       "id": 3,
+      "userId": 3,
       "reviewId": 2,
       "text": "Oh no, I'm sorry to hear that!",
       "author": "Charlie Brown"

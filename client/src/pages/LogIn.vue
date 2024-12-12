@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from '../router'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useAuth } from '../models/useAuth'
 import { getAllUsers, type User } from '@/models/user'
 import { refSession, useLogin } from '@/models/user'
@@ -12,16 +12,20 @@ function googleLogin() {
 
 const session = refSession()
 
-const users = ref<User[]>([])
+const allUsers = ref<User[]>([])
 const { isLoggedIn, login } = useAuth()
-users.value = getAllUsers().data
+
+onMounted(async () => {
+  const users = await getAllUsers()
+  allUsers.value = users.data
+})
 
 const email = ref<string>('')
 const password = ref<string>('')
 const loginError = ref<string>('')
 
 const handleLogin = (): void => {
-  const user = users.value.find((u) => u.email === email.value)
+  const user = allUsers.value.find((u) => u.email === email.value)
 
   if (!user) {
     loginError.value = 'User not found!'
@@ -52,7 +56,7 @@ const handleLogin = (): void => {
 <template>
   <body>
     <section>
-      <div class="column is-4 is-offset-4">
+      <div v-if="!isLoggedIn" class="column is-4 is-offset-4">
         <div
           class="hero is-medium is-flex is-justify-content-center is-align-items-center"
           style="background-color: var(--highlights-background)"
@@ -100,24 +104,31 @@ const handleLogin = (): void => {
               </p>
             </div>
 
+            <!-- Login button -->
             <div class="field">
               <p class="control">
                 <button class="button" @click="handleLogin">Login</button>
               </p>
             </div>
 
+            <!-- Sign up button -->
             <RouterLink to="/SignUp" class="subtitle is-6 is-underlined">
               No Account? Sign up!
             </RouterLink>
 
             <div class="box is-light"></div>
             <!-- Google Icon -->
-            <div class="container google has-text-centered is-clickable" @click.prevent="googleLogin" v-if="!session.user"> 
-              <i class="fab fa-google"> Sign in with Google
-              </i>
+            <div
+              class="container google has-text-centered is-clickable"
+              @click.prevent="googleLogin"
+              v-if="!session.user"
+            >
+              <i class="fab fa-google"> Sign in with Google </i>
             </div>
-            <!-- Login Error Message -->>
-            <p v-if="loginError" class="has-text-danger px-3">{{ loginError }}</p>
+            <!-- Login Error Message -->
+            <p v-if="loginError" class="has-text-danger px-3">
+              That wasn't right... please try again
+            </p>
           </div>
         </div>
       </div>
@@ -182,8 +193,9 @@ section {
   transition: 0.5s;
 }
 .box {
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .container {
   margin: auto;

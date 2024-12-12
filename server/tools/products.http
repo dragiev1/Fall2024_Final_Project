@@ -1,6 +1,11 @@
 ###
-GET http://localhost:3000/api/v1/products/176
+GET http://localhost:3000/api/v1/products/97
 
 ###
-POST http://localhost:3000/api/v1/products/seed
+PATCH http://localhost:3000/api/v1/products/97
 Content-Type: application/json
+
+{
+    
+      "images": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733870970/macarons_ag4irz.jpg"
+    }

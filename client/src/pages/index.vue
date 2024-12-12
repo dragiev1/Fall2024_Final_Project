@@ -97,6 +97,9 @@ body {
   overflow: hidden;
   border-radius: 10px;
 }
+.fa-circle {
+  color: var(--highlights-background);
+}
 img {
   filter: brightness(0.8);
   border-radius: 10px;

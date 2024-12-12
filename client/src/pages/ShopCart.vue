@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MenuItem from '@/components/MenuItem.vue'
-import { getAll, type Product } from '@/models/products'
-import { computed, onMounted, ref } from 'vue'
+import { getAllProducts, type Product } from '@/models/products'
+import { computed, onMounted, ref, watch } from 'vue'
 
 const products = ref<Product[]>([])
 const visibleProducts = ref<Product[]>([])
@@ -10,13 +10,15 @@ const visibleChocoProducts = ref<Product[]>([])
 const currentIndex = ref<number>(8)
 
 onMounted(async () => {
-  const fetchedProducts = await getAll() // Get all products using the function from products.ts
+  const fetchedProducts = await getAllProducts() // Get all products using the function from products.ts
   products.value = fetchedProducts.data // Assign the fetched data to the products list
-  visibleProducts.value = products.value.slice(0, currentIndex.value) // Display the first set of products
+  visibleProducts.value = products.value // Display the first set of products
 })
 
+console.log(visibleProducts)
+
 const cakeProducts = computed(() =>
-  visibleProducts.value.filter((product) => product.category === 'cake' || 'ginger')
+  visibleProducts.value.filter((product) => product.category === 'cake' && 'ginger')
 )
 const meringueProducts = computed(() =>
   visibleProducts.value.filter((product) => product.category === 'cookies')
@@ -31,16 +33,19 @@ const macaronsProducts = computed(() =>
   visibleProducts.value.filter((product) => product.category === 'macarons')
 )
 
-visibleCakeProducts.value = cakeProducts.value.slice(0, 8)
-visibleChocoProducts.value = chocolateProducts.value.slice(0, 8)
+watch(visibleProducts, () => {
+  visibleCakeProducts.value = cakeProducts.value.slice(0, 8)
+  visibleChocoProducts.value = chocolateProducts.value.slice(0, 8)
+})
 
 const loadMoreCake = () => {
   currentIndex.value += 12
-  visibleCakeProducts.value = products.value.slice(0, currentIndex.value)
+  visibleCakeProducts.value = cakeProducts.value.slice(0, currentIndex.value)
 }
+
 const loadMoreChoco = () => {
   currentIndex.value += 12
-  visibleChocoProducts.value = products.value.slice(0, currentIndex.value)
+  visibleChocoProducts.value = chocolateProducts.value.slice(0, currentIndex.value)
 }
 </script>
 
@@ -138,6 +143,13 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+
+  @media (max-width: 700px) {
+    .shelf > * {
+      flex: 1 1 calc(100% - 1rem); /* One item per row on phones */
+      max-width: calc(100% - 1rem);
+    }
+  }
 }
 .column {
   margin-top: 3.5rem;

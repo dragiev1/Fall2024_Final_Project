@@ -38,18 +38,24 @@ const hoveredMenu = ref<string | null>(null)
     <!-- NavBar -->
     <div class="navbar-menu" :class="{ 'is-active': isOpen }">
       <div class="navbar-start">
-        <RouterLink to="/" class="navbar-item has-text-light px-5">
+        <RouterLink to="/" class="navbar-item has-text-light px-5" @click="isOpen = false">
           <i class="fas fa-home"></i>
           Home
         </RouterLink>
 
-        <RouterLink to="/GalleryPage" class="navbar-item has-text-light px-6"> Gallery </RouterLink>
+        <RouterLink
+          to="/GalleryPage"
+          class="navbar-item has-text-light px-6"
+          @click="isOpen = false"
+        >
+          Gallery
+        </RouterLink>
         <div
           class="navbar-item has-dropdown is-hoverable"
           @mouseenter="hoveredMenu = 'shop'"
           @mouseleave="hoveredMenu = null"
         >
-          <RouterLink to="/ShopCart" class="navbar-link is-arrowless px-6">
+          <RouterLink to="/ShopCart" class="navbar-link is-arrowless px-6" @click="isOpen = false">
             <p>Shop</p>
             <i
               class="is-mobile"
@@ -58,11 +64,21 @@ const hoveredMenu = ref<string | null>(null)
           ></RouterLink>
 
           <div class="navbar-dropdown">
-            <RouterLink to="/ShopCart" class="navbar-item"> Cakes </RouterLink>
-            <RouterLink to="/ShopCart" class="navbar-item"> Chocolates </RouterLink>
-            <RouterLink to="/ShopCart" class="navbar-item"> Meringue Cookies </RouterLink>
-            <RouterLink to="/ShopCart" class="navbar-item"> Baklava </RouterLink>
-            <RouterLink to="/ShopCart" class="navbar-item"> Macarons </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item" @click="isOpen = false">
+              Cakes
+            </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item" @click="isOpen = false">
+              Chocolates
+            </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item" @click="isOpen = false">
+              Meringue Cookies
+            </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item" @click="isOpen = false">
+              Baklava
+            </RouterLink>
+            <RouterLink to="/ShopCart" class="navbar-item" @click="isOpen = false">
+              Macarons
+            </RouterLink>
           </div>
         </div>
         <!-- Dropdown Menu -->
@@ -70,8 +86,9 @@ const hoveredMenu = ref<string | null>(null)
           class="navbar-item has-dropdown is-hoverable"
           @mouseenter="hoveredMenu = 'more'"
           @mouseleave="hoveredMenu = null"
+          @click="isOpen = false"
         >
-          <RouterLink to="" class="navbar-link is-arrowless px-6">
+          <RouterLink to="" class="navbar-link is-arrowless px-6" @click="isOpen = false">
             More
             <i
               class="is-mobile"
@@ -81,7 +98,9 @@ const hoveredMenu = ref<string | null>(null)
           ></RouterLink>
 
           <div class="navbar-dropdown">
-            <RouterLink to="/AboutMe" class="navbar-item"> About Me </RouterLink>
+            <RouterLink to="/AboutMe" class="navbar-item" @click="isOpen = false">
+              About Me
+            </RouterLink>
             <a
               href="https://www.google.com/maps/place/1064+Main+St,+Catskill,+NY+12414/@42.2543338,-73.9014696,17z/data=!3m1!4b1!4m6!3m5!1s0x89ddbc2fdc0144d9:0xb5da01bb992aa3cc!8m2!3d42.2543338!4d-73.8988947!16s%2Fg%2F11gsbq8khm?entry=ttu&g_ep=EgoyMDI0MTAxNC4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
@@ -89,12 +108,18 @@ const hoveredMenu = ref<string | null>(null)
             >
               Directions
             </a>
-            <RouterLink to="/ContactMe" class="navbar-item"> Contact </RouterLink>
+            <RouterLink to="/ContactMe" class="navbar-item" @click="isOpen = false">
+              Contact
+            </RouterLink>
             <hr class="navbar-divider" />
-            <RouterLink to="/ReportAnIssue" class="navbar-item"> Report an issue </RouterLink>
+            <RouterLink to="/ReportAnIssue" class="navbar-item" @click="isOpen = false">
+              Report an issue
+            </RouterLink>
           </div>
         </div>
-        <RouterLink to="/ReviewPage" class="navbar-item has-text-light px-6">Reviews</RouterLink>
+        <RouterLink to="/ReviewPage" class="navbar-item has-text-light px-6" @click="isOpen = false"
+          >Reviews</RouterLink
+        >
       </div>
       <div class="navbar-end">
         <div class="navbar-item">

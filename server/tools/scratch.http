@@ -1,7 +1,15 @@
 ###
-POST http://localhost:3000/api/v1/replies/seed
-Content-Type: application/json
+GET http://localhost:3000/api/v1/reviews/15
 
 
 ###
-DELETE http://localhost:3000/api/v1/reviews/8
+POST http://localhost:3000/api/v1/reviews
+Content-Type: application/json
+
+{
+    "userId": "1",
+    "title": "dawdawdawdawd",
+    "text": "dawdawd",
+    "rating": "5",
+    "image": null
+}

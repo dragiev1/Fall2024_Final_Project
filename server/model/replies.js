@@ -21,8 +21,8 @@ async function getAll() {
   const { data, error, count } = await conn
     .from("replies")
     .select("*", { count: "estimated" });
-  console.log("Data:", data);
-  console.log("Error:", error);
+  // console.log("Data:", data);
+  if (error) console.log("Error:", error);
   return {
     isSuccess: !error,
     message: error?.message,
@@ -55,11 +55,12 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<Reply>>}
  */
 async function add(reply) {
-  console.log("Reply to be added:", reply);
+  // console.log("Reply to be added:", reply);
   const { data, error } = await conn
     .from("replies")
     .insert([
       {
+        userId: reply.userId,
         reviewId: reply.reviewId,
         text: reply.text,
         author: reply.author,
@@ -67,7 +68,7 @@ async function add(reply) {
     ])
     .select("*")
     .single();
-  console.log("\tAdd response:", data, error); // Debugging
+  // console.log("Add response:", data, error); // Debugging
   return {
     isSuccess: !error,
     message: error?.message,
@@ -81,11 +82,11 @@ async function seed() {
     throw new Error("Invalid or missing replies data.");
   }
 
-  console.log("Seeding replies data:", data.replies); // Debugging
+  // console.log("Seeding replies data:", data.replies); // Debugging
 
   for (const replies of data.replies) {
     try {
-      console.log("Seeding reply:", replies); // Debugging
+      // console.log("Seeding reply:", replies); // Debugging
       await add(replies);
     } catch (error) {
       console.error("Error seeding reply:", replies, error);
@@ -103,7 +104,8 @@ async function update(id, reply) {
   const { data, error } = await conn
     .from("replies")
     .update({
-      id: reply.reviewId,
+      userId: reply.userId,
+      reviewId: reply.reviewId,
       text: reply.text,
       author: reply.author,
     })

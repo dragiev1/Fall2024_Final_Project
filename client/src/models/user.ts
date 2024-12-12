@@ -1,8 +1,7 @@
-import type { DataListEnvelope } from './dataEnvelope'
+import type { DataEnvelope, DataListEnvelope } from './dataEnvelope'
 import type { Review } from './reviews'
-import data from '../data/users.json'
 import { ref } from 'vue'
-import { loadScript, rest } from './myFetch'
+import { loadScript, rest, api } from './myFetch'
 
 const session = ref({
   user: null as Partial<User> | null,
@@ -11,15 +10,35 @@ const session = ref({
   isLoading: false
 })
 
-export const refSession = () => session
-
-export function getAllUsers(): DataListEnvelope<User> {
-  return {
-    isSuccess: true,
-    data: data.users,
-    total: data.total
-  }
+export async function getAllUsers() {
+  return await api<DataListEnvelope<User>>('users')
 }
+
+export async function getByIDUser(id: number) {
+  return api<DataEnvelope<User>>(`user/${id}`)
+}
+
+export function createUser(user: User) {
+  const dataEnvelope: DataEnvelope<User> = {
+    data: user,
+    isSuccess: false
+  }
+  return api<DataEnvelope<User>>('users', dataEnvelope)
+}
+
+export function updateUser(user: User) {
+  const dataEnvelope: DataEnvelope<User> = {
+    data: user,
+    isSuccess: false
+  }
+  return api<DataEnvelope<User>>(`user/${user.id}`, dataEnvelope, 'PATCH')
+}
+
+export function removeUser(id: number) {
+  return api<DataEnvelope<User>>(`users/${id}`, undefined, 'DELETE')
+}
+
+export const refSession = () => session
 
 export interface User {
   id?: number
@@ -33,16 +52,12 @@ export interface User {
 }
 
 export const useLogin = () => ({
-  async login(email: string, password: string) {},
+  async login() {},
   async logout() {
     session.value.user = null
   },
   async googleLogin() {
     await loadScript('https://accounts.google.com/gsi/client')
-
-    if (!google || !google.accounts || !google.accounts.oauth2) {
-      throw new Error('Google API not loaded');
-    }
 
     const tokenClient = google.accounts.oauth2.initTokenClient({
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
@@ -81,4 +96,3 @@ export const useLogin = () => ({
     tokenClient.requestAccessToken({})
   }
 })
-

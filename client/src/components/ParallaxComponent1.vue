@@ -31,7 +31,7 @@ onUnmounted(() => {
     </div>
     <div v-else class="caption">
       <span class="border">Made with Love </span>
-      <span class="text">By Nadia</span>
+      <p class="subtitle has-text-right mx-6">By Nadia</p>
       <div class="container my-2">Exquisite Chocolates & Desserts</div>
     </div>
   </div>
@@ -41,7 +41,7 @@ onUnmounted(() => {
 .container {
   background-color: var(--highlights-background);
   position: absolute;
-  color: rgba(49, 49, 49, 0.932);
+  color: rgba(0, 0, 0, 0.932);
   text-align: left;
   top: 100%;
   max-width: 19rem !important;
@@ -50,7 +50,11 @@ onUnmounted(() => {
   font-style: italic;
   font-size: 20px;
 }
-
+.subtitle {
+  color: white;
+  opacity: 85%;
+  font-size: 20px;
+}
 .bgimg-1 {
   background-image: url('@/assets/parallaxImage.jpg') !important;
   background-attachment: fixed;
@@ -58,7 +62,7 @@ onUnmounted(() => {
   background-size: cover;
   margin-bottom: 50px;
   min-height: 700px;
-  filter: contrast(1.2) brightness(0.9);
+  filter: contrast(1.25) brightness(1);
 }
 .caption {
   max-width: 40%;
@@ -66,7 +70,7 @@ onUnmounted(() => {
   font-family: italic;
   font-style: italic;
   background-color: black;
-  opacity: 0.65;
+  opacity: 0.75;
   top: 45%;
   width: 100%;
   text-align: center;
@@ -75,7 +79,6 @@ onUnmounted(() => {
 }
 .caption span.border {
   color: var(--secondary-background);
-  padding: 18px;
   font-size: 40px;
   letter-spacing: 10px;
 }

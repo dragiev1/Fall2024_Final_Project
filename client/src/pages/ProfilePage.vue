@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { getAll, type User, type Review } from '@/models/user'
+import { getAllUsers, type User } from '@/models/user'
 import { computed, onMounted, ref } from 'vue'
 
 const allUsers = ref<User[]>([])
-allUsers.value = getAll().data
+allUsers.value = getAllUsers().data
 
 const userId = ref<string | null>(null)
-const userName = ref<string | null>(null)
 const userUsername = ref<string | null>(null)
 const userEmail = ref<string | null>(null)
 const userPhone = ref<string | null>(null)
@@ -30,8 +29,6 @@ function deleteUser(userId: string) {
   allUsers.value = allUsers.value.filter((user) => user.id !== Number(userId))
 }
 
-
-
 function deleteReview(userId: string, reviewId: string) {
   const user = allUsers.value.find((user) => user.id === Number(userId))
   if (user) {
@@ -53,9 +50,8 @@ onMounted(() => {
 })
 
 function deleteSingleReview(reviewId: string) {
-  userReviews.value = userReviews.value?.filter((review) => String(review.id) !== reviewId) || [];
+  userReviews.value = userReviews.value?.filter((review) => String(review.id) !== reviewId) || []
 }
-
 </script>
 
 <template>
@@ -129,7 +125,9 @@ function deleteSingleReview(reviewId: string) {
                 </div>
               </div>
               <p v-else>No reviews yet.</p>
-              <button class="button is-bottom" @click="deleteUser(String(user.id))">Delete User</button>
+              <button class="button is-bottom" @click="deleteUser(String(user.id))">
+                Delete User
+              </button>
             </div>
           </div>
         </div>

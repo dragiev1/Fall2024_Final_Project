@@ -12,7 +12,7 @@ app
   .get("/:id", (req, res, next) => {
     const id = req.params.id;
     model
-      .remove(+id)
+      .get(+id)
       .then((x) => res.send(x))
       .catch(next);
   })

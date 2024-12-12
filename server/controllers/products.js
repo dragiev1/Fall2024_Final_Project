@@ -19,7 +19,7 @@ app
   .get("/:id", (req, res, next) => {
     const id = req.params.id;
     model
-      .remove(+id)
+      .get(+id)
       .then((x) => res.send(x))
       .catch(next);
   })
@@ -31,7 +31,7 @@ app
   })
   .patch("/:id", (req, res, next) => {
     const id = req.params.id;
-    console.log("Request body:", req.body); // Debugging line
+    // console.log("Request body:", req.body); // Debugging line
     model
       .update(+id, req.body)
       .then((x) => res.send(x))

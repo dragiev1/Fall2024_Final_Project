@@ -24,41 +24,42 @@ onUnmounted(() => {
     <!-- Going to put a contact card component here -->
     <div class="columns">
       <div class="column is-4 is-offset-2 is-mobile-2">
-        <p class="title has-text-centered py-6">Contact Us!</p>
-        <div class="field">
-          <label class="label">Name*</label>
-          <div class="control">
-            <input class="input" type="text" />
+        <div class="box">
+          <p class="title has-text-centered">Contact Us!</p>
+          <div class="field">
+            <div class="label">Name*</div>
+            <div class="control">
+              <input class="input" type="text" />
+            </div>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="label">Email*</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="example@gmail.com" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
+          <div class="field">
+            <div class="label">Email*</div>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input" type="email" placeholder="example@gmail.com" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+            </div>
+            <p class="help is-danger"></p>
           </div>
-          <p class="help is-danger"></p>
-        </div>
 
-        <div class="field">
-          <label class="label">Message</label>
-          <div class="control">
-            <textarea class="textarea" placeholder="Share a thought..."></textarea>
+          <div class="field">
+            <div class="label">Message</div>
+            <div class="control">
+              <textarea class="textarea" placeholder="Share a thought..."></textarea>
+            </div>
           </div>
-        </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link submit">Submit</button>
-          </div>
-          <div class="control">
-            <button class="button is-link is-light">Cancel</button>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link submit">Submit</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
@@ -86,6 +87,12 @@ onUnmounted(() => {
 }
 .icon:hover {
   color: var(--highlights-background-hover);
+}
+.box {
+  align-items: center;
+  justify-content: center;
+  opacity: 80%;
+  background-color: black;
 }
 .column {
   padding-top: 5rem;
@@ -122,16 +129,16 @@ onUnmounted(() => {
   color: white;
 }
 .bgimg-1 {
-  background-image: url('@/assets/parallax2.png') !important;
+  background-image: url('@/assets/parallaxImage3.png') !important;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 0 !important;
-  min-height: 80vh;
+  min-height: 70vh;
   filter: contrast(1.3) brightness(0.9);
   overflow: hidden;
   @media (max-width: 768px) {
-    background-image: url('@/assets/parallax2.png') !important;
+    background-image: url('@/assets/parallaxImage3.png') !important;
     background-attachment: local;
   }
 }

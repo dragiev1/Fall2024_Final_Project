@@ -9,14 +9,14 @@
         </div>
         <div class="hero-body has-text-left">
           <div class="field">
-            <label class="label">Name*</label>
+            <div class="label">Name*</div>
             <div class="control">
               <input class="input" type="text" />
             </div>
           </div>
 
           <div class="field">
-            <label class="label">Email*</label>
+            <div class="label">Email*</div>
             <div class="control has-icons-left has-icons-right">
               <input class="input" type="email" placeholder="example@gmail.com" />
               <span class="icon is-small is-left">
@@ -30,7 +30,7 @@
           </div>
 
           <div class="field">
-            <label class="label">Message</label>
+            <div class="label">Message</div>
             <div class="control">
               <textarea class="textarea" placeholder="Lorem ipsum..."></textarea>
             </div>
@@ -67,7 +67,7 @@
 }
 .button {
   background-color: var(--highlights-background);
-  color: var(--secondary-background);
+  color: var(--primary-background);
 }
 
 /* Styling for inputs */
@@ -75,7 +75,8 @@
 .textarea {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.input:focus, .textarea:focus {
+.input:focus,
+.textarea:focus {
   border-color: var(--accent-background);
   box-shadow: 0 0 8px var(--highlights-background);
 }

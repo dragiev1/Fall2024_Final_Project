@@ -1,15 +1,15 @@
 import type { DataListEnvelope, DataEnvelope } from './dataEnvelope'
 import { api } from './myFetch'
 
-export async function getAll() {
+export async function getAllProducts() {
   return await api<DataListEnvelope<Product>>('products')
 }
 
-export async function getByID(id: number) {
+export async function getProductByID(id: number) {
   return api<DataEnvelope<Product>>(`product/${id}`)
 }
 
-export function create(product: Product) {
+export function createProduct(product: Product) {
   const dataEnvelope: DataEnvelope<Product> = {
     data: product,
     isSuccess: false
@@ -17,7 +17,7 @@ export function create(product: Product) {
   return api<DataEnvelope<Product>>('products', dataEnvelope)
 }
 
-export function update(product: Product) {
+export function updateProduct(product: Product) {
   const dataEnvelope: DataEnvelope<Product> = {
     data: product,
     isSuccess: false
@@ -25,7 +25,7 @@ export function update(product: Product) {
   return api<DataEnvelope<Product>>(`product/${product.id}`, dataEnvelope, 'PATCH')
 }
 
-export function remove(id: number) {
+export function removeProduct(id: number) {
   return api<DataEnvelope<Product>>(`products/${id}`, undefined, 'DELETE')
 }
 
