@@ -21,7 +21,7 @@ async function getAll() {
   const { data, error, count } = await conn
     .from("reviews")
     .select("*", { count: "estimated" });
-  // console.log("Data:", data);
+
   if (error) console.log("Error:", error);
   return {
     isSuccess: !error,
@@ -55,7 +55,6 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<Review>>}
  */
 async function add(review) {
-  console.log("review to be added:", review);
   const { data, error } = await conn
     .from("reviews")
     .insert([
@@ -69,7 +68,11 @@ async function add(review) {
     ])
     .select("*")
     .single();
-  // console.log("\tAdd response:", data, error); // Debugging
+
+  if (error) {
+    console.log("Error: ", error); // Debugging.
+  }
+
   return {
     isSuccess: !error,
     message: error?.message,
@@ -83,8 +86,6 @@ async function seed() {
     throw new Error("Invalid or missing reviews data.");
   }
 
-  // console.log("Seeding reviews data:", data.reviews); // Debugging
-
   for (const review of data.reviews) {
     if (
       !review.id ||
@@ -97,7 +98,6 @@ async function seed() {
       continue; // Skip invalid reviews
     }
     try {
-      //console.log("Seeding review:", review); // Debugging
       await add(review);
     } catch (error) {
       console.error("Error seeding review:", review, error);

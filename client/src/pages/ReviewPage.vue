@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { type User, getAllUsers } from '@/models/user'
-import { type Reply, getAllReplies, createReply } from '@/models/replies'
+import { type Reply, getAllReplies, createReply, removeReply } from '@/models/replies'
 import { type Review, getAllReviews, createReview, removeReview } from '@/models/reviews'
 
 // defining empty arrays of type User, Reply, and Review.
@@ -10,15 +10,15 @@ const allReplies = ref<Reply[]>([])
 const allReviews = ref<Review[]>([])
 
 // defining variables that are needed.
-const userId = ref<number | null>(null)
-const userEmail = ref<string | null>(null)
+const userId = ref<number>()
+const userEmail = ref<string>()
 const isAdmin = ref(false)
 const newReviewTitle = ref<string>('')
 const newReviewText = ref<string>('')
 const newReviewImage = ref<File | null>(null)
 const newReplyText = ref<string>('')
 const replyingTo = ref<number | null>(null)
-const rating = ref<number | null>(null)
+const rating = ref<number>()
 const hoverRatingValue = ref<number | null>(null)
 
 // Fetching the data from the database.
@@ -36,34 +36,92 @@ async function fetchData() {
 }
 
 onMounted(async () => {
-  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
-  userId.value = loggedInUser.id || null
-  userEmail.value = loggedInUser.email || null
-  isAdmin.value = loggedInUser.email === 'admin@admin.com'
+  const storedUser = localStorage.getItem('loggedInUser')
+  if (!storedUser) {
+    console.error('No logged-in user found in localStorage!')
+    return
+  }
 
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
+  userId.value = loggedInUser.id
+  userEmail.value = loggedInUser.email
+  isAdmin.value = loggedInUser.email === 'admin@admin.com'
   await fetchData()
 })
 
 const loggedInUser = computed(() => allUsers.value.find((user) => user.email === userEmail.value))
 const reversedReviews = computed(() => [...allReviews.value].reverse())
 
+function hasErrorReview() {
+  // If a user did not fill in required fields.
+  let hasError = false
+  if (!newReviewTitle.value) {
+    addGlowEffect('.input')
+    hasError = true
+  }
+  if (!newReviewText.value) {
+    addGlowEffect('.textarea')
+    hasError = true
+  }
+  if (!rating.value) {
+    addGlowEffect('.rating')
+    hasError = true
+  }
+  if (hasError) return
+}
+function hasErrorReply() {
+  let hasError = false
+  if (!newReplyText.value) {
+    addGlowEffect('.textarea.my-2')
+    hasError = true
+  }
+  if (hasError) return
+}
+function addGlowEffect(selector: string) {
+  // Glow effect for missing fields.
+  const element = document.querySelector(selector)
+  if (element) {
+    element.classList.add('error-glow')
+    setTimeout(() => element.classList.remove('error-glow'), 500)
+  }
+}
+
 async function submitReview() {
-  if (newReviewTitle.value && newReviewText.value) {
+  hasErrorReview()
+
+  if (!userId.value) {
+    // If user is not logged in, they can not make a review.
+    console.error('User ID is missing. Cannot submit review.')
+    return
+  }
+
+  if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
+    console.error('Please fill in all required fields!')
+    return
+  }
+
+  if (newReviewTitle.value && newReviewText.value && rating.value) {
     try {
+      console.log(userId.value, newReviewTitle.value, newReviewText.value, rating.value)
       const newReview: Review = {
         userId: userId.value!,
-        title: newReviewTitle.value!,
-        text: newReviewText.value!,
+        title: newReviewTitle.value,
+        text: newReviewText.value,
         rating: rating.value!,
-        image: newReviewImage.value ? URL.createObjectURL(newReviewImage.value) : null
+        image: null
       }
 
-      await createReview(newReview) // Add new review
+      const result = await createReview(newReview)
+
+      if (!result.isSuccess) {
+        console.error('Review submission failed:', result.message)
+        return
+      }
 
       newReviewTitle.value = ''
       newReviewText.value = ''
       newReviewImage.value = null
-      rating.value = null
+      rating.value = 0
 
       await fetchData()
     } catch (error) {
@@ -73,17 +131,22 @@ async function submitReview() {
 }
 
 async function submitReply(reviewId: number) {
+  hasErrorReply()
   if (newReplyText.value) {
     try {
       const newReply: Reply = {
-        id: Date.now(),
         userId: loggedInUser.value?.id!,
         reviewId,
         text: newReplyText.value,
         author: loggedInUser.value?.name || 'Unknown User'
       }
 
-      await createReply(newReply) // Add new reply
+      const result = await createReply(newReply)
+
+      if (!result.isSuccess) {
+        console.error('Reply submission failed:', result.message)
+        return
+      }
 
       newReplyText.value = ''
       replyingTo.value = null
@@ -98,6 +161,15 @@ async function submitReply(reviewId: number) {
 async function deleteReview(reviewId: number) {
   try {
     await removeReview(reviewId) // Delete review
+    await fetchData()
+  } catch (error) {
+    console.error('Error deleting review:', error)
+  }
+}
+
+async function deleteReply(replyId: number) {
+  try {
+    await removeReply(replyId) // Delete review
     await fetchData()
   } catch (error) {
     console.error('Error deleting review:', error)
@@ -149,7 +221,7 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
     <div class="container">
       <h1 class="title has-text-centered">Reviews<i class="fas fa-comments mx-2"></i></h1>
 
-      <!-- New Comment Input -->
+      <!-- New Review Input -->
       <div class="box">
         <div class="rating">
           <h2 class="text mr-2">Rating:</h2>
@@ -200,7 +272,13 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
           >
             <p class="reply-title">{{ reply.author }} <br /></p>
             <p class="px-5">{{ reply.text }}</p>
-            <button v-if="reply.userId === userId" class="button my-1">Delete Reply</button>
+            <button
+              v-if="reply.userId === userId || userEmail == 'admin@admin.com'"
+              class="button my-1"
+              @click="deleteReply(Number(reply.id))"
+            >
+              Delete Reply
+            </button>
           </div>
         </div>
 
@@ -273,6 +351,7 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
 
 p {
   background-color: var(--secondary-background);
+  border-radius: 10px;
   padding: 7px;
   color: black;
 }
@@ -326,5 +405,12 @@ section {
 .reply {
   padding: 0.5rem 0;
   border-bottom: 1px solid #ddd;
+}
+
+.error-glow {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  transition:
+    box-shadow 0.2s ease,
+    border 0.3s ease;
 }
 </style>

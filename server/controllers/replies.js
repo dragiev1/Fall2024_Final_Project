@@ -18,13 +18,12 @@ app
   })
   .post("/", (req, res, next) => {
     model
-      .add(req.body)
+      .add(req.body.data)
       .then((x) => res.send(x))
       .catch(next);
   })
   .patch("/:id", (req, res, next) => {
     const id = req.params.id;
-    console.log("Request body:", req.body); // Debugging line for replies
     model
       .update(+id, req.body)
       .then((x) => res.send(x))

@@ -21,7 +21,6 @@ async function getAll() {
   const { data, error, count } = await conn
     .from("users")
     .select("*", { count: "estimated" });
-  // console.log("Data:", data);
 
   if (error) {
     console.error("Database error:", error);
@@ -66,7 +65,6 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function add(user) {
-  // console.log("User to be added:", user);
   const { data, error } = await conn
     .from("users")
     .insert([

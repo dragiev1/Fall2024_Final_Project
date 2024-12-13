@@ -1,56 +1,111 @@
 <script setup lang="ts">
-import { getAllUsers, type User } from '@/models/user'
+import { getAllUsers, type User, removeUser } from '@/models/user'
+import { getAllReplies, type Reply, removeReply } from '@/models/replies'
+import { getAllReviews, type Review, removeReview } from '@/models/reviews'
 import { computed, onMounted, ref } from 'vue'
 
+// defining empty arrays of type User, Reply, and Review.
 const allUsers = ref<User[]>([])
-allUsers.value = getAllUsers().data
+const allReplies = ref<Reply[]>([])
+const allReviews = ref<Review[]>([])
 
-const userId = ref<string | null>(null)
-const userUsername = ref<string | null>(null)
-const userEmail = ref<string | null>(null)
-const userPhone = ref<string | null>(null)
-const userProfilePic = ref<string | undefined>(undefined)
-const userReviews = ref<Review[] | null>(null)
+// defining variables that are needed.
+const userId = ref<number>()
+const userName = ref<string>()
+const userEmail = ref<string>()
+const userPhone = ref<string>()
+const userProfilePic = ref<string>()
+const userReviews = ref<Review[]>()
+const userReplies = ref<Reply[]>()
+const currentPage = ref(1) // Track current page
+const usersPerPage = 12 // Number of users to display per page
 const isAdmin = ref(false) // For admin purposes.
 
-const ratings = allUsers.value.flatMap((user) => user.reviews.map((review) => review.rating))
-const totalRatings = ratings.length
+async function fetchData() {
+  try {
+    const users = await getAllUsers()
+    const reviews = await getAllReviews()
+    const replies = await getAllReplies()
+    allUsers.value = users.data
+    allReplies.value = replies.data
+    allReviews.value = reviews.data
+  } catch (error) {
+    console.error('Error fetching data: ', error)
+  }
+}
+
+const totalRatings = computed(() => allReviews.value.length)
+
 //  Average Ratings
 const avgReviews = computed(() => {
-  if (totalRatings === 0) return 0
+  if (allReviews.value.length === 0) return 0
 
-  const sumOfRatings = ratings.reduce((sum, rating) => sum + rating, 0)
-  const average = sumOfRatings / totalRatings
+  const sumOfRatings = allReviews.value.reduce((sum, review) => sum + (review.rating || 0), 0)
+  const average = sumOfRatings / allReviews.value.length
 
   return Math.floor(average * 1000) / 1000
 })
 
-function deleteUser(userId: string) {
-  allUsers.value = allUsers.value.filter((user) => user.id !== Number(userId))
-}
-
-function deleteReview(userId: string, reviewId: string) {
-  const user = allUsers.value.find((user) => user.id === Number(userId))
-  if (user) {
-    user.reviews = user.reviews.filter((review) => String(review.id) !== reviewId)
+async function deleteUser(userId: number) {
+  try {
+    await removeUser(userId)
+    await fetchData()
+  } catch (error) {
+    console.log('Error deleting user: ', error)
   }
 }
 
-onMounted(() => {
-  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
-  userId.value = loggedInUser.id || null
-  userName.value = loggedInUser.name || null
-  userUsername.value = loggedInUser.username || null
-  userEmail.value = loggedInUser.email || null
-  userPhone.value = loggedInUser.telephone || null
-  userProfilePic.value = loggedInUser.profilePicture
-  userReviews.value = loggedInUser.reviews || []
+async function deleteReview(reviewId: number) {
+  try {
+    await removeReview(reviewId) // Delete review
+    await fetchData()
+  } catch (error) {
+    console.error('Error deleting review:', error)
+  }
+}
 
+async function deleteReply(replyId: number) {
+  try {
+    await removeReply(replyId) // Delete reply
+    await fetchData()
+  } catch (error) {
+    console.error('Error deleting reply:', error)
+  }
+}
+
+onMounted(async () => {
+  const storedUser = localStorage.getItem('loggedInUser')
+  if (!storedUser) {
+    console.error('No logged-in user found in localStorage!')
+    return
+  }
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
+  userId.value = loggedInUser.id
+  userName.value = loggedInUser.name
+  userEmail.value = loggedInUser.email
+  userPhone.value = loggedInUser.telephone
+  userProfilePic.value = loggedInUser.profilePicture
   isAdmin.value = loggedInUser.email === 'admin@admin.com'
+  console.log(userProfilePic.value)
+  await fetchData()
 })
+
+function getNumOfReviews(userId: number): number {
+  return allReviews.value.filter((review) => review.userId === userId).length
+}
 
 function deleteSingleReview(reviewId: string) {
   userReviews.value = userReviews.value?.filter((review) => String(review.id) !== reviewId) || []
+}
+
+const paginatedUsers = computed(() => {
+  const startIndex = 0
+  const endIndex = currentPage.value * usersPerPage
+  return allUsers.value.slice(startIndex, endIndex)
+})
+
+function loadMoreUsers() {
+  currentPage.value += 1
 }
 </script>
 
@@ -60,7 +115,7 @@ function deleteSingleReview(reviewId: string) {
       <div class="container">
         <div class="box profile-box">
           <div class="profile-image">
-            <img :src="userProfilePic" alt="User Profile Picture" />
+            <img :src="userProfilePic" alt="img" />
           </div>
           <h2 class="title is-4">{{ userName }}</h2>
 
@@ -95,23 +150,28 @@ function deleteSingleReview(reviewId: string) {
     </div>
 
     <!-- Admin Section for Viewing All Users -->
-    <div v-else class="admin-section">
+    <div class="admin-section">
       <div class="box all-users-box">
         <h3 class="title is-3 px-4">All Users: ({{ allUsers.length }})</h3>
         <h4 class="subtitle px-4">
           Average Stars: {{ avgReviews }} <br />Total Reviews: {{ totalRatings }}
         </h4>
         <div class="grid">
-          <div v-for="user in allUsers" :key="user.id" class="cell user-item">
+          <!-- Loop through paginated users -->
+          <div v-for="user in paginatedUsers" :key="user.id" class="cell user-item">
             <div class="box review-history-box">
-              <h3 class="title is-5">{{ user.name }}: ({{ user.reviews?.length }})</h3>
+              <h3 class="title is-5">{{ user.name }}: ({{ getNumOfReviews(user.id!) }})</h3>
               <h2 class="subtitle is-6 my-2">
                 <i class="fas fa-envelope"></i> {{ user.email }} <br /><i class="fas fa-phone"></i>
                 {{ user.telephone }}
               </h2>
 
-              <div v-if="user.reviews?.length" class="reviews">
-                <div v-for="review in user.reviews" :key="review.id" class="review-item">
+              <div v-if="allReviews" class="reviews">
+                <div
+                  v-for="review in allReviews.filter((review) => review.userId === user.id)"
+                  :key="review.id"
+                  class="review-item"
+                >
                   <h4 class="title is-6">{{ review.title }}</h4>
                   <p class="review-date"><i class="fas fa-calendar-alt"></i> {{ review.date }}</p>
                   <p class="review-text">{{ review.text }}</p>
@@ -119,17 +179,41 @@ function deleteSingleReview(reviewId: string) {
                     Rating:
                     <span class="has-text-warning" v-for="n in review.rating" :key="n">★</span>
                   </p>
-                  <button class="button" @click="deleteReview(String(user.id), String(review.id))">
+                  <button class="button" @click="deleteReview(Number(review.id))">
                     Delete Review
+                  </button>
+                </div>
+                <div
+                  v-for="reply in allReplies.filter((reply) => reply.userId === user.id)"
+                  :key="reply.id"
+                  class="review-item"
+                >
+                  <p class="review-text">{{ reply.text }}</p>
+                  <button class="button" @click="deleteReply(Number(reply.id))">
+                    Delete Reply
                   </button>
                 </div>
               </div>
               <p v-else>No reviews yet.</p>
-              <button class="button is-bottom" @click="deleteUser(String(user.id))">
+              <button
+                v-if="user.email !== 'admin@admin.com'"
+                class="button is-bottom"
+                @click="deleteUser(Number(user.id))"
+              >
                 Delete User
               </button>
             </div>
           </div>
+        </div>
+        <!-- Load More Button -->
+        <div class="load-more-container">
+          <button
+            v-if="paginatedUsers.length < allUsers.length"
+            class="button"
+            @click="loadMoreUsers"
+          >
+            Load More
+          </button>
         </div>
       </div>
     </div>
@@ -139,6 +223,7 @@ function deleteSingleReview(reviewId: string) {
 <style scoped>
 body {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .button {
@@ -168,8 +253,8 @@ body {
 }
 
 .profile-image img {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1rem;
@@ -192,7 +277,7 @@ body {
   background-color: var(--secondary-background);
   padding: 1.5rem;
   box-shadow: 0 4px 8px rgb(0, 0, 0, 0.4);
-  min-width: 100%;
+  min-width: 105%;
   margin: 0 auto;
   flex-grow: 1;
   overflow: hidden;
@@ -202,7 +287,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 0.5rem; /* space between grid items */
-  width: 100%;
+  width: 125%;
   margin: 0;
   overflow-y: auto;
   max-height: 300px;
@@ -214,7 +299,8 @@ body {
   background-color: var(--primary-background);
   border-radius: 10px;
   overflow: hidden;
-  min-height: 195px;
+  min-height: 215px;
+  width: 17rem;
 }
 
 .review-date,

@@ -30,7 +30,7 @@ export function removeReply(id: number) {
 }
 
 export interface Reply {
-  id: PropertyKey | undefined
+  id?: PropertyKey
   userId: number
   reviewId: number
   text: string

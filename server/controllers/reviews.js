@@ -19,7 +19,7 @@ app
   .post("/", (req, res, next) => {
     console.log("Request body:", req.body); // Debugging line for reviews
     model
-      .add(req.body)
+      .add(req.body.data)
       .then((x) => res.send(x))
       .catch(next);
   })

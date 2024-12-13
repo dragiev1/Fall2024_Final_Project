@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { getAll, type Product } from '@/models/products'
+import { getAllProducts, type Product } from '@/models/products'
 import GalleryModal from '@/components/GalleryModal.vue'
 
 const products = ref<Product[]>([])
@@ -8,7 +8,7 @@ const visibleProducts = ref<Product[]>([])
 const currentIndex = ref<number>(12)
 
 onMounted(async () => {
-  const fetchedProducts = await getAll() // Get all products using the function from products.ts
+  const fetchedProducts = await getAllProducts() // Get all products using the function from products.ts
   products.value = fetchedProducts.data // Assign the fetched data to the products list
   visibleProducts.value = products.value.slice(0, currentIndex.value) // Display the first set of products
 })

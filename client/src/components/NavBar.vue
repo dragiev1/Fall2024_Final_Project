@@ -209,7 +209,7 @@ const hoveredMenu = ref<string | null>(null)
 
 .button:hover {
   background-color: var(--highlights-background-hover) !important;
-  color: var(--primary-background);
+  color: var(--primary-background) !important;
 }
 
 .navbar-link {
