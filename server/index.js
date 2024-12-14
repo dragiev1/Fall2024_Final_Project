@@ -5,7 +5,7 @@ const productController = require("./controllers/products");
 const reviewsController = require("./controllers/reviews");
 const repliesController = require("./controllers/replies");
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -41,16 +41,6 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send(err);
 });
 
-console.log("Step #1");
-app.listen(PORT, (err, data) => {
-  console.log("Step #2");
-  console.log("Server is running at http://localhost:" + PORT);
+app.listen(PORT, () => {
+  console.log(`Web app listening on: ${PORT}`);
 });
-console.log("Step #3");
-
-/*  Four types of async methods
-    1. Node Style Callbacks
-    2. Pipelines
-    3. Promises
-    4. Async/Await
-*/
