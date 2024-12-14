@@ -14,12 +14,6 @@ app.use(express.static(__dirname + "/dist"));
 
 // Controllers
 app
-  .get("/", (req, res, next) => {
-    res.send("Hello World");
-  })
-  .get("/about", (req, res, next) => {
-    res.send("About Us");
-  })
   .use("/api/v1/users", userController)
   .use("/api/v1/products", productController)
   .use("/api/v1/reviews", reviewsController)
@@ -35,6 +29,6 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send(err);
 });
 
-app.listen(3000, ROOT_URL, () => {
+app.listen(3000, "localhost", () => {
   console.log(`Web app listening on: ${ROOT_URL}:${PORT}`);
 });

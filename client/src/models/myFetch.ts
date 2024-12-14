@@ -1,10 +1,10 @@
-const ROOT_URL = 'https://made-with-love.onrender.com/'
-const API_URL = ROOT_URL + 'api/v1'
+const ROOT_URL = 'http://localhost:3000'
+const API_URL = ROOT_URL + '/api/v1/'
 
 //  Fetch function for all REST operations
 export function rest<T>(
   url: string,
-  data?: T,
+  data?: object,
   method?: string,
   headers?: Record<string, string>
 ): Promise<T> {
@@ -24,12 +24,13 @@ export function rest<T>(
     })
     .catch((error) => {
       console.error('API request error:', error)
+      console.log(url)
       throw error // Re-throw to allow for handling in the calling function
     })
 }
 
 // API wrapper function which adds base URL
-export function api<T>(url: string, data?: T, method?: string): Promise<T> {
+export function api<T>(url: string, data?: object, method?: string): Promise<T> {
   return rest<T>(API_URL + url, data, method) // Append base URL to the provided endpoint
 }
 
