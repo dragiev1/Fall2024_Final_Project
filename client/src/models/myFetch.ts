@@ -42,7 +42,7 @@ export async function loadScript(url: string): Promise<void> {
     const script = document.createElement('script')
     script.src = url
     script.onload = () => resolve()
-    script.onerror = (url) => reject(new Error(`Failed to load script: ${url}`))
+    script.onerror = () => reject(new Error(`Failed to load script: ${url}`)) // Use the captured 'url'
     document.head.appendChild(script)
   })
 }

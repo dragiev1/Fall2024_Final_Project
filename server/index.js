@@ -5,6 +5,7 @@ const productController = require("./controllers/products");
 const reviewsController = require("./controllers/reviews");
 const repliesController = require("./controllers/replies");
 
+const ROOT_URL = process.env.ROOT_URL || "0.0.0.0";
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
@@ -41,6 +42,6 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send(err);
 });
 
-app.listen(PORT, () => {
-  console.log(`Web app listening on: ${PORT}`);
+app.listen(PORT, ROOT_URL, () => {
+  console.log(`Web app listening on: ${ROOT_URL}:${PORT}`);
 });
