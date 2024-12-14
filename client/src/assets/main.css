@@ -9,5 +9,5 @@ body {
   --primary-background: #fcfcfc;
   --highlights-background-hover: #c48b99;
   --accent-background: #f3d7ca;
-  --secondary-background: #fff8e3;
+  --secondary-background: rgb(239, 255, 252);
 }

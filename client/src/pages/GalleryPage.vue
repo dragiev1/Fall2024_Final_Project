@@ -35,7 +35,7 @@ const loadMore = () => {
     </div>
     <div class="button-container mt-5">
       <button v-if="currentIndex < products.length" @click="loadMore" class="button is-large my-5">
-        Show More
+        <i class="fas fa-caret-down"></i>
       </button>
     </div>
   </body>

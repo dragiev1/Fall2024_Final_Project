@@ -16,7 +16,6 @@ const userEmail = ref<string>()
 const userPhone = ref<string>()
 const userProfilePic = ref<string>()
 const userReviews = ref<Review[]>()
-const userReplies = ref<Reply[]>()
 const currentPage = ref(1) // Track current page
 const usersPerPage = 12 // Number of users to display per page
 const isAdmin = ref(false) // For admin purposes.
@@ -76,7 +75,7 @@ async function deleteReply(replyId: number) {
 onMounted(async () => {
   const storedUser = localStorage.getItem('loggedInUser')
   if (!storedUser) {
-    console.error('No logged-in user found in localStorage!')
+    console.error('No logged-in user found!')
     return
   }
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
@@ -86,7 +85,6 @@ onMounted(async () => {
   userPhone.value = loggedInUser.telephone
   userProfilePic.value = loggedInUser.profilePicture
   isAdmin.value = loggedInUser.email === 'admin@admin.com'
-  console.log(userProfilePic.value)
   await fetchData()
 })
 
@@ -117,8 +115,7 @@ function loadMoreUsers() {
           <div class="profile-image">
             <img :src="userProfilePic" alt="img" />
           </div>
-          <h2 class="title is-4">{{ userName }}</h2>
-
+          <h2 class="title is-4" style="margin-bottom: 2px">{{ userName }}</h2>
           <div class="profile-info">
             <p class="subtitle is-6"><i class="fas fa-envelope"></i>{{ userEmail }}</p>
             <p><i class="fas fa-phone"></i> {{ userPhone }}</p>
@@ -152,7 +149,7 @@ function loadMoreUsers() {
     <!-- Admin Section for Viewing All Users -->
     <div class="admin-section">
       <div class="box all-users-box">
-        <h3 class="title is-3 px-4">All Users: ({{ allUsers.length }})</h3>
+        <h3 class="title is-4 px-4">All Users: ({{ allUsers.length }})</h3>
         <h4 class="subtitle px-4">
           Average Stars: {{ avgReviews }} <br />Total Reviews: {{ totalRatings }}
         </h4>
@@ -186,7 +183,7 @@ function loadMoreUsers() {
                 <div
                   v-for="reply in allReplies.filter((reply) => reply.userId === user.id)"
                   :key="reply.id"
-                  class="review-item"
+                  class="reply-item"
                 >
                   <p class="review-text">{{ reply.text }}</p>
                   <button class="button" @click="deleteReply(Number(reply.id))">
@@ -299,7 +296,17 @@ body {
   background-color: var(--primary-background);
   border-radius: 10px;
   overflow: hidden;
-  min-height: 215px;
+  min-height: 200px;
+  width: 17rem;
+}
+
+.reply-item {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background-color: var(--primary-background);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100px;
   width: 17rem;
 }
 

@@ -2,14 +2,20 @@
 import { computed, onMounted, ref } from 'vue'
 import { type User, getAllUsers } from '@/models/user'
 import { type Reply, getAllReplies, createReply, removeReply } from '@/models/replies'
-import { type Review, getAllReviews, createReview, removeReview } from '@/models/reviews'
+import {
+  type Review,
+  getAllReviews,
+  createReview,
+  removeReview,
+  updateReview
+} from '@/models/reviews'
 
-// defining empty arrays of type User, Reply, and Review.
+// Defining empty arrays of type User, Reply, and Review.
 const allUsers = ref<User[]>([])
 const allReplies = ref<Reply[]>([])
 const allReviews = ref<Review[]>([])
 
-// defining variables that are needed.
+// Defining variables that are needed.
 const userId = ref<number>()
 const userEmail = ref<string>()
 const isAdmin = ref(false)
@@ -20,21 +26,14 @@ const newReplyText = ref<string>('')
 const replyingTo = ref<number | null>(null)
 const rating = ref<number>()
 const hoverRatingValue = ref<number | null>(null)
+const isModalActive = ref(false)
+const modalImage = ref<string | null>(null)
+const editingReviewId = ref<number | null>(null)
+const editedReviewText = ref<string>('')
+const loggedInUser = computed(() => allUsers.value.find((user) => user.email === userEmail.value))
+const reversedReviews = computed(() => [...allReviews.value].reverse())
 
-// Fetching the data from the database.
-async function fetchData() {
-  try {
-    const users = await getAllUsers()
-    const replies = await getAllReplies()
-    const reviews = await getAllReviews()
-    allUsers.value = users.data
-    allReplies.value = replies.data
-    allReviews.value = reviews.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-
+// Stores and checks current logged in user's data.
 onMounted(async () => {
   const storedUser = localStorage.getItem('loggedInUser')
   if (!storedUser) {
@@ -49,9 +48,62 @@ onMounted(async () => {
   await fetchData()
 })
 
-const loggedInUser = computed(() => allUsers.value.find((user) => user.email === userEmail.value))
-const reversedReviews = computed(() => [...allReviews.value].reverse())
+// Fetching the data from the database.
+async function fetchData() {
+  try {
+    const users = await getAllUsers()
+    const replies = await getAllReplies()
+    const reviews = await getAllReviews()
+    allUsers.value = users.data
+    allReplies.value = replies.data
+    allReviews.value = reviews.data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
+// Updating Review text body.
+async function updateReviewText(reviewId: number) {
+  if (!editedReviewText.value.trim()) {
+    console.error('Review text cannot be empty')
+    return
+  }
 
+  try {
+    // Retrieve the full review object based on the reviewId
+    const existingReview = allReviews.value.find((review) => review.id === reviewId)
+    if (!existingReview) {
+      console.error('Review not found')
+      return
+    }
+
+    const updatedReview = {
+      ...existingReview,
+      text: editedReviewText.value // Update the text
+    }
+    console.log(updatedReview)
+    // Call the update function with the additional 'review' argument
+    const result = await updateReview(updatedReview)
+
+    if (!result.isSuccess) {
+      console.error('Failed to update review:', result.message)
+      return
+    }
+
+    await fetchData() // Refresh the data
+    closeEditingReview() // Exit editing mode
+  } catch (error) {
+    console.error('Error updating review:', error)
+  }
+}
+
+function startEditingReview(reviewId: number, currentText: string) {
+  editingReviewId.value = reviewId
+  editedReviewText.value = currentText
+}
+function closeEditingReview() {
+  editingReviewId.value = null
+  editedReviewText.value = ''
+}
 function hasErrorReview() {
   // If a user did not fill in required fields.
   let hasError = false
@@ -77,6 +129,7 @@ function hasErrorReply() {
   }
   if (hasError) return
 }
+// Border glow effect for non-filled requirements when filling out a review.
 function addGlowEffect(selector: string) {
   // Glow effect for missing fields.
   const element = document.querySelector(selector)
@@ -85,7 +138,7 @@ function addGlowEffect(selector: string) {
     setTimeout(() => element.classList.remove('error-glow'), 500)
   }
 }
-
+// Submitting a review.
 async function submitReview() {
   hasErrorReview()
 
@@ -129,7 +182,7 @@ async function submitReview() {
     }
   }
 }
-
+// Submitting a reply.
 async function submitReply(reviewId: number) {
   hasErrorReply()
   if (newReplyText.value) {
@@ -157,7 +210,7 @@ async function submitReply(reviewId: number) {
     }
   }
 }
-
+// Deleting a review.
 async function deleteReview(reviewId: number) {
   try {
     await removeReview(reviewId) // Delete review
@@ -166,7 +219,7 @@ async function deleteReview(reviewId: number) {
     console.error('Error deleting review:', error)
   }
 }
-
+// Deleting a reply.
 async function deleteReply(replyId: number) {
   try {
     await removeReply(replyId) // Delete review
@@ -180,39 +233,47 @@ function getUserName(userId: number) {
   const user = allUsers.value.find((user) => user.id === userId)
   return user ? user.name : 'Unknown User'
 }
+function getProfilePic(userId: number) {
+  const user = allUsers.value.find((user) => user.id === userId)
+  return user ? user.profilePicture : 'Unknown User'
+}
 
 function setRating(star: number) {
   rating.value = star
 }
-
 function hoverRating(star: number) {
   hoverRatingValue.value = star
 }
-
 function resetHover() {
   hoverRatingValue.value = null
 }
-
 function getStarClass(star: number) {
   if (hoverRatingValue.value !== null && star <= hoverRatingValue.value) {
     return 'fas fa-star'
   }
   return star <= (rating.value || 0) ? 'fas fa-star' : 'far fa-star'
 }
-
+// Image upload handling.
+// CANNOT SEND IMAGES YET WILL ADD AFTER FINAL.
 function handleFileUpload(event: Event) {
   const target = event.target as HTMLInputElement
   if (target.files) {
     newReviewImage.value = target.files[0] || null
   }
 }
-
+// Toggles reply textarea for when making a reply to a review.
 function toggleReply(reviewId: number) {
   replyingTo.value = replyingTo.value === reviewId ? null : reviewId
 }
-
-if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
-  console.error('Please fill in all required fields!')
+// Function to open the modal.
+function openModal(imageUrl: string) {
+  modalImage.value = imageUrl
+  isModalActive.value = true
+}
+// Function to close the modal.
+function closeModal() {
+  isModalActive.value = false
+  modalImage.value = null
 }
 </script>
 
@@ -250,19 +311,47 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
 
       <!-- Comment List -->
       <div v-for="review in reversedReviews" :key="review.userId" class="review-item">
-        <h4 class="subtitle is-5" style="margin-bottom: 0.25rem">
-          {{ review.title }}
-        </h4>
-        <h3>{{ getUserName(review.userId) }}</h3>
-        <h3>Rating: <span class="has-text-warning" v-for="n in review.rating" :key="n">★</span></h3>
-        <h3><i class="fas fa-calendar-alt"></i> {{ review.date }}</h3>
-        <p class="review-text my-2">{{ review.text }}</p>
-
-        <div v-if="review.image">
-          <img :src="review.image" alt="Review img" class="review-image" />
+        <!-- Image Preview Trigger -->
+        <div v-if="review.image != null" class="is-clickable" @click="openModal(review.image)">
+          <img :src="review.image" alt="ReviewImg" class="review-image" />
         </div>
 
-        <!-- Display Replies -->
+        <!-- Profile Picture and Info -->
+        <div class="review-header">
+          <img
+            :src="getProfilePic(review.userId)"
+            alt="ProfilePic"
+            class="user-profile-picture-review"
+          />
+          <div class="review-info">
+            <h4 class="subtitle is-5" style="margin-bottom: 0.25rem">
+              {{ review.title }}
+            </h4>
+            <h3>
+              {{ getUserName(review.userId) }}
+            </h3>
+          </div>
+        </div>
+
+        <!-- Rating and Date -->
+        <h3>Rating: <span class="has-text-warning" v-for="n in review.rating" :key="n">★</span></h3>
+        <h3><i class="fas fa-calendar-alt"></i> {{ review.date }}</h3>
+
+        <!-- Review Text and Edit Options -->
+        <p v-if="editingReviewId !== review.id" class="review-text my-2">
+          {{ review.text }}
+        </p>
+        <div v-else>
+          <textarea
+            v-model="editedReviewText"
+            class="textarea my-2"
+            placeholder="Edit your review..."
+          ></textarea>
+          <button class="button is-success my-1" @click="updateReviewText(review.id!)">Save</button>
+          <button class="button is-danger my-1 mx-1" @click="closeEditingReview()">Cancel</button>
+        </div>
+
+        <!-- Display All Replies -->
         <div v-if="allReplies && allReplies.length" class="replies mt-3">
           <h4 v-if="allReplies.length > 0">Replies:</h4>
           <div
@@ -270,10 +359,22 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
             :key="reply.id"
             class="reply"
           >
-            <p class="reply-title">{{ reply.author }} <br /></p>
-            <p class="px-5">{{ reply.text }}</p>
+            <!-- Display Reply -->
+            <div class="reply-header">
+              <img
+                :src="getProfilePic(reply.userId)"
+                alt="ProfilePic"
+                class="user-profile-picture-reply mx-2"
+              />
+              <div class="reply-info">
+                <p class="reply-title">{{ reply.author }}<br /></p>
+                <p class="px-2">{{ reply.text }}</p>
+              </div>
+            </div>
+
+            <!-- Delete Reply Button -->
             <button
-              v-if="reply.userId === userId || userEmail == 'admin@admin.com'"
+              v-if="reply.userId === userId || isAdmin"
               class="button my-1"
               @click="deleteReply(Number(reply.id))"
             >
@@ -283,7 +384,9 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
         </div>
 
         <!-- Toggle Reply Textarea -->
-        <button class="button my-1" @click="toggleReply(review.id!)">Reply</button>
+        <button class="button my-1" @click="toggleReply(review.id!)">
+          <i class="fas fa-reply"></i>
+        </button>
 
         <!-- Conditional Reply Form -->
         <div v-if="replyingTo === review.id">
@@ -295,19 +398,51 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
           <button class="button is-info my-1" @click="submitReply(review.id)">Submit Reply</button>
         </div>
 
+        <!-- Delete Review -->
         <button
-          v-if="review.userId === userId"
+          v-if="review.userId === userId || isAdmin"
           class="button my-1"
           @click="deleteReview(Number(review.id))"
         >
-          Delete Review
+          <i class="fas fa-trash"></i>
+        </button>
+
+        <button
+          v-if="review.userId === userId || isAdmin"
+          class="button my-1"
+          @click="startEditingReview(review.id!, review.text)"
+        >
+          <i class="fas fa-pen-fancy"></i>
         </button>
       </div>
+    </div>
+    <div class="modal" :class="{ 'is-active': isModalActive }">
+      <div class="modal-background" @click="closeModal"></div>
+      <div class="modal-content">
+        <img :src="modalImage!" alt="Review" class="image" />
+      </div>
+      <button class="modal-close is-large" @click="closeModal" aria-label="close"></button>
     </div>
   </section>
 </template>
 
 <style scoped>
+.user-profile-picture-review {
+  height: 50px;
+  width: 50px;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+  object-fit: cover;
+  overflow: hidden;
+}
+.user-profile-picture-reply {
+  height: 50px;
+  width: 50px;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+  object-fit: cover;
+  overflow: hidden;
+}
 .reviews {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -317,7 +452,21 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
   overflow-y: auto;
   max-height: 300px;
 }
-
+.review-header {
+  display: flex;
+  align-items: center;
+}
+.reply-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-background);
+  border-radius: 10px;
+}
+.reply-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .review-item {
   padding: 1rem;
   border: 1px solid #ccc;
@@ -326,7 +475,13 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
   overflow: hidden;
   min-height: 195px;
 }
-
+.review-image {
+  width: 9rem;
+  height: 9rem;
+  float: right;
+  object-fit: cover;
+  border-radius: 10px;
+}
 .review-date,
 .review-text,
 .review-rating {
@@ -336,6 +491,9 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
   color: black;
   padding-left: 1rem;
 }
+.review-image:hover {
+  opacity: 80%;
+}
 
 .review-date i {
   margin-right: 5px;
@@ -343,6 +501,8 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
 
 .button {
   background-color: var(--highlights-background);
+  padding-left: 11px;
+  padding-right: 11px;
 }
 
 .reply-title {
@@ -350,9 +510,7 @@ if (!newReviewTitle.value || !newReviewText.value || !rating.value) {
 }
 
 p {
-  background-color: var(--secondary-background);
-  border-radius: 10px;
-  padding: 7px;
+  padding: 3px;
   color: black;
 }
 
@@ -412,5 +570,10 @@ section {
   transition:
     box-shadow 0.2s ease,
     border 0.3s ease;
+}
+
+.modal .modal-content img {
+  max-height: 80vh;
+  object-fit: fit;
 }
 </style>

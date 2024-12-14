@@ -3,13 +3,13 @@ GET http://localhost:3000/api/v1/reviews/15
 
 
 ###
-POST http://localhost:3000/api/v1/reviews
+PATCH http://localhost:3000/api/v1/reviews/1
 Content-Type: application/json
 
 {
     "userId": "1",
-    "title": "dawdawdawdawd",
-    "text": "dawdawd",
+    "title": "Delicious",
+    "text": "Moshe Plotkin would have loved this!",
     "rating": "5",
-    "image": null
+    "image": "https://res.cloudinary.com/dv8u0g7xm/image/upload/v1733869275/IMG_3883_xe22uo.png"
 }

@@ -7,7 +7,7 @@ export async function getAllReviews() {
 }
 
 export async function getReviewByID(id: number) {
-  return api<DataEnvelope<Review>>(`review/${id}`)
+  return api<DataEnvelope<Review>>(`reviews/${id}`)
 }
 
 export function createReview(review: Review) {
@@ -23,7 +23,7 @@ export function updateReview(review: Review) {
     data: review,
     isSuccess: false
   }
-  return api<DataEnvelope<Review>>(`review/${review.id}`, dataEnvelope, 'PATCH')
+  return api<DataEnvelope<Review>>(`reviews/${review.id}`, dataEnvelope, 'PATCH')
 }
 
 export function removeReview(id: number) {

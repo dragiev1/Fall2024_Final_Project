@@ -17,7 +17,6 @@ app
       .catch(next);
   })
   .post("/", (req, res, next) => {
-    console.log("Request body:", req.body); // Debugging line for reviews
     model
       .add(req.body.data)
       .then((x) => res.send(x))
@@ -25,9 +24,8 @@ app
   })
   .patch("/:id", (req, res, next) => {
     const id = req.params.id;
-    console.log("Request body:", req.body); // Debugging line for reviews
     model
-      .update(+id, req.body)
+      .update(+id, req.body.data)
       .then((x) => res.send(x))
       .catch(next);
   })

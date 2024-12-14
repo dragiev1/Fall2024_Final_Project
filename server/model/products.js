@@ -21,8 +21,6 @@ async function getAll() {
   const { data, error, count } = await conn
     .from("products")
     .select("*", { count: "estimated" });
-  console.log("Data:", data);
-  console.log("Error:", error);
   return {
     isSuccess: !error,
     message: error?.message,

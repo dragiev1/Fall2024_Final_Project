@@ -3,20 +3,21 @@ import MenuItem from '@/components/MenuItem.vue'
 import { getAllProducts, type Product } from '@/models/products'
 import { computed, onMounted, ref, watch } from 'vue'
 
+// Defining things needed.
 const products = ref<Product[]>([])
 const visibleProducts = ref<Product[]>([])
 const visibleCakeProducts = ref<Product[]>([])
 const visibleChocoProducts = ref<Product[]>([])
 const currentIndex = ref<number>(8)
 
+// Grabs all products.
 onMounted(async () => {
   const fetchedProducts = await getAllProducts() // Get all products using the function from products.ts
   products.value = fetchedProducts.data // Assign the fetched data to the products list
   visibleProducts.value = products.value // Display the first set of products
 })
 
-console.log(visibleProducts)
-
+// Sorts all products into categories.
 const cakeProducts = computed(() =>
   visibleProducts.value.filter((product) => product.category === 'cake' && 'ginger')
 )
@@ -42,7 +43,6 @@ const loadMoreCake = () => {
   currentIndex.value += 12
   visibleCakeProducts.value = cakeProducts.value.slice(0, currentIndex.value)
 }
-
 const loadMoreChoco = () => {
   currentIndex.value += 12
   visibleChocoProducts.value = chocolateProducts.value.slice(0, currentIndex.value)
@@ -73,7 +73,7 @@ const loadMoreChoco = () => {
             @click="loadMoreCake"
             class="button is-large"
           >
-            Show More
+            <i class="fas fa-caret-down"></i>
           </button>
         </div>
         <p class="menu-label">Chocolates <i class="fas fa-cookie-bite px-1"></i></p>
@@ -90,7 +90,7 @@ const loadMoreChoco = () => {
             @click="loadMoreChoco"
             class="button is-large"
           >
-            Show More
+            <i class="fas fa-caret-down"></i>
           </button>
         </div>
         <p class="menu-label">Meringue Cookies</p>
@@ -132,6 +132,7 @@ body {
   font-family: italic;
   font-style: italic;
   background-color: var(--highlights-background);
+  width: 17px;
 }
 .button-container {
   display: flex;
