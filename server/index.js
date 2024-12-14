@@ -29,6 +29,6 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send(err);
 });
 
-app.listen(3000, "localhost", () => {
+app.listen(+PORT, ROOT_URL, () => {
   console.log(`Web app listening on: ${ROOT_URL}:${PORT}`);
 });
