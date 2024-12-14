@@ -9,6 +9,9 @@ import {
   removeReview,
   updateReview
 } from '@/models/reviews'
+import { useAuth } from '@/models/useAuth'
+
+const { isLoggedIn } = useAuth()
 
 // Defining empty arrays of type User, Reply, and Review.
 const allUsers = ref<User[]>([])
@@ -40,7 +43,6 @@ onMounted(async () => {
     console.error('No logged-in user found in localStorage!')
     return
   }
-
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
   userId.value = loggedInUser.id
   userEmail.value = loggedInUser.email
@@ -374,7 +376,7 @@ function closeModal() {
 
             <!-- Delete Reply Button -->
             <button
-              v-if="reply.userId === userId || isAdmin"
+              v-if="(reply.userId === userId || isAdmin) && isLoggedIn"
               class="button my-1"
               @click="deleteReply(Number(reply.id))"
             >
@@ -400,7 +402,7 @@ function closeModal() {
 
         <!-- Delete Review -->
         <button
-          v-if="review.userId === userId || isAdmin"
+          v-if="(review.userId === userId || isAdmin) && isLoggedIn"
           class="button my-1"
           @click="deleteReview(Number(review.id))"
         >
@@ -408,7 +410,7 @@ function closeModal() {
         </button>
 
         <button
-          v-if="review.userId === userId || isAdmin"
+          v-if="(review.userId === userId || isAdmin) && isLoggedIn"
           class="button my-1"
           @click="startEditingReview(review.id!, review.text)"
         >
