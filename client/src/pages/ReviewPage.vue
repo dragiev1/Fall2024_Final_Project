@@ -386,7 +386,7 @@ function closeModal() {
         </div>
 
         <!-- Toggle Reply Textarea -->
-        <button class="button my-1" @click="toggleReply(review.id!)">
+        <button v-if="isLoggedIn" class="button my-1" @click="toggleReply(review.id!)">
           <i class="fas fa-reply"></i>
         </button>
 
