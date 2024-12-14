@@ -1,7 +1,7 @@
 import type { DataEnvelope, DataListEnvelope } from './dataEnvelope'
 import type { Review } from './reviews'
 import { ref } from 'vue'
-import { loadScript, rest, api } from './myFetch'
+import { api } from './myFetch'
 
 const session = ref({
   user: null as Partial<User> | null,
@@ -55,8 +55,8 @@ export const useLogin = () => ({
   async login() {},
   async logout() {
     session.value.user = null
-  },
-  async googleLogin() {
+  }
+  /*async googleLogin() {
     await loadScript('https://accounts.google.com/gsi/client')
 
     const tokenClient = google.accounts.oauth2.initTokenClient({
@@ -94,5 +94,5 @@ export const useLogin = () => ({
     })
 
     tokenClient.requestAccessToken({})
-  }
+  }*/
 })

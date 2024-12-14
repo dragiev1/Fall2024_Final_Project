@@ -3,12 +3,7 @@ import router from '../router'
 import { onMounted, ref } from 'vue'
 import { useAuth } from '../models/useAuth'
 import { getAllUsers, type User } from '@/models/user'
-import { refSession, useLogin } from '@/models/user'
-
-const logins = useLogin()
-function googleLogin() {
-  logins.googleLogin()
-}
+import { refSession } from '@/models/user'
 
 const session = refSession()
 
@@ -118,11 +113,7 @@ const handleLogin = (): void => {
 
             <div class="box is-light"></div>
             <!-- Google Icon -->
-            <div
-              class="container google has-text-centered is-clickable"
-              @click.prevent="googleLogin"
-              v-if="!session.user"
-            >
+            <div class="container google has-text-centered is-clickable" v-if="!session.user">
               <i class="fab fa-google"> Sign in with Google </i>
             </div>
             <!-- Login Error Message -->
