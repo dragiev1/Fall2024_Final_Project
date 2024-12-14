@@ -2,6 +2,22 @@
 <script setup lang="ts">
 import Parallax from '@/components/ParallaxComponent1.vue'
 import Parallax2 from '@/components/ParallaxComponent2.vue'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  // Dynamically load Google Maps API script using the key from the .env file
+  const apiKey = process.env.VITE_APP_GOOGLE_MAPS_API_KEY
+
+  if (apiKey) {
+    const script = document.createElement('script')
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
+  } else {
+    console.error('Google Maps API key is missing!')
+  }
+})
 </script>
 
 <template>
