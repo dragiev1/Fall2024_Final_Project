@@ -1,14 +1,20 @@
-const API_URL = 'http://localhost:3000/api/v1/'
+const ROOT_URL = 'http://localhost:3000'
+const API_URL = ROOT_URL + 'api/v1'
 
 //  Fetch function for all REST operations
-export function rest<T>(url: string, data?: T, method?: string, headers?: Record<string, string>): Promise<T> {
+export function rest<T>(
+  url: string,
+  data?: T,
+  method?: string,
+  headers?: Record<string, string>
+): Promise<T> {
   return fetch(url, {
     method: method ?? (data ? 'POST' : 'GET'), // If data exists, use POST, else GET
     headers: {
       'Content-Type': 'application/json',
-      ...headers,
+      ...headers
     },
-    body: data ? JSON.stringify(data) : undefined, // Stringify the body if data is provided
+    body: data ? JSON.stringify(data) : undefined // Stringify the body if data is provided
   })
     .then((response) => {
       if (!response.ok) {
