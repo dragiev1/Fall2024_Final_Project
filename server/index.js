@@ -8,13 +8,6 @@ const repliesController = require("./controllers/replies");
 const ROOT_URL = process.env.ROOT_URL || "0.0.0.0";
 const PORT = process.env.PORT || 3000;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-});
-
 // Middleware
 app.use(express.json());
 app.use(express.static(__dirname + "/dist"));
@@ -42,6 +35,6 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send(err);
 });
 
-app.listen(PORT, ROOT_URL, () => {
+app.listen(3000, ROOT_URL, () => {
   console.log(`Web app listening on: ${ROOT_URL}:${PORT}`);
 });
