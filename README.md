@@ -1,4 +1,4 @@
-# Sweets Business Website
+# Made with Love Website
 
 Welcome to the **Made with Love** website repository! This project represents a beautifully crafted, responsive website for a sweets and desserts business. It showcases our products, company story, and provides a seamless user experience for customers to browse and place orders.
 
