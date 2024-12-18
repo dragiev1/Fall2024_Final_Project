@@ -61,7 +61,7 @@ Our goal is to help sweet lovers experience the joy of delightful desserts and m
 ## Contact
 
 - **Business Name**: Made with Love
-- **Website**: <https://made-with-love.onrender.com/(#)>
+- **Website**: <https://made-with-love.onrender.com>
 - **Email**: <dragievs2020@gmail.com>
 - **Social Media**: <https://www.linkedin.com/in/stiviyan-y-dragiev/>
 
