@@ -35,6 +35,9 @@ const editingReviewId = ref<number | null>(null)
 const editedReviewText = ref<string>('')
 const loggedInUser = computed(() => allUsers.value.find((user) => user.email === userEmail.value))
 const reversedReviews = computed(() => [...allReviews.value].reverse())
+const options = ref<string[]>([])
+const isLoading = ref(false)
+const error = ref<string | null>(null)
 
 // Stores and checks current logged in user's data.
 onMounted(async () => {
@@ -48,6 +51,29 @@ onMounted(async () => {
   userEmail.value = loggedInUser.email
   isAdmin.value = loggedInUser.email === 'admin@admin.com'
   await fetchData()
+})
+
+async function fetchUsers() {
+  try {
+    isLoading.value = true
+    const { data, error: fetchError } = await getAllUsers()
+
+    if (fetchError) {
+      throw fetchError
+    }
+    if (data) {
+      options.value = data.map((user: User) => user.name) // Use user names for autocomplete options.
+    }
+  } catch (err) {
+    error.value = 'Error fetching users.'
+    console.error(err)
+  } finally {
+    isLoading.value = false
+  }
+}
+
+onMounted(() => {
+  fetchUsers()
 })
 
 // Fetching the data from the database.

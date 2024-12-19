@@ -11,6 +11,12 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(express.static(__dirname + "/dist"));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 
 // Controllers
 app
@@ -18,6 +24,7 @@ app
   .use("/api/v1/products", productController)
   .use("/api/v1/reviews", reviewsController)
   .use("/api/v1/replies", repliesController)
+  .use("/api/v1/search", userController)
 
   .get("*", (req, res, next) => {
     res.sendFile(__dirname + "/dist/index.html");
@@ -29,6 +36,6 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send(err);
 });
 
-app.listen(+PORT, ROOT_URL, () => {
+app.listen(3000, "localhost", () => {
   console.log(`Web app listening on: ${ROOT_URL}:${PORT}`);
 });

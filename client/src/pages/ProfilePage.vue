@@ -3,6 +3,7 @@ import { getAllUsers, type User, removeUser } from '@/models/user'
 import { getAllReplies, type Reply, removeReply } from '@/models/replies'
 import { getAllReviews, type Review, removeReview } from '@/models/reviews'
 import { computed, onMounted, ref } from 'vue'
+import AutocompleteInput from '@/components/AutocompleteInput.vue'
 
 // defining empty arrays of type User, Reply, and Review.
 const allUsers = ref<User[]>([])
@@ -19,6 +20,11 @@ const userReviews = ref<Review[]>()
 const currentPage = ref(1) // Track current page
 const usersPerPage = 12 // Number of users to display per page
 const isAdmin = ref(false) // For admin purposes.
+const showSearch = ref(false)
+
+function toggleSearch() {
+  showSearch.value = !showSearch.value
+}
 
 async function fetchData() {
   try {
@@ -149,10 +155,23 @@ function loadMoreUsers() {
     <!-- Admin Section for Viewing All Users -->
     <div class="admin-section">
       <div class="box all-users-box">
-        <h3 class="title is-4 px-4">All Users: ({{ allUsers.length }})</h3>
-        <h4 class="subtitle px-4">
-          Average Stars: {{ avgReviews }} <br />Total Reviews: {{ totalRatings }}
-        </h4>
+        <div class="header-container">
+          <div class="header-content">
+            <h3 class="title is-4">All Users: ({{ allUsers.length }})</h3>
+            <h4 class="subtitle">
+              Average Stars: {{ avgReviews }} <br />
+              Total Reviews: {{ totalRatings }}
+            </h4>
+          </div>
+          <div class="search-wrapper">
+            <button class="toggle-search-btn" @click="toggleSearch">
+              <i class="fas fa-search"></i> Search Users
+            </button>
+            <div v-if="showSearch" class="search-container">
+              <AutocompleteInput />
+            </div>
+          </div>
+        </div>
         <div class="grid">
           <!-- Loop through paginated users -->
           <div v-for="user in paginatedUsers" :key="user.id" class="cell user-item">
@@ -330,5 +349,54 @@ body {
   flex-direction: column;
   height: 100%;
   margin: 0.5rem;
+}
+
+.header-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-container {
+  position: absolute;
+  top: 100%; /* Position the dropdown below the button */
+  right: 0;
+  background: var(--primary-background);
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 300px;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.toggle-search-btn {
+  background-color: var(--secondary-background);
+  color: #000000;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toggle-search-btn i {
+  font-size: 1rem;
+}
+
+.toggle-search-btn:hover {
+  background-color: var(--primary-highlight);
+}
+
+.grid {
+  margin-top: 2rem; /* Add spacing to prevent overlap */
 }
 </style>

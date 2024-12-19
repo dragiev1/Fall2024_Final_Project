@@ -36,6 +36,28 @@ async function getAll() {
 }
 
 /**
+ * Get all users by search
+ * @param {string} query
+ * @returns {Promise<DataListEnvelope<User>>}
+ */
+async function searchUsers(query) {
+  const { data, error } = await conn
+    .from("users")
+    .select("*")
+    .ilike("name", `%${query}%`);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  };
+}
+
+/**
  * Get a user by id
  * @param {number} id
  * @returns {Promise<DataEnvelope<User>>}
@@ -158,6 +180,7 @@ async function remove(id) {
 
 module.exports = {
   getAll,
+  searchUsers,
   get,
   add,
   update,

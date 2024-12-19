@@ -1,2 +1,6 @@
 ###
 GET http://localhost:3000/api/v1/users/2
+
+
+###
+GET http://localhost:3000/api/v1/users/search?q=C

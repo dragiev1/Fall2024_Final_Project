@@ -7,6 +7,6 @@ export interface DataEnvelope<T> {
 
 export interface DataListEnvelope<T> extends DataEnvelope<T[]> {
   data: T[]
-  total: number
+  total?: number
   error?: string
 }

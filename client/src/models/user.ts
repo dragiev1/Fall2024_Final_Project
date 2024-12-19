@@ -10,6 +10,10 @@ const session = ref({
   isLoading: false
 })
 
+export async function getAllUsersBySearch(query: string) {
+  return api<DataListEnvelope<User>>(`search?q=${query}`)
+}
+
 export async function getAllUsers() {
   return await api<DataListEnvelope<User>>('users')
 }
